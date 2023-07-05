@@ -107,7 +107,8 @@ final GoRouter router = GoRouter(
                 return SlideTransition(
                   position: animation.drive(
                     Tween<Offset>(
-                      begin: const Offset(0.5, 0),
+                      begin: const Offset(0, 0),
+                      // begin: const Offset(0.5, 0),
                       end: Offset.zero,
                     ).chain(CurveTween(curve: Curves.easeIn)),
                   ),
