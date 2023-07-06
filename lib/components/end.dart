@@ -55,7 +55,7 @@ class _EndPageState extends State<EndPage> {
                           ),
                         ),
                         const SizedBox(height: Dimensions.l),
-                        ZetaText.labelSmall(
+                        ZetaText.bodySmall(
                           'ZEBRA and the stylized Zebra head are trademarks of Zebra Technologies Corp., registered in many juristictions worldwide. All other trademarks are properties of their respective owners. ©2023 Zebra Technologies Corp. and/or its affiliates. All rights reserved.',
                           textColor: colors.textInverse,
                         ),

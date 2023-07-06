@@ -6,10 +6,10 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 class Content extends StatefulWidget {
   final String title;
   final String? subtitle;
-
+  final Widget? subtitleWidget;
   final Widget content;
 
-  const Content({super.key, required this.title, required this.content, this.subtitle});
+  const Content({super.key, required this.title, required this.content, this.subtitle, this.subtitleWidget});
 
   @override
   State<Content> createState() => _ContentState();
@@ -28,21 +28,6 @@ class _ContentState extends State<Content> {
             Positioned(
               top: Dimensions.m,
               right: Dimensions.m,
-              bottom: Dimensions.m,
-              left: Dimensions.m,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ZetaText.headingLarge(widget.title, textColor: colors.textDefault),
-                  if (widget.subtitle != null) ZetaText.headingMedium(widget.subtitle, textColor: colors.primary),
-                  const SizedBox(height: Dimensions.m),
-                  widget.content,
-                ],
-              ),
-            ),
-            Positioned(
-              top: Dimensions.m,
-              right: Dimensions.m,
               child: SvgPicture.asset(
                 'lib/assets/zebra-logo-stacked.svg',
                 height: constraints.maxHeight * 0.1,
@@ -54,6 +39,22 @@ class _ContentState extends State<Content> {
               child: CustomPaint(
                 size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
                 painter: BluePaint(context),
+              ),
+            ),
+            Positioned(
+              top: Dimensions.l,
+              right: Dimensions.m,
+              bottom: Dimensions.m,
+              left: Dimensions.m,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ZetaText.headingLarge(widget.title, textColor: colors.textDefault),
+                  if (widget.subtitleWidget == null) ZetaText.headingMedium(widget.subtitle, textColor: colors.primary),
+                  if (widget.subtitleWidget != null) widget.subtitleWidget!,
+                  const SizedBox(height: Dimensions.m),
+                  Expanded(child: widget.content),
+                ],
               ),
             ),
           ],

@@ -6,8 +6,9 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 class TitlePage extends StatefulWidget {
   final String title;
   final String subtitle;
-
-  const TitlePage({super.key, required this.title, required this.subtitle});
+  final String name;
+  final String date;
+  const TitlePage({super.key, required this.title, required this.name, required this.subtitle, required this.date});
 
   @override
   State<TitlePage> createState() => _TitlePageState();
@@ -44,17 +45,30 @@ class _TitlePageState extends State<TitlePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ZetaText.displayLarge(
+                      ZetaText.displayMedium(
                         widget.title,
                         textColor: ZetaColors.of(context).surface,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: constraints.maxHeight * 0.1),
                       ZetaText.displaySmall(
                         widget.subtitle,
-                        textColor: ZetaColors.of(context).background,
+                        textColor: ZetaColors.of(context).primary,
                       ),
                     ],
                   ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ZetaText.headingMedium(
+                      widget.name,
+                      textColor: ZetaColors.of(context).surface,
+                    ),
+                    ZetaText.headingMedium(
+                      widget.date,
+                      textColor: ZetaColors.of(context).surface,
+                    ),
+                  ],
                 ),
                 SizedBox(height: constraints.maxHeight * 0.1),
               ],

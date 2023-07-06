@@ -7,6 +7,10 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 import '../pages/page1.dart';
 import '../pages/page2.dart';
 import '../pages/page3.dart';
+import '../pages/page4.dart';
+import '../pages/page5.dart';
+import '../pages/page6.dart';
+import '../pages/page7.dart';
 import '../pages/pageX.dart';
 import 'colors.dart';
 
@@ -40,51 +44,54 @@ class _NavWrapperState extends State<NavWrapper> {
 
     FocusScope.of(context).requestFocus(focusNode);
     return KeyboardListener(
-      focusNode: focusNode,
-      onKeyEvent: (value) {
-        if (value is KeyUpEvent) {
-          if (value.physicalKey == PhysicalKeyboardKey.arrowLeft) prevPage();
-          if (value.physicalKey == PhysicalKeyboardKey.arrowRight) nextPage();
-          if (value.physicalKey == PhysicalKeyboardKey.arrowUp) firstPage();
-          if (value.physicalKey == PhysicalKeyboardKey.arrowDown) lastPage();
-          if (value.physicalKey == PhysicalKeyboardKey.keyQ) {
-            setState(() => currentColors = iterateColors(context, currentColors));
+        focusNode: focusNode,
+        onKeyEvent: (value) {
+          if (value is KeyUpEvent) {
+            if (value.physicalKey == PhysicalKeyboardKey.arrowLeft) prevPage();
+            if (value.physicalKey == PhysicalKeyboardKey.arrowRight) nextPage();
+            if (value.physicalKey == PhysicalKeyboardKey.arrowUp) firstPage();
+            if (value.physicalKey == PhysicalKeyboardKey.arrowDown) lastPage();
+            if (value.physicalKey == PhysicalKeyboardKey.keyQ) {
+              setState(() => currentColors = iterateColors(context, currentColors));
+            }
           }
-        }
-      },
-      child: GestureDetector(
-        onTap: nextPage,
-        onSecondaryTap: prevPage,
-        child: Stack(
-          children: [
-            Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(Dimensions.m),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    ZetaText.labelSmall(
-                      pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
-                      textColor: ZetaColors.of(context).textSubtle,
-                    ),
-                    ZetaText.labelSmall(
-                      '$pageNumber/$pagesTotal, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
-                      textColor:
-                          pageNumber == 1 ? ZetaColors.of(context).textSubtle : ZetaColors.of(context).textInverse,
-                    ),
-                  ],
+        },
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.2),
+          // child: GestureDetector( TODO: work this out with demos
+          //   onTap: nextPage,
+          //   onSecondaryTap: prevPage,
+          child: Stack(
+            children: [
+              Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(Dimensions.m),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ZetaText.labelSmall(
+                        pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
+                        textColor: ZetaColors.of(context).textSubtle,
+                      ),
+                      ZetaText.labelSmall(
+                        '$pageNumber/$pagesTotal',
+                        //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
+                        textColor:
+                            pageNumber == 1 ? ZetaColors.of(context).textSubtle : ZetaColors.of(context).textInverse,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+          // ),
+        ));
   }
 }
 
@@ -92,6 +99,10 @@ final routes = [
   const Page1(),
   const Page2(),
   const Page3(),
+  const Page4(),
+  const Page5(),
+  const Page6(),
+  const Page7(),
   const PageX(),
 ];
 
