@@ -5,12 +5,16 @@ import 'package:go_router/go_router.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../pages/page1.dart';
+import '../pages/page10.dart';
+import '../pages/page11.dart';
 import '../pages/page2.dart';
 import '../pages/page3.dart';
 import '../pages/page4.dart';
 import '../pages/page5.dart';
 import '../pages/page6.dart';
 import '../pages/page7.dart';
+import '../pages/page8.dart';
+import '../pages/page9.dart';
 import '../pages/pageX.dart';
 import 'colors.dart';
 
@@ -103,6 +107,10 @@ final routes = [
   const Page5(),
   const Page6(),
   const Page7(),
+  const Page8(),
+  const Page9(),
+  const Page10(),
+  const Page11(),
   const PageX(),
 ];
 

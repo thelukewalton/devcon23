@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/themes/a11y-dark.dart';
-import 'package:flutter_highlight/themes/a11y-light.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 import '../components/content.dart';

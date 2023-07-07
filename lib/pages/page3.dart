@@ -11,6 +11,7 @@ class Page3 extends StatelessWidget {
     return Content(
       title: 'The problem',
       subtitle: 'ZSB Series Printer',
+      backgroundOnTop: true,
       content: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

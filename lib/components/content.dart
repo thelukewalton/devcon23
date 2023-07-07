@@ -8,8 +8,15 @@ class Content extends StatefulWidget {
   final String? subtitle;
   final Widget? subtitleWidget;
   final Widget content;
+  final bool backgroundOnTop;
 
-  const Content({super.key, required this.title, required this.content, this.subtitle, this.subtitleWidget});
+  const Content(
+      {super.key,
+      required this.title,
+      required this.content,
+      this.subtitle,
+      this.subtitleWidget,
+      this.backgroundOnTop = false});
 
   @override
   State<Content> createState() => _ContentState();
@@ -33,14 +40,15 @@ class _ContentState extends State<Content> {
                 height: constraints.maxHeight * 0.1,
               ),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: CustomPaint(
-                size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
-                painter: BluePaint(context),
+            if (!widget.backgroundOnTop)
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: CustomPaint(
+                  size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
+                  painter: BluePaint(context),
+                ),
               ),
-            ),
             Positioned(
               top: Dimensions.l,
               right: Dimensions.m,
@@ -57,6 +65,15 @@ class _ContentState extends State<Content> {
                 ],
               ),
             ),
+            if (widget.backgroundOnTop)
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: CustomPaint(
+                  size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
+                  painter: BluePaint(context),
+                ),
+              ),
           ],
         ),
       );

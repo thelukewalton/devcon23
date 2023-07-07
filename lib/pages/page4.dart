@@ -12,6 +12,7 @@ class Page4 extends StatelessWidget {
     final ZetaColors colors = ZetaColors.of(context);
     return Content(
       title: 'The problem',
+      backgroundOnTop: true,
       subtitleWidget: Row(
         children: [
           Expanded(child: ZetaText.headingMedium('ZSB Series Printer', textColor: colors.primary)),

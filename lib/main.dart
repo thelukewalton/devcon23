@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: theme,
         routerConfig: router,
+        debugShowCheckedModeBanner: false,
       );
     });
   }
