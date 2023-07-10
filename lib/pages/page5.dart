@@ -56,7 +56,7 @@ class Page5 extends StatelessWidget {
           ),
           Expanded(
             child: Center(child: FittedBox(child: Image.asset('lib/assets/zsbapp.jpg'))).stack(200),
-            // TODO: Embed some actual app
+            // TODO: Embed some content
           ),
         ],
       ),

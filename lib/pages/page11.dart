@@ -29,7 +29,8 @@ class Page11 extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: const Center(child: ZetaText.displayLarge('Zeta')).stack(200), //TODO: embed some content?
+            child: const Center(child: ZetaText.displayLarge('Zeta')).stack(200),
+            //TODO: embed some content
           ),
         ],
       ),

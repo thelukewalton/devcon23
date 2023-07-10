@@ -68,40 +68,57 @@ class ZDSDemo extends StatelessWidget {
                 children: [
                   const _Wrapper(
                     child: ZdsAppBar(
-                      color: ZdsTabBarColor.surface,
                       actions: [Icon(Icons.more_vert)],
                       title: Text('Appbar'),
                     ),
                   ),
-                  const _Wrapper(
-                    child: ZdsAppBar(
-                      actions: [Icon(Icons.more_vert)],
-                      title: Text('Appbar'),
-                    ),
-                  ),
-                  const _Wrapper(
-                    child: ZdsAppBar(
-                      color: ZdsTabBarColor.primary,
-                      actions: [Icon(Icons.more_vert)],
-                      title: Text('Appbar'),
+                  DefaultTabController(
+                    length: 3,
+                    child: _Wrapper(
+                      child: ZdsAppBar(
+                        color: ZdsTabBarColor.primary,
+                        actions: [
+                          ZdsPopupMenu(
+                            builder: (p0, p1) => (IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))),
+                            items: const [
+                              ZdsPopupMenuItem(
+                                child: ListTile(
+                                  visualDensity: VisualDensity.compact,
+                                  title: Text('Settings'),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                        title: const Text('Appbar'),
+                        subtitle: const Text('Subtitle'),
+                        bottom: const ZdsTabBar(
+                          color: ZdsTabBarColor.primary,
+                          items: [
+                            ZdsTab(
+                              icon: Icon(ZdsIcons.details),
+                              label: 'Details',
+                            ),
+                            ZdsTab(
+                              icon: Icon(ZdsIcons.edit),
+                              label: 'Edit',
+                            ),
+                            ZdsTab(
+                              icon: Icon(ZdsIcons.delete),
+                              label: 'Discard',
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   _Wrapper(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ZdsButton.filled(
-                          child: const Text('Button'),
-                          onTap: () {},
-                        ),
-                        ZdsButton.outlined(
-                          child: const Text('Button'),
-                          onTap: () {},
-                        ),
-                        ZdsButton.text(
-                          child: const Text('Button'),
-                          onTap: () {},
-                        ),
+                        ZdsButton.filled(child: const Text('Button'), onTap: () {}),
+                        ZdsButton.outlined(child: const Text('Button'), onTap: () {}),
+                        ZdsButton.text(child: const Text('Button'), onTap: () {}),
                       ],
                     ),
                   ),
@@ -501,20 +518,16 @@ class ZDSDemo extends StatelessWidget {
                   ),
                   SizedBox(
                     width: 360,
-                    height: 300,
+                    height: 330,
                     child: ZdsModal(
                       actions: [
                         ZdsButton.muted(
                           child: const Text('Cancel'),
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
+                          onTap: () {},
                         ),
                         ZdsButton(
                           child: const Text('Save'),
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
+                          onTap: () {},
                         ),
                       ],
                       child: Padding(

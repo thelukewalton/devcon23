@@ -29,8 +29,8 @@ class Page8 extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Center(child: FittedBox(child: Image.asset('lib/assets/qchat.png')))
-                .stack(200), //TODO: embed some content?
+            child: Center(child: FittedBox(child: Image.asset('lib/assets/qchat.png'))).stack(200),
+            //TODO: embed some content?
           ),
         ],
       ),

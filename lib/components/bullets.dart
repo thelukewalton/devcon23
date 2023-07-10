@@ -10,14 +10,14 @@ class BulletPointList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: content.map((e) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [if (e is BulletPoint) ..._renderPoint(e, context) else if (e is Widget) e],
-        );
-        //TODO: optimize away one of the columns here
-      }).toList(),
+      children: content
+          .map((e) => e is BulletPoint
+              ? _renderPoint(e, context)
+              : e is Widget
+                  ? e
+                  : const SizedBox())
+          .expand<Widget>((element) => element as Iterable<Widget>)
+          .toList(),
     );
   }
 
