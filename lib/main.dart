@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/utils/navigation.dart';
-import 'package:zeta_flutter/zeta_flutter.dart';
+import 'package:zds_flutter/zds_flutter.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,13 +10,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Zeta(builder: (context, theme, colors) {
-      return MaterialApp.router(
+    return ZdsApp(
+      title: '',
+      debugShowCheckedModeBanner: false,
+      home: MaterialApp.router(
         title: 'Flutter Demo',
-        theme: theme,
-        routerConfig: router,
         debugShowCheckedModeBanner: false,
-      );
-    });
+        routerConfig: router,
+      ),
+    );
   }
 }

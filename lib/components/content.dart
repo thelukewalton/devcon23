@@ -65,15 +65,16 @@ class _ContentState extends State<Content> {
                 ],
               ),
             ),
-            if (widget.backgroundOnTop)
-              Positioned(
-                bottom: 0,
-                right: 0,
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: IgnorePointer(
                 child: CustomPaint(
                   size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
                   painter: BluePaint(context),
                 ),
               ),
+            ),
           ],
         ),
       );
