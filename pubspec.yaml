@@ -15,14 +15,17 @@ dependencies:
   go_router: ^8.0.3
   markdown_widget: ^2.2.0
   zds_flutter:
-    path: ../zds-flutter
+    path: ../../zds/zds-flutter
   zeta_flutter:
     path: ../../Zeta/zeta_flutter
 
 dependency_overrides:
   zds_flutter:
-    path: ../zds-flutter
+    path: ../../zds/zds-flutter
   zeta_flutter:
+    # git:
+    #   url: https://github.com/zebratechnologies/zeta-flutter
+    #   ref: feature/color
     path: ../../Zeta/zeta_flutter
 
 dev_dependencies:

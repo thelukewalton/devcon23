@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
-
-import '../components/content.dart';
+import 'package:presentation/components/content_alt.dart';
 
 class Page3 extends StatelessWidget {
   const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Content(
+    return ContentAlt(
       title: 'The problem',
       subtitle: 'ZSB Series Printer',
       backgroundOnTop: true,

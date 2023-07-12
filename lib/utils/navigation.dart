@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:presentation/pages/page2_1.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../pages/page1.dart';
@@ -80,13 +81,12 @@ class _NavWrapperState extends State<NavWrapper> {
                     children: [
                       ZetaText.labelSmall(
                         pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
-                        textColor: ZetaColors.of(context).textSubtle,
+                        textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
                       ),
                       ZetaText.labelSmall(
                         '$pageNumber/$pagesTotal',
                         //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
-                        textColor:
-                            pageNumber == 1 ? ZetaColors.of(context).textSubtle : ZetaColors.of(context).textInverse,
+                        textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
                       ),
                     ],
                   ),
@@ -102,6 +102,7 @@ class _NavWrapperState extends State<NavWrapper> {
 final routes = [
   const Page1(),
   const Page2(),
+  const Page2_1(),
   const Page3(),
   const Page4(),
   const Page5(),
@@ -131,7 +132,9 @@ final GoRouter router = GoRouter(
                       end: Offset.zero,
                     ).chain(CurveTween(curve: Curves.easeIn)),
                   ),
-                  child: child,
+                  child: Zeta(builder: (context, theme, colors) {
+                    return child;
+                  }),
                 );
               },
             ),

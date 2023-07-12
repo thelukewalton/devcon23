@@ -20,10 +20,9 @@ class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return const TitlePage(
-      title: 'Common UX across Android, iOS and Web',
-      subtitle: 'Or: How I learnt to stop worrying and love Flutter',
+      title: 'Common UX across Android, iOS and Web with Flutter',
       name: 'Luke Walton',
-      date: '15th September 2023',
+      job: 'Front end Developer',
     );
   }
 }

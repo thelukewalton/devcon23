@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/main.dart';
 
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 class TitlePage extends StatefulWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final String name;
-  final String date;
-  const TitlePage({super.key, required this.title, required this.name, required this.subtitle, required this.date});
+  final String job;
+
+  const TitlePage({
+    super.key,
+    required this.title,
+    required this.name,
+    this.subtitle,
+    required this.job,
+  });
 
   @override
   State<TitlePage> createState() => _TitlePageState();
@@ -17,60 +25,85 @@ class TitlePage extends StatefulWidget {
 class _TitlePageState extends State<TitlePage> {
   @override
   Widget build(BuildContext context) {
+    final ZetaColors colors = ZetaColors.of(context);
+    final bool isDevCon = MyAppState.of(context)?.isDevCon ?? true;
+
     return LayoutBuilder(builder: (context, constraints) {
       return Stack(
         children: [
-          Positioned(top: 0, bottom: 0, left: 0, right: 0, child: TitleBackground(constraints: constraints)),
           Positioned(
-            top: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: !isDevCon ? TitleBackground(constraints: constraints) : Container(color: colors.black)),
+          if (isDevCon)
+            Positioned(
+              top: 64,
+              right: 64,
+              child: SvgPicture.asset(
+                'lib/assets/zebra-logo.svg',
+                semanticsLabel: 'Zebra Logo',
+                height: constraints.maxHeight * 0.06,
+                colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
+                alignment: Alignment.centerRight,
+              ),
+            ),
+          if (isDevCon)
+            Positioned(
+              right: 0,
+              bottom: 0,
+              left: constraints.maxWidth * 0.25,
+              child: Image.asset('lib/assets/intro.png'),
+            ),
+          Positioned(
+            top: 36,
             bottom: 0,
-            left: 0,
+            left: 36,
             right: 0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                !isDevCon
+                    ? SizedBox(
+                        height: constraints.maxHeight * 0.08,
+                        width: double.infinity,
+                        child: SvgPicture.asset(
+                          'lib/assets/zebra-logo.svg',
+                          semanticsLabel: 'Zebra Logo',
+                          colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
+                          alignment: Alignment.centerLeft,
+                        ),
+                      )
+                    : SvgPicture.asset(
+                        'lib/assets/logoBlack.svg',
+                        semanticsLabel: 'DevCon Logo',
+                        alignment: Alignment.centerRight,
+                      ),
                 SizedBox(
-                  height: constraints.maxHeight * 0.08,
-                  width: double.infinity,
-                  child: SvgPicture.asset(
-                    'lib/assets/zebra-logo.svg',
-                    semanticsLabel: 'Zebra Logo',
-                    colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
-                    alignment: Alignment.centerLeft,
-                  ),
-                ),
-                SizedBox(
-                  width: constraints.maxWidth * 0.6,
+                  width: constraints.maxWidth * 0.55,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ZetaText.displayMedium(
+                      ZetaText.displayLarge(
                         widget.title,
                         textColor: ZetaColors.of(context).surface,
                         fontWeight: FontWeight.bold,
+                        resetHeight: true,
                       ),
                       ZetaText.displaySmall(
                         widget.subtitle,
                         textColor: ZetaColors.of(context).primary,
+                        resetHeight: true,
                       ),
+                      ZetaText.headingMedium(widget.name, textColor: ZetaColors.of(context).surface),
+                      ZetaText.headingSmall(widget.job, textColor: colors.primary),
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ZetaText.headingMedium(
-                      widget.name,
-                      textColor: ZetaColors.of(context).surface,
-                    ),
-                    ZetaText.headingMedium(
-                      widget.date,
-                      textColor: ZetaColors.of(context).surface,
-                    ),
-                  ],
-                ),
-                SizedBox(height: constraints.maxHeight * 0.1),
+                SizedBox(height: constraints.maxHeight * 0.2),
               ],
             ).square(Dimensions.l),
           ),
