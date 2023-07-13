@@ -10,6 +10,7 @@ class Content extends StatefulWidget {
   final String? subtitle;
   final Widget? subtitleWidget;
   final Widget content;
+  final Widget? otherContent;
   final bool backgroundOnTop;
 
   const Content({
@@ -19,6 +20,7 @@ class Content extends StatefulWidget {
     this.subtitle,
     this.subtitleWidget,
     this.backgroundOnTop = false,
+    this.otherContent,
   });
 
   @override
@@ -55,17 +57,29 @@ class _ContentState extends State<Content> {
               ),
             Positioned(
               top: Dimensions.l,
-              right: Dimensions.m,
+              right: Dimensions.l,
               bottom: Dimensions.m,
-              left: Dimensions.m,
+              left: Dimensions.l,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ZetaText.headingLarge(widget.title, textColor: colors.textDefault),
-                  if (widget.subtitleWidget == null) ZetaText.headingMedium(widget.subtitle, textColor: colors.primary),
+                  ZetaText.headingMedium(widget.title, textColor: colors.textDefault),
+                  if (widget.subtitleWidget == null && (isDevCon || widget.subtitle != null))
+                    ZetaText.bodyLarge(widget.subtitle, textColor: colors.primary),
                   if (widget.subtitleWidget != null) widget.subtitleWidget!,
                   const SizedBox(height: Dimensions.m),
-                  Expanded(child: widget.content),
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: widget.content),
+                        if (widget.otherContent != null)
+                          Expanded(
+                            child: widget.otherContent!,
+                          ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

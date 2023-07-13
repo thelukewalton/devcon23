@@ -1,9 +1,10 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
 import 'package:presentation/components/content.dart';
 
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
+class WhoWeAre extends StatelessWidget {
+  const WhoWeAre({super.key});
 
   @override
   Widget build(BuildContext context) {

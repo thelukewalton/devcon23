@@ -87,23 +87,26 @@ class _TitlePageState extends State<TitlePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ZetaText.displayLarge(
+                      ZetaText.displaySmall(
                         widget.title,
                         textColor: ZetaColors.of(context).surface,
                         fontWeight: FontWeight.bold,
-                        resetHeight: true,
                       ),
                       ZetaText.displaySmall(
                         widget.subtitle,
                         textColor: ZetaColors.of(context).primary,
                         resetHeight: true,
                       ),
-                      ZetaText.headingMedium(widget.name, textColor: ZetaColors.of(context).surface),
-                      ZetaText.headingSmall(widget.job, textColor: colors.primary),
+                      ZetaText.bodyMedium(
+                        widget.name,
+                        textColor: ZetaColors.of(context).surface,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      ZetaText.bodyMedium(widget.job, textColor: colors.primary),
                     ],
                   ),
                 ),
-                SizedBox(height: constraints.maxHeight * 0.2),
+                SizedBox(height: constraints.maxHeight * 0.1),
               ],
             ).square(Dimensions.l),
           ),

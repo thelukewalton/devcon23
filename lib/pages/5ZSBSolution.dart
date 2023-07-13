@@ -1,27 +1,34 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
+import 'package:presentation/components/content_alt.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
-import '../components/content.dart';
-
-class Page4 extends StatelessWidget {
-  const Page4({super.key});
+class ZSBSolution extends StatelessWidget {
+  const ZSBSolution({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ZetaColors colors = ZetaColors.of(context);
-    return Content(
-      title: 'The problem',
+    return ContentAlt(
+      title: 'ZSB Series Printer',
       backgroundOnTop: true,
-      subtitleWidget: Row(
-        children: [
-          Expanded(child: ZetaText.headingMedium('ZSB Series Printer', textColor: colors.primary)),
-          Expanded(child: ZetaText.headingMedium('The solution: Flutter', textColor: colors.primary))
-        ],
-      ),
+      otherContent: Image.asset('lib/assets/zsb2.png'), //TODO: Get SVG verision
       content: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Row(
+            children: [
+              Expanded(
+                child: ZetaText.bodyLarge('The problem', textColor: colors.primary).stack(Dimensions.l),
+              ),
+              Expanded(
+                child: ZetaText.bodyLarge(
+                  'The solution: Flutter',
+                  textColor: colors.primary,
+                ).stack(Dimensions.l),
+              ),
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -38,16 +45,15 @@ class Page4 extends StatelessWidget {
               Flexible(
                 child: BulletPointList(
                   content: [
-                    BulletPoint(point: 'Android, iOS, Web (and now Windows, Mac, Linux)'),
-                    BulletPoint(point: 'Built-in and external components, 60fps'),
+                    BulletPoint(point: 'Android, iOS, Web'),
+                    BulletPoint(point: 'Quality components'),
                     BulletPoint(point: 'Open source'),
-                    BulletPoint(point: 'MethodChannelAndroid, MethodChannelIos'),
+                    BulletPoint(point: 'MethodChannel'),
                   ],
                 ),
               )
             ],
           ),
-          Expanded(child: FittedBox(child: Image.asset('lib/assets/zsb.jpg')))
         ],
       ),
     );

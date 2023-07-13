@@ -1,11 +1,12 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
 
-class Page11 extends StatelessWidget {
-  const Page11({super.key});
+class ZetaPage extends StatelessWidget {
+  const ZetaPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -26,10 +26,9 @@ class BulletPointList extends StatelessWidget {
       Row(
         children: [
           if (e.point.isNotEmpty) const _Bullet(),
-          ZetaText(
+          Text(
             e.point,
-            textColor: ZetaColors.of(context).textDefault,
-            style: isMain ? ZetaText.zetaBodyLarge : ZetaText.zetaBodyMedium,
+            style: (isMain ? ZetaText.zetaBodyLarge : ZetaText.zetaBodyMedium).copyWith(height: 2),
           ),
         ],
       ),

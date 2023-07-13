@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/components/end.dart';
 
-class PageX extends StatelessWidget {
-  const PageX({super.key});
+class End extends StatelessWidget {
+  const End({super.key});
 
   @override
   Widget build(BuildContext context) {

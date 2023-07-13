@@ -1,12 +1,11 @@
-// ignore_for_file: camel_case_types
-
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
 
 import '../components/content.dart';
 
-class Page2_1 extends StatelessWidget {
-  const Page2_1({super.key});
+class OurProcess extends StatelessWidget {
+  const OurProcess({super.key});
 
   @override
   Widget build(BuildContext context) {
