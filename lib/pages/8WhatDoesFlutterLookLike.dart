@@ -23,14 +23,14 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(28)),
+                        borderRadius: const BorderRadius.all(Radius.circular(8)),
                         child: SizedBox(
                           width: constraints.maxWidth * 0.22,
                           height: constraints.maxWidth * 0.38,
                           child: const Example(),
                         ),
                       ),
-                    ),
+                    ).stack(Dimensions.xxxl),
                   ),
                   Expanded(
                     child: Container(
@@ -39,7 +39,7 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
                         borderRadius: const BorderRadius.all(Radius.circular(28)),
                       ),
                       child: SvgPicture.asset('lib/assets/code.svg'),
-                    ).square(Dimensions.l).squish(Dimensions.xl),
+                    ).inline(Dimensions.s).stack(Dimensions.xxxl),
                   ),
                 ],
               ),

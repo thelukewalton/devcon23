@@ -42,7 +42,11 @@ class _ContentState extends State<Content> {
               top: Dimensions.m,
               right: Dimensions.m,
               child: SvgPicture.asset(
-                isDevCon ? 'lib/assets/logoWhite.svg' : 'lib/assets/zebra-logo-stacked.svg',
+                isDevCon
+                    ? colors.isDarkMode
+                        ? 'lib/assets/logoBlack.svg'
+                        : 'lib/assets/logoWhite.svg'
+                    : 'lib/assets/zebra-logo-stacked.svg',
                 height: constraints.maxHeight * 0.1,
               ),
             ),

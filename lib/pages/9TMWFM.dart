@@ -1,10 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:presentation/components/bullets.dart';
-import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
+import '../components/svg.dart';
 
 class TMWFM extends StatelessWidget {
   const TMWFM({super.key});
@@ -36,34 +35,10 @@ class TMWFM extends StatelessWidget {
           const Expanded(
             child: Row(
               children: [
-                Svg(asset: 'lib/assets/Ess.svg', caption: 'ESS'),
-                Svg(asset: 'lib/assets/QChat.svg', caption: 'QChat'),
+                MySvg(asset: 'lib/assets/Ess.svg', caption: 'ESS', withFlex: true),
+                MySvg(asset: 'lib/assets/QChat.svg', caption: 'QChat', withFlex: true),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Svg extends StatelessWidget {
-  final String caption;
-  final String asset;
-  const Svg({super.key, required this.caption, required this.asset});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Flexible(
-            flex: 9,
-            child: FittedBox(child: SvgPicture.asset(asset)),
-          ),
-          Flexible(
-            child: ZetaText.labelSmall(caption),
           ),
         ],
       ),

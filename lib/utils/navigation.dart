@@ -6,6 +6,7 @@ import 'package:presentation/pages/10Acessability.dart';
 import 'package:presentation/pages/3OurProcess.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
+import '../pages/11Semantics.dart';
 import '../pages/1page1.dart';
 import '../pages/12ZDS.dart';
 import '../pages/13Zeta.dart';
@@ -114,8 +115,9 @@ final routes = [
   const WhatIsFlutter(),
   const WhatDoesFlutterLookLike(),
   const TMWFM(),
+  const Accessibility(),
+  const SemanticsPage(),
   const NextSteps(),
-  const Accessability(),
   const ZDS(),
   const ZetaPage(),
   const End(),

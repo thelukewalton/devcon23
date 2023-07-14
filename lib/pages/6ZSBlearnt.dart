@@ -12,7 +12,7 @@ class ZSBLearnt extends StatelessWidget {
     final ZetaColors colors = ZetaColors.of(context);
     return ContentAlt(
       title: 'ZSB Series Printer',
-      otherContent: Image.asset('lib/assets/zsbapp.jpg').square(100),
+      otherContent: Image.asset('lib/assets/zsbapp.png').square(100),
       content: Row(
         children: [
           Expanded(
