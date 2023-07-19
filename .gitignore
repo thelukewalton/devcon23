@@ -1,7 +1,4 @@
-# Created by https://www.toptal.com/developers/gitignore/api/dart,flutter,android,web,linux,windows,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=dart,flutter,android,web,linux,windows,macos
 
-### Android ###
 # Gradle files
 .gradle/
 build/
@@ -221,5 +218,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/dart,flutter,android,web,linux,windows,macos
+.fvm/flutter_sdk

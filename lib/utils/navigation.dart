@@ -32,7 +32,7 @@ class NavWrapper extends StatefulWidget {
 class _NavWrapperState extends State<NavWrapper> {
   final FocusNode focusNode = FocusNode();
   int currentColors = 1;
-
+  double zoom = 1.3;
   void firstPage() => GoRouter.of(context).pushReplacement('/1');
   void lastPage() => GoRouter.of(context).pushReplacement('/${routes.length}');
 
@@ -65,7 +65,7 @@ class _NavWrapperState extends State<NavWrapper> {
         child: DefaultTextStyle(
           style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).textDefault),
           child: MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.3),
+            data: MediaQuery.of(context).copyWith(textScaleFactor: zoom),
             // child: GestureDetector( TODO: work this out with demos
             //   onTap: nextPage,
             //   onSecondaryTap: prevPage,
@@ -76,24 +76,43 @@ class _NavWrapperState extends State<NavWrapper> {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(Dimensions.m),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ZetaText.labelSmall(
-                          pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
-                          textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
-                          fontSize: 8,
-                        ),
-                        ZetaText.labelSmall(
-                          '$pageNumber/$pagesTotal',
-                          fontSize: 8,
-                          //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
-                          textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
-                        ),
-                      ],
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(Dimensions.m),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          ZetaText.labelSmall(
+                            pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
+                            textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
+                            fontSize: 8,
+                          ),
+                          IconTheme(
+                            data: IconThemeData(color: ZetaColors.of(context).textSubtle.withOpacity(0.8)),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.remove_circle_outline),
+                                  onPressed: () => setState(() => zoom = zoom - 0.1),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.add_circle_outline),
+                                  onPressed: () => setState(() => zoom = zoom + 0.1),
+                                ),
+                                const SizedBox(width: Dimensions.xxl),
+                                ZetaText.labelSmall(
+                                  '$pageNumber/$pagesTotal',
+                                  fontSize: 8,
+                                  //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
+                                  textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
