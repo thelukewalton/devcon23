@@ -1,35 +1,73 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
-class Example extends StatefulWidget {
-  const Example({super.key});
-
-  @override
-  State<Example> createState() => _ExampleState();
+void main() {
+  runApp(const ExampleMaterial());
 }
 
-class _ExampleState extends State<Example> {
+class ExampleMaterial extends StatefulWidget {
+  const ExampleMaterial({super.key});
+
+  @override
+  State<ExampleMaterial> createState() => _ExampleMaterialState();
+}
+
+class _ExampleMaterialState extends State<ExampleMaterial> {
   ThemeData theme = ThemeData.light();
   int index = 0;
+  double v = 0.1;
+  bool b = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('My App'),
-          actions: const [_Dropdown()],
+      home: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          padding: const EdgeInsets.all(2),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            color: Colors.black,
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            child: Scaffold(
+              appBar: AppBar(
+                title: const Text('My material App'),
+                actions: const [_Dropdown()],
+              ),
+              drawer: const _Drawer(),
+              floatingActionButton: FloatingActionButton(
+                child: const Icon(Icons.agriculture),
+                onPressed: () => changeColor(context),
+              ),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(onPressed: () {}, child: Text('TextButton')),
+                      ElevatedButton(onPressed: () {}, child: Text('TextButton')),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(24),
+                    child: TextField(
+                        //TODO: check for anything useful in here
+                        ),
+                  ),
+                  CircularProgressIndicator(),
+                  Slider(value: v, onChanged: (n) => setState(() => v = n)),
+                  Switch(value: b, onChanged: (n) => setState(() => b = n))
+                ],
+              ),
+            ),
+          ),
         ),
-        drawer: const _Drawer(),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.agriculture),
-          onPressed: () => changeColor(context),
-        ),
-        body: const Center(child: Text('Welcome')),
       ),
     );
   }
@@ -107,18 +145,9 @@ class _Drawer extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
                 borderRadius: const BorderRadius.only(topRight: Radius.circular(40)),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: SvgPicture.asset(
-                      'lib/assets/zebra-logo-stacked.svg',
-                      height: 40,
-                      colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSecondary, BlendMode.srcIn),
-                    ),
-                  ),
-                  const Expanded(child: FlutterLogo(size: 40))
-                ],
+                children: [Expanded(child: FlutterLogo(size: 40))],
               ).squish(20),
             ),
           ],

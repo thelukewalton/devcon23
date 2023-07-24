@@ -1,13 +1,13 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:material/main.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
-import '../components/example.dart';
 
-class WhatDoesFlutterLookLike extends StatelessWidget {
-  const WhatDoesFlutterLookLike({super.key});
+class WhatDoesFlutterLookLikeMaterial extends StatelessWidget {
+  const WhatDoesFlutterLookLikeMaterial({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
                         child: SizedBox(
                           width: constraints.maxWidth * 0.22,
                           height: constraints.maxWidth * 0.38,
-                          child: const Example(),
+                          child: const ExampleMaterial(),
                         ),
                       ),
                     ).stack(Dimensions.xxxl),

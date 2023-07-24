@@ -8,6 +8,10 @@ environment:
 
 dependencies:
   collection: ^1.17.0
+  cupertino:
+    path: ./cupertino
+  material:
+    path: ./material
   flutter:
     sdk: flutter
   flutter_highlight: ^0.7.0

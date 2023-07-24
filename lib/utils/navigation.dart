@@ -2,23 +2,24 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presentation/pages/10Acessability.dart';
+import 'package:presentation/pages/11Acessability.dart';
 import 'package:presentation/pages/3OurProcess.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../pages/11Semantics.dart';
 import '../pages/1page1.dart';
-import '../pages/12ZDS.dart';
-import '../pages/13Zeta.dart';
+import '../pages/13ZDS.dart';
+import '../pages/15Zeta.dart';
 import '../pages/2WhoWeAre.dart';
 import '../pages/4ZSBProblem.dart';
 import '../pages/5ZSBSolution.dart';
 import '../pages/6ZSBlearnt.dart';
 import '../pages/7WhatIsFlutter.dart';
-import '../pages/8WhatDoesFlutterLookLike.dart';
-import '../pages/9TMWFM.dart';
-import '../pages/11nextsteps.dart';
+import '../pages/8ExampleMaterial.dart';
+import '../pages/10TMWFM.dart';
+import '../pages/12nextsteps.dart';
 import '../pages/14End.dart';
+import '../pages/9ExampleCupertino.dart';
 
 class NavWrapper extends StatefulWidget {
   final Widget child;
@@ -132,7 +133,8 @@ final routes = [
   const ZSBSolution(),
   const ZSBLearnt(),
   const WhatIsFlutter(),
-  const WhatDoesFlutterLookLike(),
+  const WhatDoesFlutterLookLikeMaterial(),
+  const WhatDoesFlutterLookLikeCupertino(),
   const TMWFM(),
   const Accessibility(),
   const SemanticsPage(),
