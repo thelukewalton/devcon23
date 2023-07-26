@@ -19,84 +19,87 @@ class _ExampleCupertinoState extends State<ExampleCupertino> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(20),
-      child: Container(
-        padding: const EdgeInsets.all(2),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(39)),
-          color: Colors.black,
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(39)),
-          child: CupertinoApp(
-            debugShowCheckedModeBanner: false,
-            theme: const CupertinoThemeData(brightness: Brightness.light),
-            home: Container(
-              color: const Color(0xFFF9F9F9),
-              child: Column(
-                children: [
-                  Container(
-                    height: 48,
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            DateFormat('hh:mm').format(DateTime.now()),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: CupertinoApp(
+        debugShowCheckedModeBanner: false,
+        theme: const CupertinoThemeData(brightness: Brightness.light),
+        home: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(2),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(39)),
+              color: Colors.black,
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(39)),
+              child: Container(
+                color: const Color(0xFFF9F9F9),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 48,
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              DateFormat('hh:mm').format(DateTime.now()),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        Center(
-                          child: Container(
-                            width: 120,
-                            height: 30,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(39)),
-                              color: Color(0xFF000000),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  height: 24,
-                                  width: 24,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFF06052F),
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 30,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(39)),
+                                color: Color(0xFF000000),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    height: 24,
+                                    width: 24,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xFF06052F),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 4)
-                              ],
+                                  const SizedBox(width: 4)
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: IconTheme(
-                            data: const IconThemeData(color: Color(0xFF000000)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const SizedBox(width: 8),
-                                const Icon(CupertinoIcons.wifi),
-                                const Icon(CupertinoIcons.battery_full),
-                              ].divide(const SizedBox(width: 8)).toList(),
+                          Expanded(
+                            child: IconTheme(
+                              data: const IconThemeData(color: Color(0xFF000000)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const SizedBox(width: 4),
+                                  const Icon(CupertinoIcons.wifi),
+                                  const Icon(CupertinoIcons.battery_full),
+                                ].divide(const SizedBox(width: 6)).toList(),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const Expanded(child: CupertinoPage()),
-                  Container(
-                    height: 24,
-                    color: const Color(0xFFF9F9F9),
-                  )
-                ],
+                    const Expanded(child: CupertinoPage()),
+                    Container(
+                      height: 24,
+                      color: const Color(0xFFF9F9F9),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -141,33 +144,35 @@ class _CupertinoPageState extends State<CupertinoPage> {
           ),
           SliverFillRemaining(
             child: SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        CupertinoButton(child: const Text('CupertinoButton'), onPressed: () {}),
-                        CupertinoButton.filled(
-                            child: const Text('.filled'),
-                            onPressed: () {
-                              showCupertinoDialog(
-                                context: context,
-                                builder: (_) => CupertinoAlertDialog(
-                                  title: const Text('Alert!'),
-                                  actions: [
-                                    CupertinoDialogAction(
-                                      isDestructiveAction: true,
-                                      onPressed: () => Navigator.of(context).pop(),
-                                      child: const Text('Action'),
-                                    )
-                                  ],
-                                ),
-                              );
-                            }),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CupertinoButton(child: const Text('CupertinoButton'), onPressed: () {}),
+                          CupertinoButton.filled(
+                              child: const Text('.filled'),
+                              onPressed: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  builder: (c2) => CupertinoAlertDialog(
+                                    title: const Text('Alert!'),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        isDestructiveAction: true,
+                                        onPressed: () => Navigator.of(c2).pop(),
+                                        child: const Text('Action'),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }),
+                        ],
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.all(12),
@@ -177,8 +182,6 @@ class _CupertinoPageState extends State<CupertinoPage> {
                         placeholder: 'Cupertino Text Field',
                       ),
                     ),
-                    CupertinoSlider(value: v, onChanged: (n) => setState(() => v = n)),
-                    CupertinoSwitch(value: b, onChanged: (n) => setState(() => b = n)),
                     CupertinoListSection.insetGrouped(
                       header: const Text('CupertinoListSection'),
                       children: <CupertinoListTile>[
@@ -196,6 +199,9 @@ class _CupertinoPageState extends State<CupertinoPage> {
                         ),
                       ],
                     ),
+                    const CupertinoActivityIndicator(),
+                    CupertinoSlider(value: v, onChanged: (n) => setState(() => v = n)),
+                    CupertinoSwitch(value: b, onChanged: (n) => setState(() => b = n)),
                     const SizedBox(height: 80),
                   ].divide(const SizedBox(height: 24)).toList()),
             ),

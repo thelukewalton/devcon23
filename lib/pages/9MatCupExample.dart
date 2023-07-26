@@ -6,9 +6,14 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
 
-class WhatDoesFlutterLookLikeCupertino extends StatelessWidget {
+class WhatDoesFlutterLookLikeCupertino extends StatefulWidget {
   const WhatDoesFlutterLookLikeCupertino({super.key});
 
+  @override
+  State<WhatDoesFlutterLookLikeCupertino> createState() => _WhatDoesFlutterLookLikeCupertinoState();
+}
+
+class _WhatDoesFlutterLookLikeCupertinoState extends State<WhatDoesFlutterLookLikeCupertino> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,19 +22,17 @@ class WhatDoesFlutterLookLikeCupertino extends StatelessWidget {
           child: Content(
             backgroundOnTop: false,
             title: 'What does Flutter look like?',
-            content: Row(
+            content: const Row(
               children: [
-                const Expanded(child: Text('')),
+                Expanded(child: Text('')),
                 Expanded(
-                    child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: MediaQuery.of(context).textScaleFactor - 0.2),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Expanded(child: ExampleMaterial()),
                       Expanded(child: ExampleCupertino()),
                     ],
                   ),
-                )),
+                ),
               ],
             ).squish(Dimensions.m).inlineEnd(Dimensions.l),
           ),
