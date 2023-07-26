@@ -1,16 +1,25 @@
-# presentation
+# Common UX across Android, iOS and Web using Flutter.
 
-A new Flutter project.
+Presented at Zebra DevCon on September 15th, 2023 in Madrid.
 
-## Getting Started
+[Slides](TODO:)
 
-This project is a starting point for a Flutter application.
+# Example apps
 
-A few resources to get you started if this is your first Flutter project:
+These examples from the presentation are each their own apps and can be built and run from their repositories:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Basic](/basic)
+- [Material](/material)
+- [Cupertino](/cupertino)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# References and resources
+
+Stack Overflow survey 2019 - [popularity](https://insights.stackoverflow.com/survey/2019#technology-_-other-frameworks-libraries-and-tools),
+[loved / dreaded](https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted)
+
+Stack Overflow survey 2022 - [popularity](https://survey.stackoverflow.co/2022/#section-most-popular-technologies-other-frameworks-and-libraries),
+[loved / dreaded](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-other-frameworks-and-libraries)
+
+Package manager stats - [pub](https://libraries.io/pub), [npm](https://libraries.io/npm)
+
+[Dart overview](https://dart.dev/overview)

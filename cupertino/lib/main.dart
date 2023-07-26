@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:zeta_flutter/zeta_flutter.dart';
 
 void main() {
   runApp(const ExampleCupertino());
@@ -74,16 +75,16 @@ class _ExampleCupertinoState extends State<ExampleCupertino> {
                             ),
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: IconTheme(
-                            data: IconThemeData(color: Color(0xFF000000)),
+                            data: const IconThemeData(color: Color(0xFF000000)),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Icon(CupertinoIcons.wifi),
-                                SizedBox(width: 16),
-                                Icon(CupertinoIcons.battery_full),
-                              ],
+                                const SizedBox(width: 8),
+                                const Icon(CupertinoIcons.wifi),
+                                const Icon(CupertinoIcons.battery_full),
+                              ].divide(const SizedBox(width: 8)).toList(),
                             ),
                           ),
                         ),
@@ -139,17 +140,22 @@ class _CupertinoPageState extends State<CupertinoPage> {
             trailing: Icon(CupertinoIcons.add_circled),
           ),
           SliverFillRemaining(
-            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CupertinoButton(child: const Text('Button'), onPressed: () {}),
-                  CupertinoButton.filled(
-                      child: const Text('Button'),
-                      onPressed: () {
-                        showCupertinoDialog(
-                            context: context,
-                            builder: (_) => CupertinoAlertDialog(
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CupertinoButton(child: const Text('CupertinoButton'), onPressed: () {}),
+                        CupertinoButton.filled(
+                            child: const Text('.filled'),
+                            onPressed: () {
+                              showCupertinoDialog(
+                                context: context,
+                                builder: (_) => CupertinoAlertDialog(
                                   title: const Text('Alert!'),
                                   actions: [
                                     CupertinoDialogAction(
@@ -158,74 +164,41 @@ class _CupertinoPageState extends State<CupertinoPage> {
                                       child: const Text('Action'),
                                     )
                                   ],
-                                ));
-                      }),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.all(12),
-                child: CupertinoTextField(
-                  prefix: Icon(CupertinoIcons.person_solid),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  placeholder: 'Cupertino Text Field',
-                ),
-              ),
-              const CupertinoActivityIndicator(),
-              CupertinoSlider(value: v, onChanged: (n) => setState(() => v = n)),
-              CupertinoSwitch(value: b, onChanged: (n) => setState(() => b = n)),
-              CupertinoListSection.insetGrouped(
-                header: const Text('CupertinoListSection'),
-                children: <CupertinoListTile>[
-                  CupertinoListTile.notched(
-                    title: const Text('CupertinoListTile'),
-                    leading: Container(color: CupertinoColors.activeGreen),
-                    trailing: const CupertinoListTileChevron(),
-                    onTap: () {},
-                  ),
-                  CupertinoListTile.notched(
-                    title: const Text('View last commit'),
-                    leading: Container(color: CupertinoColors.activeOrange),
-                    additionalInfo: const Text('12 days ago'),
-                    onTap: () {},
-                  ),
-                ],
-              ),
-              CupertinoContextMenu(
-                actions: <Widget>[
-                  CupertinoContextMenuAction(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    isDefaultAction: true,
-                    trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
-                    child: const Text('Copy'),
-                  ),
-                  CupertinoContextMenuAction(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    trailingIcon: CupertinoIcons.share,
-                    child: const Text('Share'),
-                  ),
-                  CupertinoContextMenuAction(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    trailingIcon: CupertinoIcons.heart,
-                    child: const Text('Favorite'),
-                  ),
-                  CupertinoContextMenuAction(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    isDestructiveAction: true,
-                    trailingIcon: CupertinoIcons.delete,
-                    child: const Text('Delete'),
-                  ),
-                ],
-                child: const FlutterLogo(size: 50.0),
-              ),
-            ]),
+                                ),
+                              );
+                            }),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(12),
+                      child: CupertinoTextField(
+                        prefix: Icon(CupertinoIcons.person_solid),
+                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                        placeholder: 'Cupertino Text Field',
+                      ),
+                    ),
+                    CupertinoSlider(value: v, onChanged: (n) => setState(() => v = n)),
+                    CupertinoSwitch(value: b, onChanged: (n) => setState(() => b = n)),
+                    CupertinoListSection.insetGrouped(
+                      header: const Text('CupertinoListSection'),
+                      children: <CupertinoListTile>[
+                        CupertinoListTile.notched(
+                          title: const Text('CupertinoListTile'),
+                          leading: Container(color: CupertinoColors.activeGreen),
+                          trailing: const CupertinoListTileChevron(),
+                          onTap: () {},
+                        ),
+                        CupertinoListTile.notched(
+                          title: const Text('View last commit'),
+                          leading: Container(color: CupertinoColors.activeOrange),
+                          additionalInfo: const Text('12 days ago'),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 80),
+                  ].divide(const SizedBox(height: 24)).toList()),
+            ),
           ),
         ],
       ),

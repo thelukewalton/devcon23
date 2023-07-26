@@ -9,7 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
-  intl: ^0.18.1
+  intl: ^0.18.0
   zeta_flutter:
     path: ../../../Zeta/zeta_flutter
 

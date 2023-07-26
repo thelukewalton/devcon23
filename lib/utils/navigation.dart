@@ -15,11 +15,11 @@ import '../pages/4ZSBProblem.dart';
 import '../pages/5ZSBSolution.dart';
 import '../pages/6ZSBlearnt.dart';
 import '../pages/7WhatIsFlutter.dart';
-import '../pages/8ExampleMaterial.dart';
+import '../pages/8BasicExample.dart';
 import '../pages/10TMWFM.dart';
 import '../pages/12nextsteps.dart';
 import '../pages/14End.dart';
-import '../pages/9ExampleCupertino.dart';
+import '../pages/9MatCupExample.dart';
 
 class NavWrapper extends StatefulWidget {
   final Widget child;

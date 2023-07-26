@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 void main() {
@@ -13,57 +14,152 @@ class ExampleMaterial extends StatefulWidget {
 }
 
 class _ExampleMaterialState extends State<ExampleMaterial> {
-  ThemeData theme = ThemeData.light();
+  ThemeData? theme;
   int index = 0;
   double v = 0.1;
   bool b = false;
 
   @override
   Widget build(BuildContext context) {
+    if (theme == null) changeColor(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(20),
+      home: DefaultTabController(
+        length: 2,
         child: Container(
-          padding: const EdgeInsets.all(2),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            color: Colors.black,
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-            child: Scaffold(
-              appBar: AppBar(
-                title: const Text('My material App'),
-                actions: const [_Dropdown()],
-              ),
-              drawer: const _Drawer(),
-              floatingActionButton: FloatingActionButton(
-                child: const Icon(Icons.agriculture),
-                onPressed: () => changeColor(context),
-              ),
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(onPressed: () {}, child: Text('TextButton')),
-                      ElevatedButton(onPressed: () {}, child: Text('TextButton')),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(24),
-                    child: TextField(
-                        //TODO: check for anything useful in here
+          color: theme?.colorScheme.background,
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(2),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              color: Colors.black,
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              child: Scaffold(
+                drawer: const _Drawer(),
+                floatingActionButton: FloatingActionButton(
+                  child: const Icon(Icons.agriculture),
+                  onPressed: () => changeColor(context),
+                ),
+                bottomNavigationBar: BottomNavigationBar(
+                  items: const [
+                    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                    BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+                  ],
+                ),
+                body: Column(
+                  children: [
+                    IconTheme(
+                      data: IconThemeData(color: theme?.colorScheme.onBackground, size: 18),
+                      child: Container(
+                        color: theme?.colorScheme.primary.withOpacity(0.08),
+                        height: 28,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                DateFormat('h:mm').format(DateTime.now()),
+                                style: TextStyle(color: theme?.colorScheme.onBackground, fontWeight: FontWeight.w500),
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(Icons.wifi),
+                                  const Icon(Icons.network_cell),
+                                  const Icon(Icons.battery_full_outlined),
+                                ].divide(const SizedBox(width: 8)).toList(),
+                              )
+                            ],
+                          ),
                         ),
-                  ),
-                  CircularProgressIndicator(),
-                  Slider(value: v, onChanged: (n) => setState(() => v = n)),
-                  Switch(value: b, onChanged: (n) => setState(() => b = n))
-                ],
+                      ),
+                    ),
+                    Expanded(
+                      child: CustomScrollView(
+                        slivers: [
+                          SliverAppBar.large(
+                            title: const Text('Large App Bar'),
+                            actions: const [_Dropdown()],
+                          ),
+                          SliverFillRemaining(
+                            child: SingleChildScrollView(
+                              physics: const NeverScrollableScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 24),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextButton(onPressed: () {}, child: const Text('TextButton')),
+                                      ElevatedButton(onPressed: () {}, child: const Text('ElevatedButton')),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      FilledButton(onPressed: () {}, child: const Text('FilledButton')),
+                                      OutlinedButton(onPressed: () {}, child: const Text('OutlinedButton')),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(24),
+                                    child: TextField(
+                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) {
+                                        return Text('$currentLength characters');
+                                      },
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        prefixIcon: Icon(Icons.castle),
+                                        label: Text('TextField'),
+                                      ),
+                                    ),
+                                  ),
+                                  const CircularProgressIndicator(),
+                                  Slider(value: v, onChanged: (n) => setState(() => v = n)),
+                                  Switch(value: b, onChanged: (n) => setState(() => b = n)),
+                                  Card(
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                                          child: Text(
+                                            'Card',
+                                            style: theme?.textTheme.displayLarge?.copyWith(fontSize: 28),
+                                          ),
+                                        ),
+                                        ListTile(
+                                          title: const Text('ListTile'),
+                                          subtitle: const Text('Supporting text'),
+                                          leading: const CircleAvatar(child: Text('A')),
+                                          onTap: () {},
+                                        ),
+                                        ListTile(
+                                          onTap: () {},
+                                          title: const Text('Heading'),
+                                          subtitle: const Text(
+                                            'Longer supporting text to demonstrate how the text wraps and how the leading and trailing widgets are centered vertically with the text.',
+                                          ),
+                                          leading: const CircleAvatar(child: Text('B')),
+                                          trailing: const Icon(Icons.access_alarm),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 80),
+                                ].divide(const SizedBox(height: 24)).toList(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -84,6 +180,7 @@ class _ExampleMaterialState extends State<ExampleMaterial> {
           colorScheme: ColorScheme.fromSeed(
             seedColor: ZetaColors.of(context).rainbow[index],
           ),
+          useMaterial3: true,
         );
       },
     );
@@ -161,6 +258,7 @@ class _Dropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      icon: const Icon(Icons.more_vert),
       position: PopupMenuPosition.under,
       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
         const PopupMenuItem(

@@ -68,7 +68,7 @@ class _ContentState extends State<Content> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ZetaText.headingMedium(widget.title, textColor: colors.textDefault),
-                  if (widget.subtitleWidget == null && (isDevCon || widget.subtitle != null))
+                  if (widget.subtitleWidget == null && (!isDevCon || widget.subtitle != null))
                     ZetaText.bodyLarge(widget.subtitle, textColor: colors.primary),
                   if (widget.subtitleWidget != null) widget.subtitleWidget!,
                   const SizedBox(height: Dimensions.m),

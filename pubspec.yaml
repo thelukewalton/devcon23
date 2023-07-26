@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   collection: ^1.17.0
+  basic:
+    path: ./basic
   cupertino:
     path: ./cupertino
   material:
@@ -32,6 +34,7 @@ dependency_overrides:
     #   url: https://github.com/zebratechnologies/zeta-flutter
     #   ref: feature/color
     path: ../../Zeta/zeta_flutter
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
