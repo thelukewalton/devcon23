@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presentation/pages/11Acessability.dart';
-import 'package:presentation/pages/3OurProcess.dart';
+import 'package:presentation/pages/3CrossPlatformHistory.dart';
+import 'package:presentation/pages/6ReactNative.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../pages/11Semantics.dart';
@@ -12,8 +13,10 @@ import '../pages/13ZDS.dart';
 import '../pages/15Zeta.dart';
 import '../pages/2WhoWeAre.dart';
 import '../pages/4ZSBProblem.dart';
+import '../pages/5FutureDivider.dart';
 import '../pages/5ZSBSolution.dart';
 import '../pages/6ZSBlearnt.dart';
+import '../pages/7Flutter.dart';
 import '../pages/7WhatIsFlutter.dart';
 import '../pages/8BasicExample.dart';
 import '../pages/10TMWFM.dart';
@@ -130,6 +133,9 @@ final routes = [
   const WhoWeAre(),
   const OurProcess(),
   const ZSBProblem(),
+  const FutureOfCrossPlatform(),
+  const ReactNative(),
+  const Flutter(),
   const ZSBSolution(),
   const ZSBLearnt(),
   const WhatIsFlutter(),

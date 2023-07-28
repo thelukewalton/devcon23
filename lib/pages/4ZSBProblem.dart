@@ -24,9 +24,10 @@ class ZSBProblem extends StatelessWidget {
               BulletPointList(
                 content: [
                   BulletPoint(point: 'Cross platform'),
+                  BulletPoint(point: 'Developer experience'),
                   BulletPoint(point: 'Great UX'),
-                  BulletPoint(point: 'Long term support'),
                   BulletPoint(point: 'Native features'),
+                  BulletPoint(point: 'Future support'),
                 ],
               ),
             ],

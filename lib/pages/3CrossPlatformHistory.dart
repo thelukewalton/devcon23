@@ -10,16 +10,17 @@ class OurProcess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Content(
-      title: 'Our Process',
-      subtitle: 'How we convert UX to UI',
+      title: 'Cross platform history',
+      subtitle: 'Our experience',
       content: BulletPointList(
         content: [
-          BulletPoint(point: 'Design', subpoints: ['Figma']),
-          BulletPoint(point: 'Tools', subpoints: [
-            'React / Web Components',
-            'Android',
-            '?',
-          ]),
+          BulletPoint(point: 'Sencha / ExtJs'),
+          BulletPoint(point: 'Rhodes'),
+          BulletPoint(point: 'PhoneGap / Cordova'),
+          BulletPoint(point: 'Electron'),
+          BulletPoint(point: 'Enterprise Browser'),
+          BulletPoint(point: 'Xamarin'),
+          BulletPoint(point: 'PWA'),
         ],
       ),
     );
