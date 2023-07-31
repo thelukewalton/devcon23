@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:presentation/components/bullets.dart';
-import 'package:presentation/components/content.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
+
+import '../components/bullets.dart';
+import '../components/content.dart';
 
 class ZSBSolution extends StatelessWidget {
   const ZSBSolution({super.key});

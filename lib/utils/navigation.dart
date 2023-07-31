@@ -2,27 +2,27 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presentation/pages/13Acessability.dart';
-import 'package:presentation/pages/14AAA.dart';
-import 'package:presentation/pages/16NextSteps.dart';
-import 'package:presentation/pages/20End.dart';
-import 'package:presentation/pages/3CrossPlatformHistory.dart';
-import 'package:presentation/pages/6ReactNative.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../pages/10WhatDoesFlutterLookLike.dart';
 import '../pages/11MatCupExample.dart';
 import '../pages/12TMWFM.dart';
+import '../pages/13Acessability.dart';
+import '../pages/14AAA.dart';
 import '../pages/15Semantics.dart';
+import '../pages/16NextSteps.dart';
 import '../pages/17Future.dart';
 import '../pages/18ZDS.dart';
 import '../pages/19Zeta.dart';
 import '../pages/1page1.dart';
+import '../pages/20End.dart';
 import '../pages/2WhoWeAre.dart';
+import '../pages/3CrossPlatformHistory.dart';
 import '../pages/4ZSBProblem.dart';
 import '../pages/5FutureDivider.dart';
-import '../pages/8ZSBWinner.dart';
+import '../pages/6ReactNative.dart';
 import '../pages/7Flutter.dart';
+import '../pages/8ZSBWinner.dart';
 import '../pages/9HelloFlutter.dart';
 
 class NavWrapper extends StatefulWidget {
@@ -46,7 +46,7 @@ class _NavWrapperState extends State<NavWrapper> {
     final int pageNumber = int.parse(GoRouter.of(context).location.split('/').last);
     final int pagesTotal = routes.length;
     void nextPage() {
-      if (pageNumber != pagesTotal) GoRouter.of(context).push(('/${pageNumber + 1}').toString());
+      if (pageNumber != pagesTotal) GoRouter.of(context).push('/${pageNumber + 1}');
     }
 
     void prevPage() {
@@ -164,7 +164,7 @@ final GoRouter router = GoRouter(
                 return SlideTransition(
                   position: animation.drive(
                     Tween<Offset>(
-                      begin: const Offset(0, 0),
+                      begin: Offset.zero,
                       // begin: const Offset(0.5, 0),
                       end: Offset.zero,
                     ).chain(CurveTween(curve: Curves.easeIn)),

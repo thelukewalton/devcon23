@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:presentation/components/end.dart';
+import '../components/end.dart';
 
 class End extends StatelessWidget {
   const End({super.key});

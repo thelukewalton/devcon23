@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:presentation/components/divider.dart';
+import '../components/divider.dart';
 
 class NextSteps extends StatelessWidget {
   const NextSteps({super.key});

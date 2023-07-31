@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
+import 'package:basic/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
+
 import '../components/content.dart';
-import 'package:basic/main.dart';
 
 class WhatDoesFlutterLookLike extends StatelessWidget {
   const WhatDoesFlutterLookLike({super.key});

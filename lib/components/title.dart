@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/main.dart';
-
 import 'package:zeta_flutter/zeta_flutter.dart';
+
+import '../main.dart';
 
 class TitlePage extends StatefulWidget {
   final String title;
@@ -65,22 +65,23 @@ class _TitlePageState extends State<TitlePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                !isDevCon
-                    ? SizedBox(
-                        height: constraints.maxHeight * 0.08,
-                        width: double.infinity,
-                        child: SvgPicture.asset(
-                          'lib/assets/zebra-logo.svg',
-                          semanticsLabel: 'Zebra Logo',
-                          colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
-                          alignment: Alignment.centerLeft,
-                        ),
-                      )
-                    : SvgPicture.asset(
-                        'lib/assets/logoBlack.svg',
-                        semanticsLabel: 'DevCon Logo',
-                        alignment: Alignment.centerRight,
-                      ),
+                if (!isDevCon)
+                  SizedBox(
+                    height: constraints.maxHeight * 0.08,
+                    width: double.infinity,
+                    child: SvgPicture.asset(
+                      'lib/assets/zebra-logo.svg',
+                      semanticsLabel: 'Zebra Logo',
+                      colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
+                      alignment: Alignment.centerLeft,
+                    ),
+                  )
+                else
+                  SvgPicture.asset(
+                    'lib/assets/logoBlack.svg',
+                    semanticsLabel: 'DevCon Logo',
+                    alignment: Alignment.centerRight,
+                  ),
                 SizedBox(
                   width: constraints.maxWidth * 0.55,
                   child: Column(
@@ -127,7 +128,7 @@ class TitleBackground extends StatelessWidget {
       children: [
         Flexible(
           flex: 5,
-          child: Container(
+          child: ColoredBox(
             color: colors.isDarkMode ? colors.white : colors.black,
             child: CustomPaint(
               size: Size(constraints.maxWidth * (5 / 6), constraints.maxHeight),
@@ -152,7 +153,7 @@ class GreyPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final ZetaColors colors = ZetaColors.of(context);
-    Path topPath = Path()
+    final Path topPath = Path()
       ..moveTo(0, 0)
       ..lineTo(size.height * 0.4, 0)
       ..lineTo(0, size.height * 0.4)
@@ -165,7 +166,7 @@ class GreyPaint extends CustomPainter {
         ..style = PaintingStyle.fill,
     );
 
-    Path bottomPath = Path()
+    final Path bottomPath = Path()
       ..moveTo(0, size.height * 0.8)
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height)
@@ -194,7 +195,7 @@ class BluePaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Path topPath = Path()
+    final Path topPath = Path()
       ..moveTo(size.width, size.height * 0.7)
       ..lineTo(size.width, size.height)
       ..lineTo(size.width * 0.7, size.height)

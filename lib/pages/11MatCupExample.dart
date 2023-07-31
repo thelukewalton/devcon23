@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
-import 'package:flutter/material.dart';
 import 'package:cupertino/main.dart';
+import 'package:flutter/material.dart';
 import 'package:material/main.dart';
-import 'package:presentation/components/bullets.dart';
-import 'package:presentation/components/svg.dart';
 
+import '../components/bullets.dart';
 import '../components/content.dart';
+import '../components/svg.dart';
 
 class MaterialCupertinoExample extends StatefulWidget {
   const MaterialCupertinoExample({super.key});

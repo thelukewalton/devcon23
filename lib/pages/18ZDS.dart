@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:presentation/components/bullets.dart';
-import 'package:presentation/components/zds_demo.dart';
 
+import '../components/bullets.dart';
 import '../components/content.dart';
+import '../components/zds_demo.dart';
 
 class ZDS extends StatelessWidget {
   const ZDS({super.key});

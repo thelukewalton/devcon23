@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/components/title.dart';
+import '../components/title.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({super.key});
@@ -19,8 +19,8 @@ class _Page1State extends State<Page1> {
     super.initState();
 
     WidgetsFlutterBinding.ensureInitialized();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.wait([
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Future.wait([
         // 1
         vg.loadPicture(const SvgAssetLoader('lib/assets/zebra-logo.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/logoBlack.svg'), context),

@@ -22,7 +22,7 @@ class _DividerPageState extends State<DividerPage> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return isDevCon
-          ? Container(
+          ? ColoredBox(
               color: colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +107,7 @@ class BluePaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Path bottomPath = Path()
+    final Path bottomPath = Path()
       ..moveTo(0, 0)
       ..lineTo(size.width / 2, 0)
       ..lineTo(size.width / 2, size.height)
@@ -120,7 +120,7 @@ class BluePaint extends CustomPainter {
         ..color = ZetaColors.of(context).black
         ..style = PaintingStyle.fill,
     );
-    Path topPath = Path()
+    final Path topPath = Path()
       ..moveTo(0, 0)
       ..lineTo(size.width, 0)
       ..lineTo(size.width / 2, size.height * 0.2)

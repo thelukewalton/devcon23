@@ -21,7 +21,7 @@ class _EndPageState extends State<EndPage> {
 
     final ZetaColors colors = ZetaColors.of(context);
     return LayoutBuilder(builder: (context, constraints) {
-      return Container(
+      return ColoredBox(
         color: colors.black,
         child: Stack(
           children: [
@@ -110,7 +110,7 @@ class _EndPageState extends State<EndPage> {
                       )),
                   if (!isDevCon)
                     Flexible(
-                      child: Container(
+                      child: ColoredBox(
                         color: colors.primary,
                         child: CustomPaint(
                           painter: BluePaint(context),
@@ -135,7 +135,7 @@ class BluePaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Path topPath = Path()
+    final Path topPath = Path()
       ..moveTo(0, 0)
       ..lineTo(size.width, 0)
       ..lineTo(0, size.height * 0.2)

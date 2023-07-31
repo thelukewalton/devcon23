@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/components/title.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
+import 'title.dart';
 
 class Content extends StatefulWidget {
   final String title;
@@ -38,7 +38,7 @@ class _ContentState extends State<Content> {
     final bool isDevCon = MyAppState.of(context)?.isDevCon ?? true;
 
     return LayoutBuilder(builder: (context, constraints) {
-      return Container(
+      return ColoredBox(
         color: widget.inverse ? colors.black : colors.surfacePrimary,
         child: Stack(
           children: [
@@ -50,7 +50,7 @@ class _ContentState extends State<Content> {
                 child: Container(
                   color: widget.inverse ? colors.white : colors.black,
                   width: constraints.maxWidth / 3,
-                  child: widget.leftImage!,
+                  child: widget.leftImage,
                 ),
               ),
             if (widget.leftImage != null)
@@ -142,7 +142,7 @@ class LeftPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final ZetaColors colors = ZetaColors.of(context);
-    Path topPath = Path()
+    final Path topPath = Path()
       ..moveTo(size.width / 3, size.height * 0.86)
       ..lineTo(size.width / 3, size.height)
       ..lineTo(size.width / 6, size.height)

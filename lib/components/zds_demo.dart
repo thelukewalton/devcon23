@@ -58,8 +58,8 @@ class ZDSDemo extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '',
       home: Builder(builder: (context) {
-        void showMyBottomSheet() {
-          showZdsBottomSheet(
+        Future<void> showMyBottomSheet() async {
+          await showZdsBottomSheet(
               enforceSheet: true,
               context: context,
               builder: (_) => ZdsBottomSheet(
@@ -121,7 +121,7 @@ class ZDSDemo extends StatelessWidget {
                   ));
         }
 
-        return Container(
+        return ColoredBox(
           color: ZetaColors.of(context).white,
           child: SingleChildScrollView(
             child: Row(
@@ -143,7 +143,7 @@ class ZDSDemo extends StatelessWidget {
                           color: ZdsTabBarColor.primary,
                           actions: [
                             ZdsPopupMenu(
-                              builder: (p0, p1) => (IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))),
+                              builder: (p0, p1) => IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
                               items: const [
                                 ZdsPopupMenuItem(
                                   child: ListTile(
@@ -191,17 +191,17 @@ class ZDSDemo extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ZdsButton.filled(
-                            onTap: () => showMyBottomSheet(),
+                            onTap: showMyBottomSheet,
                             customColorSwatch: colors.green,
                             child: const Text('Button'),
                           ),
                           ZdsButton.outlined(
-                            onTap: () => showMyBottomSheet(),
+                            onTap: showMyBottomSheet,
                             customColorSwatch: colors.green,
                             child: const Text('Button'),
                           ),
                           ZdsButton.text(
-                            onTap: () => showMyBottomSheet(),
+                            onTap: showMyBottomSheet,
                             customColorSwatch: colors.green,
                             child: const Text('Button'),
                           ),
@@ -293,7 +293,7 @@ class ZDSDemo extends StatelessWidget {
                     _Wrapper(
                       child: Column(
                         children: [
-                          Container(
+                          ColoredBox(
                             color: Colors.white,
                             child: const ZdsProfile(
                               avatar: ZdsNetworkAvatar(

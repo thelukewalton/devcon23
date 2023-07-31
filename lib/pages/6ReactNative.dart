@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/components/bullets.dart';
+import '../components/bullets.dart';
 
 import '../components/content.dart';
 

@@ -3,8 +3,7 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 
 class BulletPointList extends StatelessWidget {
   final List<dynamic> content;
-  final bool isMain;
-  const BulletPointList({super.key, required this.content, this.isMain = true});
+  const BulletPointList({super.key, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +38,17 @@ class BulletPointList extends StatelessWidget {
             padding: e.isCode ? const EdgeInsets.symmetric(horizontal: 4) : null,
             child: Text(
               e.point,
-              style: ((isMain ? ZetaText.zetaBodyLarge : ZetaText.zetaBodyMedium).copyWith(
+              style: ZetaText.zetaBodyLarge.copyWith(
                 color: e.isCode ? ZetaColors.of(context).surface : null,
                 fontFamily: e.isCode ? 'IBMPlexMono' : null,
                 height: e.isCode ? 1.4 : 2,
-              )),
+              ),
             ),
           ),
         ],
       ),
-      ...(e.subPoints.map((e) => Row(children: [const _Bullet(isSubPoint: true), ZetaText(e)])).toList())
+      ...e.subPoints
+          .map((e) => Row(children: [const _Bullet(isSubPoint: true), Text(e, style: ZetaText.zetaBodyMedium)]))
     ];
   }
 }
@@ -68,14 +68,14 @@ class _Bullet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isSubPoint) {
+      return const Text('        ― ');
+    }
     return Container(
-      decoration: BoxDecoration(
-        shape: isSubPoint ? BoxShape.rectangle : BoxShape.circle,
-        color: isSubPoint ? ZetaColors.of(context).textDefault : ZetaColors.of(context).primary,
-      ),
-      margin: EdgeInsets.only(right: 16, top: isSubPoint ? 8 : 16, left: isSubPoint ? 16 : 0),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: ZetaColors.of(context).primary),
+      margin: const EdgeInsets.only(right: 16, top: 16),
       width: 6,
-      height: isSubPoint ? 1 : 6,
+      height: 6,
     );
   }
 }
