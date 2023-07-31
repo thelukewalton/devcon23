@@ -2,27 +2,16 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presentation/pages/11Acessability.dart';
 import 'package:presentation/pages/3CrossPlatformHistory.dart';
 import 'package:presentation/pages/6ReactNative.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
-import '../pages/11Semantics.dart';
 import '../pages/1page1.dart';
-import '../pages/13ZDS.dart';
-import '../pages/15Zeta.dart';
 import '../pages/2WhoWeAre.dart';
 import '../pages/4ZSBProblem.dart';
 import '../pages/5FutureDivider.dart';
-import '../pages/5ZSBSolution.dart';
-import '../pages/6ZSBlearnt.dart';
+import '../pages/8ZSBWinner.dart';
 import '../pages/7Flutter.dart';
-import '../pages/7WhatIsFlutter.dart';
-import '../pages/8BasicExample.dart';
-import '../pages/10TMWFM.dart';
-import '../pages/12nextsteps.dart';
-import '../pages/14End.dart';
-import '../pages/9MatCupExample.dart';
 
 class NavWrapper extends StatefulWidget {
   final Widget child;
@@ -136,18 +125,19 @@ final routes = [
   const FutureOfCrossPlatform(),
   const ReactNative(),
   const Flutter(),
-  const ZSBSolution(),
-  const ZSBLearnt(),
-  const WhatIsFlutter(),
-  const WhatDoesFlutterLookLikeMaterial(),
-  const WhatDoesFlutterLookLikeCupertino(),
-  const TMWFM(),
-  const Accessibility(),
-  const SemanticsPage(),
-  const NextSteps(),
-  const ZDS(),
-  const ZetaPage(),
-  const End(),
+  const ZSBWinner(),
+  // const ZSBLearnt(),
+  // const ZSBLearnt(),
+  // const WhatIsFlutter(),
+  // const WhatDoesFlutterLookLikeMaterial(),
+  // const WhatDoesFlutterLookLikeCupertino(),
+  // const TMWFM(),
+  // const Accessibility(),
+  // const SemanticsPage(),
+  // const NextSteps(),
+  // const ZDS(),
+  // const ZetaPage(),
+  // const End(),
 ];
 
 final GoRouter router = GoRouter(

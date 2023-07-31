@@ -12,6 +12,8 @@ class Content extends StatefulWidget {
   final Widget content;
   final Widget? otherContent;
   final bool backgroundOnTop;
+  final Widget? leftImage;
+  final bool inverse;
 
   const Content({
     super.key,
@@ -21,6 +23,8 @@ class Content extends StatefulWidget {
     this.subtitleWidget,
     this.backgroundOnTop = false,
     this.otherContent,
+    this.leftImage,
+    this.inverse = false,
   });
 
   @override
@@ -35,15 +39,32 @@ class _ContentState extends State<Content> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        color: ZetaColors.of(context).surfacePrimary,
+        color: widget.inverse ? colors.black : colors.surfacePrimary,
         child: Stack(
           children: [
+            if (widget.leftImage != null)
+              Positioned(
+                left: 0,
+                top: 0,
+                bottom: 0,
+                child: Container(
+                  color: widget.inverse ? colors.white : colors.black,
+                  width: constraints.maxWidth / 3,
+                  padding: EdgeInsets.all(constraints.maxWidth / 12),
+                  child: widget.leftImage!,
+                ),
+              ),
+            if (widget.leftImage != null)
+              CustomPaint(
+                size: Size(constraints.maxWidth, constraints.maxHeight),
+                painter: LeftPainter(context, widget.inverse),
+              ),
             Positioned(
               top: Dimensions.m,
               right: Dimensions.m,
               child: SvgPicture.asset(
                 isDevCon
-                    ? colors.isDarkMode
+                    ? colors.isDarkMode || widget.inverse
                         ? 'lib/assets/logoBlack.svg'
                         : 'lib/assets/logoWhite.svg'
                     : 'lib/assets/zebra-logo-stacked.svg',
@@ -63,25 +84,33 @@ class _ContentState extends State<Content> {
               top: Dimensions.l,
               right: Dimensions.l,
               bottom: Dimensions.m,
-              left: Dimensions.l,
+              left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.l,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ZetaText.headingMedium(widget.title, textColor: colors.textDefault),
+                  ZetaText.headingMedium(
+                    widget.title,
+                    textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                  ),
                   if (widget.subtitleWidget == null && (!isDevCon || widget.subtitle != null))
-                    ZetaText.bodyLarge(widget.subtitle, textColor: colors.primary),
+                    ZetaText.bodyLarge(
+                      widget.subtitle,
+                      textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                    ),
                   if (widget.subtitleWidget != null) widget.subtitleWidget!,
                   const SizedBox(height: Dimensions.m),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: widget.content),
-                        if (widget.otherContent != null)
-                          Expanded(
-                            child: widget.otherContent!,
-                          ),
-                      ],
+                  DefaultTextStyle(
+                    style: TextStyle(
+                      color: widget.inverse ? colors.textInverse : colors.textDefault,
+                    ),
+                    child: Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: widget.content),
+                          if (widget.otherContent != null) Expanded(child: widget.otherContent!),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -103,4 +132,34 @@ class _ContentState extends State<Content> {
       );
     });
   }
+}
+
+class LeftPainter extends CustomPainter {
+  final BuildContext context;
+  final bool inverse;
+
+  LeftPainter(this.context, this.inverse);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final ZetaColors colors = ZetaColors.of(context);
+    Path topPath = Path()
+      ..moveTo(size.width / 3, size.height * 0.86)
+      ..lineTo(size.width / 3, size.height)
+      ..lineTo(size.width / 6, size.height)
+      ..lineTo(size.width / 3, size.height * 0.86)
+      ..close();
+    canvas.drawPath(
+      topPath,
+      Paint()
+        ..color = inverse ? colors.black : colors.white
+        ..style = PaintingStyle.fill,
+    );
+
+    canvas.save();
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

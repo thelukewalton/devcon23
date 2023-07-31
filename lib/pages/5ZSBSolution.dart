@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:presentation/components/bullets.dart';
-import 'package:presentation/components/content_alt.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
+
+import '../components/content.dart';
 
 class ZSBSolution extends StatelessWidget {
   const ZSBSolution({super.key});
@@ -10,10 +11,12 @@ class ZSBSolution extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ZetaColors colors = ZetaColors.of(context);
-    return ContentAlt(
+    return Content(
       title: 'ZSB Series Printer',
+      inverse: true,
       backgroundOnTop: true,
-      otherContent: Image.asset('lib/assets/zsb2.png'), //TODO: Get SVG verision
+      leftImage: Image.asset('lib/assets/zsb2.png'), //TODO: Get SVG verision
+      //TODO: Image too small
       content: Column(
         children: [
           Row(

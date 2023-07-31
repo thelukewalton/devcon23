@@ -12,6 +12,7 @@ class Flutter extends StatelessWidget {
     return Content(
         title: 'Flutter',
         subtitle: 'Google',
+        leftImage: const FlutterLogo(),
         content: BulletPointList(
           content: [
             BulletPoint(point: 'Dart', subpoints: ['Statically typed']),
@@ -23,4 +24,3 @@ class Flutter extends StatelessWidget {
         ));
   }
 }
-//TODO: style slide
