@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:zeta_flutter/zeta_flutter.dart';
 
-class MySvg extends StatelessWidget {
+class CaptionedWidget extends StatelessWidget {
   final String caption;
-  final String asset;
-  final bool withFlex;
-  const MySvg({super.key, required this.caption, required this.asset, this.withFlex = false});
+  final Widget child;
+  final double captionOffset;
+
+  const CaptionedWidget({super.key, required this.caption, required this.child, this.captionOffset = 20});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: withFlex
-            ? [
-                Flexible(flex: 9, child: SvgPicture.asset(asset)),
-                Flexible(child: ZetaText.labelSmall(caption)),
-              ]
-            : [
-                SvgPicture.asset(asset),
-                ZetaText.labelSmall(caption),
-              ],
+        children: [
+          Expanded(child: child),
+          Padding(padding: EdgeInsets.only(left: captionOffset), child: ZetaText.labelSmall(caption)),
+        ],
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:presentation/components/bullets.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
-import '../components/svg.dart';
 
 class SemanticsPage extends StatelessWidget {
   const SemanticsPage({super.key});
@@ -15,7 +14,7 @@ class SemanticsPage extends StatelessWidget {
     return Zeta(
       colors: ZetaColors.of(context).copyWith(isDarkMode: true),
       builder: (p0, p1, p2) {
-        return Content(
+        return const Content(
           title: 'Accessibility',
           subtitle: 'Semantics',
           content: Column(
@@ -24,19 +23,21 @@ class SemanticsPage extends StatelessWidget {
                 content: [
                   BulletPoint(
                     point: 'Elimintating vision barriers',
-                    subpoints: ['Content, function, actions, state'],
+                    subPoints: ['Content, function, actions, state'],
                   ),
                 ],
               ),
-              const Expanded(
+              Expanded(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
                       child: Column(
                         children: [
-                          FittedBox(child: MySvg(asset: 'lib/assets/builtin.svg', caption: 'Built in')),
-                          FittedBox(child: MySvg(asset: 'lib/assets/MergeSemantics.svg', caption: 'MergeSemantics')),
+                          // FittedBox(child: CaptionedWidget(asset: 'lib/assets/builtin.svg', caption: 'Built in')),
+                          // FittedBox(
+                          //     child:
+                          //         CaptionedWidget(asset: 'lib/assets/MergeSemantics.svg', caption: 'MergeSemantics')),
                         ],
                       ),
                     ),
@@ -44,8 +45,8 @@ class SemanticsPage extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          MySvg(asset: 'lib/assets/semantics.svg', caption: 'Semantics'),
-                          MySvg(asset: 'lib/assets/ExcludeSemantics.svg', caption: 'ExcludeSemantics'),
+                          // CaptionedWidget(asset: 'lib/assets/semantics.svg', caption: 'Semantics'),
+                          // CaptionedWidget(asset: 'lib/assets/ExcludeSemantics.svg', caption: 'ExcludeSemantics'),
                         ],
                       ),
                     ),

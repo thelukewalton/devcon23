@@ -10,29 +10,27 @@ class ZDS extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Content(
+    return const Content(
       title: 'ZDS Flutter',
       subtitle: 'pub.dev/packages/zds_flutter',
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BulletPointList(
-                content: [
-                  BulletPoint(point: 'Legacy components'),
-                  BulletPoint(point: 'Production tested'),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 1200,
-            child: Expanded(
-              child: ZDSDemo(),
+          Flexible(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BulletPointList(
+                  content: [
+                    BulletPoint(point: 'Current design components'),
+                    BulletPoint(point: 'Production tested'),
+                  ],
+                ),
+              ],
             ),
-          )
+          ),
+          Flexible(flex: 2, child: ZDSDemo())
         ],
       ),
     );

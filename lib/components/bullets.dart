@@ -26,22 +26,39 @@ class BulletPointList extends StatelessWidget {
       Row(
         children: [
           if (e.point.isNotEmpty) const _Bullet(),
-          Text(
-            e.point,
-            style: (isMain ? ZetaText.zetaBodyLarge : ZetaText.zetaBodyMedium).copyWith(height: 2),
+          Container(
+            decoration: e.isCode
+                ? BoxDecoration(
+                    color: ZetaColors.of(context).onSurface,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  )
+                : null,
+            margin: e.isCode ? const EdgeInsets.only(top: 4) : null,
+            padding: e.isCode ? const EdgeInsets.symmetric(horizontal: 4) : null,
+            child: Text(
+              e.point,
+              style: ((isMain ? ZetaText.zetaBodyLarge : ZetaText.zetaBodyMedium).copyWith(
+                color: e.isCode ? ZetaColors.of(context).surface : null,
+                fontFamily: e.isCode ? 'IBMPlexMono' : null,
+                height: e.isCode ? 1.4 : 2,
+              )),
+            ),
           ),
         ],
       ),
-      ...(e.subpoints.map((e) => Row(children: [const _Bullet(isSubPoint: true), ZetaText(e)])).toList())
+      ...(e.subPoints.map((e) => Row(children: [const _Bullet(isSubPoint: true), ZetaText(e)])).toList())
     ];
   }
 }
 
 class BulletPoint {
   final String point;
-  final List<String> subpoints;
+  final List<String> subPoints;
+  final bool isCode;
 
-  BulletPoint({required this.point, this.subpoints = const []});
+  const BulletPoint({required this.point, this.subPoints = const [], this.isCode = false});
 }
 
 class _Bullet extends StatelessWidget {
@@ -56,7 +73,7 @@ class _Bullet extends StatelessWidget {
         shape: isSubPoint ? BoxShape.rectangle : BoxShape.circle,
         color: isSubPoint ? ZetaColors.of(context).textDefault : ZetaColors.of(context).primary,
       ),
-      margin: EdgeInsets.only(right: 16, top: 2, left: isSubPoint ? 16 : 0),
+      margin: EdgeInsets.only(right: 16, top: isSubPoint ? 8 : 16, left: isSubPoint ? 16 : 0),
       width: 6,
       height: isSubPoint ? 1 : 6,
     );

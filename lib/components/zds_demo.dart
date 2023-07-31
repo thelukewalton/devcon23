@@ -302,11 +302,11 @@ class ZDSDemo extends StatelessWidget {
                               ),
                               nameText: Text('Joe Bloggs'),
                               jobTitleText: Text('Developer'),
-                            ),
+                            ).padding(8),
                           ),
                           const SizedBox(height: 12),
                           SizedBox(
-                            height: 132,
+                            height: 136,
                             child: ZdsListGroup(
                               padding: const EdgeInsets.all(1),
                               child: Column(
@@ -386,18 +386,21 @@ class ZDSDemo extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const ZdsIconTextButton(
+                          ZdsIconTextButton(
                             label: 'Tap',
+                            onTap: () {},
                             icon: ZdsIcons.action,
                           ),
                           ZdsIconTextButton(
                             label: 'Bad',
                             icon: ZdsIcons.audit_activity,
                             backgroundColor: colors.red,
+                            onTap: () {},
                           ),
                           ZdsIconTextButton(
                             label: 'Good',
                             icon: ZdsIcons.vacation,
+                            onTap: () {},
                             backgroundColor: colors.green,
                           ),
                         ],

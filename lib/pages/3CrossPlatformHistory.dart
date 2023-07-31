@@ -9,7 +9,7 @@ class OurProcess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Content(
+    return const Content(
       title: 'Cross platform history',
       subtitle: 'Our experience',
       content: BulletPointList(

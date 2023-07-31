@@ -13,11 +13,11 @@ class WhoWeAre extends StatelessWidget {
       content: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Flexible(
+          const Flexible(
             flex: 2,
             child: BulletPointList(
               content: [
-                BulletPoint(point: 'Front End Development', subpoints: ['User Experience', 'Innovation and Design']),
+                BulletPoint(point: 'Front End Development', subPoints: ['User Experience', 'Innovation and Design']),
                 BulletPoint(point: 'Worldwide team'),
                 BulletPoint(point: 'Design → development'),
               ],
@@ -25,10 +25,8 @@ class WhoWeAre extends StatelessWidget {
           ),
           Flexible(
             flex: 2,
-            child: FittedBox(
-              child: Image.asset(
-                'lib/assets/ID.png',
-              ),
+            child: Image.asset(
+              'lib/assets/ID.png',
             ),
           ),
           const Flexible(child: SizedBox()),

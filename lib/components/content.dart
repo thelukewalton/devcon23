@@ -50,7 +50,6 @@ class _ContentState extends State<Content> {
                 child: Container(
                   color: widget.inverse ? colors.white : colors.black,
                   width: constraints.maxWidth / 3,
-                  padding: EdgeInsets.all(constraints.maxWidth / 12),
                   child: widget.leftImage!,
                 ),
               ),
@@ -92,10 +91,10 @@ class _ContentState extends State<Content> {
                     widget.title,
                     textColor: widget.inverse ? colors.textInverse : colors.textDefault,
                   ),
-                  if (widget.subtitleWidget == null && (!isDevCon || widget.subtitle != null))
+                  if (widget.subtitleWidget == null)
                     ZetaText.bodyLarge(
                       widget.subtitle,
-                      textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                      textColor: colors.primary,
                     ),
                   if (widget.subtitleWidget != null) widget.subtitleWidget!,
                   const SizedBox(height: Dimensions.m),
@@ -138,7 +137,7 @@ class LeftPainter extends CustomPainter {
   final BuildContext context;
   final bool inverse;
 
-  LeftPainter(this.context, this.inverse);
+  const LeftPainter(this.context, this.inverse);
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -25,12 +25,13 @@ class MyAppState extends State<MyApp> {
     return ZdsApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      home: Zeta(builder: (context, theme, colors) {
+      zetaTheme: const ZetaThemeData(fontFamily: 'Arial'),
+      home: Builder(builder: (context) {
         return MaterialApp.router(
           title: 'Flutter Demo',
-          theme: theme,
           debugShowCheckedModeBanner: false,
           routerConfig: router,
+          theme: Theme.of(context),
         );
       }),
     );

@@ -21,7 +21,7 @@ class ZSBProblem extends StatelessWidget {
               ZetaText.bodyLarge('The problem', textColor: ZetaColors.of(context).primary).stack(Dimensions.l),
             ],
           ),
-          Row(
+          const Row(
             children: [
               BulletPointList(
                 content: [
@@ -36,8 +36,7 @@ class ZSBProblem extends StatelessWidget {
           ),
         ],
       ),
-      leftImage: Image.asset('lib/assets/zsb2.png'),
-      //TODO: Image too small
+      leftImage: Image.asset('lib/assets/ZSB.png'),
     );
   }
 }

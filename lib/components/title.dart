@@ -147,7 +147,7 @@ class TitleBackground extends StatelessWidget {
 class GreyPaint extends CustomPainter {
   final BuildContext context;
 
-  GreyPaint(this.context);
+  const GreyPaint(this.context);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -190,7 +190,7 @@ class GreyPaint extends CustomPainter {
 class BluePaint extends CustomPainter {
   final BuildContext context;
 
-  BluePaint(this.context);
+  const BluePaint(this.context);
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -8,6 +8,8 @@ class End extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const EndPage();
+    return const EndPage(
+      subtitle: 'github.com/thelukewalton/devcon23',
+    );
   }
 }

@@ -25,6 +25,7 @@ dependencies:
     path: ../../zds/zds-flutter
   zeta_flutter:
     path: ../../Zeta/zeta_flutter
+  material_symbols_icons: ^4.2668.0
 
 dependency_overrides:
   zds_flutter:
@@ -49,3 +50,9 @@ flutter:
     - family: IBMPlexMono
       fonts:
         - asset: lib/assets/IBMPlexMono.ttf
+    - family: comic
+      fonts:
+        - asset: lib/assets/comic.ttf
+    - family: Arial
+      fonts:
+        - asset: lib/assets/arial.ttf

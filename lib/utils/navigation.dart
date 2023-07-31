@@ -2,16 +2,28 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:presentation/pages/13Acessability.dart';
+import 'package:presentation/pages/14AAA.dart';
+import 'package:presentation/pages/16NextSteps.dart';
+import 'package:presentation/pages/20End.dart';
 import 'package:presentation/pages/3CrossPlatformHistory.dart';
 import 'package:presentation/pages/6ReactNative.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
+import '../pages/10WhatDoesFlutterLookLike.dart';
+import '../pages/11MatCupExample.dart';
+import '../pages/12TMWFM.dart';
+import '../pages/15Semantics.dart';
+import '../pages/17Future.dart';
+import '../pages/18ZDS.dart';
+import '../pages/19Zeta.dart';
 import '../pages/1page1.dart';
 import '../pages/2WhoWeAre.dart';
 import '../pages/4ZSBProblem.dart';
 import '../pages/5FutureDivider.dart';
 import '../pages/8ZSBWinner.dart';
 import '../pages/7Flutter.dart';
+import '../pages/9HelloFlutter.dart';
 
 class NavWrapper extends StatefulWidget {
   final Widget child;
@@ -125,19 +137,19 @@ final routes = [
   const FutureOfCrossPlatform(),
   const ReactNative(),
   const Flutter(),
-  const ZSBWinner(),
-  // const ZSBLearnt(),
-  // const ZSBLearnt(),
-  // const WhatIsFlutter(),
-  // const WhatDoesFlutterLookLikeMaterial(),
-  // const WhatDoesFlutterLookLikeCupertino(),
-  // const TMWFM(),
-  // const Accessibility(),
-  // const SemanticsPage(),
-  // const NextSteps(),
-  // const ZDS(),
-  // const ZetaPage(),
-  // const End(),
+  const ZSBSolution(),
+  const HelloFlutter(),
+  const WhatDoesFlutterLookLike(),
+  const MaterialCupertinoExample(),
+  const TMWFM(),
+  const Accessibility(),
+  const AAA(),
+  const SemanticsPage(),
+  const NextSteps(),
+  const FuturePage(),
+  const ZDS(),
+  const ZetaPage(),
+  const End(),
 ];
 
 final GoRouter router = GoRouter(
@@ -157,9 +169,7 @@ final GoRouter router = GoRouter(
                       end: Offset.zero,
                     ).chain(CurveTween(curve: Curves.easeIn)),
                   ),
-                  child: Zeta(builder: (context, theme, colors) {
-                    return child;
-                  }),
+                  child: child,
                 );
               },
             ),

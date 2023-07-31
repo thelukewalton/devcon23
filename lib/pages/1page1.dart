@@ -21,22 +21,46 @@ class _Page1State extends State<Page1> {
     WidgetsFlutterBinding.ensureInitialized();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.wait([
-        vg.loadPicture(const SvgAssetLoader('lib/assets/code.svg'), context),
-        precacheImage(Image.asset('lib/assets/divider.png').image, context),
-        precacheImage(Image.asset('lib/assets/end.png').image, context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/ESS.svg'), context),
-        precacheImage(Image.asset('lib/assets/intro.png').image, context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/logoBlack.svg'), context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/logoWhite.svg'), context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/QChat.svg'), context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/zebra-logo-stacked.svg'), context),
+        // 1
         vg.loadPicture(const SvgAssetLoader('lib/assets/zebra-logo.svg'), context),
-        precacheImage(Image.asset('lib/assets/zsb2.png').image, context),
+        vg.loadPicture(const SvgAssetLoader('lib/assets/logoBlack.svg'), context),
+        precacheImage(Image.asset('lib/assets/intro.png').image, context),
+        vg.loadPicture(const SvgAssetLoader('lib/assets/zebra-logo-stacked.svg'), context),
+        vg.loadPicture(const SvgAssetLoader('lib/assets/logoWhite.svg'), context),
+
+        // 2
+        precacheImage(Image.asset('lib/assets/id.png').image, context), //TODO: get better id logo
+
+        // 4
+        precacheImage(Image.asset('lib/assets/ZSB.png').image, context),
+
+        // 5
+        precacheImage(Image.asset('lib/assets/divider.png').image, context),
+
+        // 6
+        vg.loadPicture(const SvgAssetLoader('lib/assets/react.svg'), context),
+
+        // 8
         precacheImage(Image.asset('lib/assets/zsbapp.png').image, context),
+
+        // 9
+        precacheImage(Image.asset('lib/assets/dash.png').image, context),
+
+        //10
+        vg.loadPicture(const SvgAssetLoader('lib/assets/code.svg'), context),
+
+        // 12
+        vg.loadPicture(const SvgAssetLoader('lib/assets/QChat.svg'), context),
+        vg.loadPicture(const SvgAssetLoader('lib/assets/ESS.svg'), context),
+
+        // 15
         vg.loadPicture(const SvgAssetLoader('lib/assets/builtin.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/ExcludeSemantics.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/MergeSemantics.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/semantics.svg'), context),
+
+        // 20
+        precacheImage(Image.asset('lib/assets/end.png').image, context),
       ]);
       setState(() => isLoading = false);
     });

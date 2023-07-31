@@ -103,7 +103,7 @@ class _DividerPageState extends State<DividerPage> {
 class BluePaint extends CustomPainter {
   final BuildContext context;
 
-  BluePaint(this.context);
+  const BluePaint(this.context);
 
   @override
   void paint(Canvas canvas, Size size) {

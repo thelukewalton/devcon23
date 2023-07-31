@@ -15,14 +15,14 @@ class ZetaPage extends StatelessWidget {
       subtitle: 'pub.dev/packages/zeta_flutter',
       content: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BulletPointList(
                   content: [
-                    BulletPoint(point: 'New, cross platform design system'),
-                    BulletPoint(point: 'Strict, curated set of components'),
+                    BulletPoint(point: 'Cross-platform, future design system'),
+                    BulletPoint(point: 'Formal, standardized set of components'),
                     BulletPoint(point: 'Work in progress'),
                   ],
                 ),
@@ -30,7 +30,15 @@ class ZetaPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: const Center(child: ZetaText.displayLarge('Zeta')).stack(200),
+            child: Center(
+                child: Text(
+              'Zeta',
+              style: ZetaText.zetaDisplayLarge.copyWith(
+                fontFamily: 'IBM Plex Sans',
+                fontWeight: FontWeight.w400,
+                fontSize: 160,
+              ),
+            )).stack(200),
             //TODO: embed some content
           ),
         ],
