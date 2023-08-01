@@ -16,7 +16,6 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
         children: [
           Expanded(
             child: Content(
-              backgroundOnTop: false,
               title: 'What does Flutter look like?',
               subtitle: 'main.dart',
               content: Row(
@@ -47,6 +46,6 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
           ),
         ],
       );
-    });
+    },);
   }
 }

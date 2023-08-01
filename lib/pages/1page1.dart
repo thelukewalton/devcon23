@@ -15,7 +15,6 @@ class _Page1State extends State<Page1> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +28,7 @@ class _Page1State extends State<Page1> {
         vg.loadPicture(const SvgAssetLoader('lib/assets/logoWhite.svg'), context),
 
         // 2
-        precacheImage(Image.asset('lib/assets/id.png').image, context), //TODO: get better id logo
+        precacheImage(Image.asset('lib/assets/id.png').image, context), // TODO(thelukewalton): get better id logo
 
         // 4
         precacheImage(Image.asset('lib/assets/ZSB.png').image, context),
@@ -57,7 +56,7 @@ class _Page1State extends State<Page1> {
         vg.loadPicture(const SvgAssetLoader('lib/assets/builtin.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/ExcludeSemantics.svg'), context),
         vg.loadPicture(const SvgAssetLoader('lib/assets/MergeSemantics.svg'), context),
-        vg.loadPicture(const SvgAssetLoader('lib/assets/semantics.svg'), context),
+        vg.loadPicture(const SvgAssetLoader('lib/assets/Semantics.svg'), context),
 
         // 20
         precacheImage(Image.asset('lib/assets/end.png').image, context),

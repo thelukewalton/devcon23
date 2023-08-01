@@ -17,29 +17,29 @@ class EndPage extends StatefulWidget {
 class _EndPageState extends State<EndPage> {
   @override
   Widget build(BuildContext context) {
-    final bool isDevCon = MyAppState.of(context)?.isDevCon ?? true;
+    final bool isDevCon = MyAppState().of(context)?.isDevCon ?? true;
 
     final ZetaColors colors = ZetaColors.of(context);
-    return LayoutBuilder(builder: (context, constraints) {
-      return ColoredBox(
-        color: colors.black,
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              right: 0,
-              left: constraints.maxWidth * 0.5,
-              child: Image.asset('lib/assets/end.png'),
-            ),
-            Positioned(
-              top: 0,
-              bottom: 0,
-              right: 0,
-              left: 0,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ColoredBox(
+          color: colors.black,
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: 0,
+                right: 0,
+                left: constraints.maxWidth * 0.5,
+                child: Image.asset('lib/assets/end.png'),
+              ),
+              Positioned(
+                top: 0,
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: Row(
+                  children: [
+                    Expanded(
                       flex: 9,
                       child: Padding(
                         padding: Dimensions.xl.square,
@@ -107,24 +107,26 @@ class _EndPageState extends State<EndPage> {
                             ),
                           ],
                         ),
-                      )),
-                  if (!isDevCon)
-                    Flexible(
-                      child: ColoredBox(
-                        color: colors.primary,
-                        child: CustomPaint(
-                          painter: BluePaint(context),
-                          size: Size(constraints.maxWidth * 0.1, constraints.maxHeight),
-                        ),
                       ),
-                    )
-                ],
+                    ),
+                    if (!isDevCon)
+                      Flexible(
+                        child: ColoredBox(
+                          color: colors.primary,
+                          child: CustomPaint(
+                            painter: BluePaint(context),
+                            size: Size(constraints.maxWidth * 0.1, constraints.maxHeight),
+                          ),
+                        ),
+                      )
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 

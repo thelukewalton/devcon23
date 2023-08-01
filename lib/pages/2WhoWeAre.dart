@@ -11,7 +11,6 @@ class WhoWeAre extends StatelessWidget {
     return Content(
       title: 'Who we are',
       content: Row(
-        mainAxisSize: MainAxisSize.max,
         children: [
           const Flexible(
             flex: 2,

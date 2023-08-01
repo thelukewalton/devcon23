@@ -18,7 +18,6 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
   @override
   Widget build(BuildContext context) {
     return const Content(
-      backgroundOnTop: false,
       title: 'Core UI',
       subtitle: 'Material and Cupertino',
       content: Row(
@@ -34,8 +33,8 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
           Expanded(
             child: Row(
               children: [
-                CaptionedWidget(caption: 'Material (Android)', captionOffset: 20, child: ExampleMaterial()),
-                CaptionedWidget(caption: 'Cupertino (iOS)', captionOffset: 20, child: ExampleCupertino()),
+                CaptionedWidget(caption: 'Material (Android)', child: ExampleMaterial()),
+                CaptionedWidget(caption: 'Cupertino (iOS)', child: ExampleCupertino()),
               ],
             ),
           ),

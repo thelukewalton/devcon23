@@ -35,101 +35,103 @@ class _ContentState extends State<Content> {
   @override
   Widget build(BuildContext context) {
     final ZetaColors colors = ZetaColors.of(context);
-    final bool isDevCon = MyAppState.of(context)?.isDevCon ?? true;
+    final bool isDevCon = MyAppState().of(context)?.isDevCon ?? true;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return ColoredBox(
-        color: widget.inverse ? colors.black : colors.surfacePrimary,
-        child: Stack(
-          children: [
-            if (widget.leftImage != null)
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ColoredBox(
+          color: widget.inverse ? colors.black : colors.surfacePrimary,
+          child: Stack(
+            children: [
+              if (widget.leftImage != null)
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: Container(
+                    color: widget.inverse ? colors.white : colors.black,
+                    width: constraints.maxWidth / 3,
+                    child: widget.leftImage,
+                  ),
+                ),
+              if (widget.leftImage != null)
+                CustomPaint(
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  painter: LeftPainter(context, widget.inverse),
+                ),
               Positioned(
-                left: 0,
-                top: 0,
-                bottom: 0,
-                child: Container(
-                  color: widget.inverse ? colors.white : colors.black,
-                  width: constraints.maxWidth / 3,
-                  child: widget.leftImage,
+                top: Dimensions.m,
+                right: Dimensions.m,
+                child: SvgPicture.asset(
+                  isDevCon
+                      ? colors.isDarkMode || widget.inverse
+                          ? 'lib/assets/logoBlack.svg'
+                          : 'lib/assets/logoWhite.svg'
+                      : 'lib/assets/zebra-logo-stacked.svg',
+                  height: constraints.maxHeight * 0.1,
                 ),
               ),
-            if (widget.leftImage != null)
-              CustomPaint(
-                size: Size(constraints.maxWidth, constraints.maxHeight),
-                painter: LeftPainter(context, widget.inverse),
-              ),
-            Positioned(
-              top: Dimensions.m,
-              right: Dimensions.m,
-              child: SvgPicture.asset(
-                isDevCon
-                    ? colors.isDarkMode || widget.inverse
-                        ? 'lib/assets/logoBlack.svg'
-                        : 'lib/assets/logoWhite.svg'
-                    : 'lib/assets/zebra-logo-stacked.svg',
-                height: constraints.maxHeight * 0.1,
-              ),
-            ),
-            if (!widget.backgroundOnTop && !isDevCon)
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: CustomPaint(
-                  size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
-                  painter: BluePaint(context),
-                ),
-              ),
-            Positioned(
-              top: Dimensions.l,
-              right: Dimensions.l,
-              bottom: Dimensions.m,
-              left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.l,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ZetaText.headingMedium(
-                    widget.title,
-                    textColor: widget.inverse ? colors.textInverse : colors.textDefault,
-                  ),
-                  if (widget.subtitleWidget == null)
-                    ZetaText.bodyLarge(
-                      widget.subtitle,
-                      textColor: colors.primary,
-                    ),
-                  if (widget.subtitleWidget != null) widget.subtitleWidget!,
-                  const SizedBox(height: Dimensions.m),
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      color: widget.inverse ? colors.textInverse : colors.textDefault,
-                    ),
-                    child: Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(child: widget.content),
-                          if (widget.otherContent != null) Expanded(child: widget.otherContent!),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (!isDevCon)
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: IgnorePointer(
+              if (!widget.backgroundOnTop && !isDevCon)
+                Positioned(
+                  bottom: 0,
+                  right: 0,
                   child: CustomPaint(
                     size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
                     painter: BluePaint(context),
                   ),
                 ),
+              Positioned(
+                top: Dimensions.l,
+                right: Dimensions.l,
+                bottom: Dimensions.m,
+                left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.l,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ZetaText.headingMedium(
+                      widget.title,
+                      textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                    ),
+                    if (widget.subtitleWidget == null)
+                      ZetaText.bodyLarge(
+                        widget.subtitle,
+                        textColor: colors.primary,
+                      ),
+                    if (widget.subtitleWidget != null) widget.subtitleWidget!,
+                    const SizedBox(height: Dimensions.m),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: widget.inverse ? colors.textInverse : colors.textDefault,
+                      ),
+                      child: Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: widget.content),
+                            if (widget.otherContent != null) Expanded(child: widget.otherContent!),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-          ],
-        ),
-      );
-    });
+              if (!isDevCon)
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: IgnorePointer(
+                    child: CustomPaint(
+                      size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
+                      painter: BluePaint(context),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 

@@ -38,7 +38,7 @@ class HelloFlutter extends StatelessWidget {
               ),
               const SizedBox(),
             ],
-          ));
-    });
+          ),);
+    },);
   }
 }

@@ -15,26 +15,34 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   final bool isDevCon = true;
+  final List<String> fontFamilies = ['Arial', 'IBMPlexSans', 'comic'];
 
-  static MyAppState? of(BuildContext context) => context.findAncestorStateOfType<MyAppState>();
+  MyAppState? of(BuildContext context) => context.findAncestorStateOfType<MyAppState>();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
 
-    return ZdsApp(
+    return const ZdsApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      zetaTheme: const ZetaThemeData(fontFamily: 'Arial'),
-      home: Builder(builder: (context) {
-        return MaterialApp.router(
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
-          theme: Theme.of(context),
-        );
-      }),
+      zetaTheme: ZetaThemeData(fontFamily: 'Arial'),
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+      theme: Theme.of(context),
     );
   }
 }

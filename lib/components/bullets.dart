@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 class BulletPointList extends StatelessWidget {
-  final List<dynamic> content;
-  const BulletPointList({super.key, required this.content});
+  final List<dynamic> _content;
+  const BulletPointList({super.key, required List<dynamic> content}) : _content = content;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: content
-          .map((e) => e is BulletPoint
-              ? _renderPoint(e, context)
-              : e is Widget
-                  ? e
-                  : const SizedBox())
-          .expand<Widget>((element) => element as Iterable<Widget>)
+      children: _content
+          .map(
+            (e) => e is BulletPoint
+                ? _renderPoint(e, context)
+                : e is Widget
+                    ? e
+                    : const SizedBox(),
+          )
+          .expand<Widget>((Object element) => element as Iterable<Widget>)
           .toList(),
     );
   }
@@ -48,7 +50,7 @@ class BulletPointList extends StatelessWidget {
         ],
       ),
       ...e.subPoints
-          .map((e) => Row(children: [const _Bullet(isSubPoint: true), Text(e, style: ZetaText.zetaBodyMedium)]))
+          .map((String e) => Row(children: [const _Bullet(isSubPoint: true), Text(e, style: ZetaText.zetaBodyMedium)]))
     ];
   }
 }
@@ -62,13 +64,13 @@ class BulletPoint {
 }
 
 class _Bullet extends StatelessWidget {
-  final bool isSubPoint;
+  final bool _isSubPoint;
 
-  const _Bullet({this.isSubPoint = false});
+  const _Bullet({bool isSubPoint = false}) : _isSubPoint = isSubPoint;
 
   @override
   Widget build(BuildContext context) {
-    if (isSubPoint) {
+    if (_isSubPoint) {
       return const Text('        ― ');
     }
     return Container(

@@ -18,54 +18,54 @@ class _DividerPageState extends State<DividerPage> {
   @override
   Widget build(BuildContext context) {
     final ZetaColors colors = ZetaColors.of(context);
-    final bool isDevCon = MyAppState.of(context)?.isDevCon ?? true;
+    final bool isDevCon = MyAppState().of(context)?.isDevCon ?? true;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return isDevCon
-          ? ColoredBox(
-              color: colors.black,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: Dimensions.xxl, vertical: Dimensions.l),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SvgPicture.asset(
-                            'lib/assets/logoBlack.svg',
-                            semanticsLabel: 'DevCon Logo',
-                            alignment: Alignment.centerRight,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ZetaText.titleLarge(
-                                widget.title,
-                                textColor: colors.surface,
-                                fontSize: 32,
-                              ),
-                              ZetaText.titleLarge(
-                                widget.subtitle,
-                                textColor: colors.primary,
-                                fontSize: 30,
-                              ),
-                            ],
-                          ),
-                        ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return isDevCon
+            ? ColoredBox(
+                color: colors.black,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: Dimensions.xxl, vertical: Dimensions.l),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SvgPicture.asset(
+                              'lib/assets/logoBlack.svg',
+                              semanticsLabel: 'DevCon Logo',
+                              alignment: Alignment.centerRight,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ZetaText.titleLarge(
+                                  widget.title,
+                                  textColor: colors.surface,
+                                  fontSize: 32,
+                                ),
+                                ZetaText.titleLarge(
+                                  widget.subtitle,
+                                  textColor: colors.primary,
+                                  fontSize: 30,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Image.asset('lib/assets/divider.png')
-                ],
-              ),
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
+                    Image.asset('lib/assets/divider.png')
+                  ],
+                ),
+              )
+            : Row(
+                children: [
+                  Expanded(
                     flex: 4,
                     child: Container(
                       color: colors.black,
@@ -83,20 +83,22 @@ class _DividerPageState extends State<DividerPage> {
                           ),
                         ],
                       ),
-                    )),
-                Flexible(
-                  child: Container(
-                    color: colors.primary,
-                    width: constraints.maxWidth * 0.2,
-                    child: CustomPaint(
-                      painter: BluePaint(context),
-                      size: Size(constraints.maxWidth * 0.2, constraints.maxHeight),
                     ),
                   ),
-                ),
-              ],
-            );
-    });
+                  Flexible(
+                    child: Container(
+                      color: colors.primary,
+                      width: constraints.maxWidth * 0.2,
+                      child: CustomPaint(
+                        painter: BluePaint(context),
+                        size: Size(constraints.maxWidth * 0.2, constraints.maxHeight),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+      },
+    );
   }
 }
 

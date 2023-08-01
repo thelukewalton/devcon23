@@ -31,15 +31,16 @@ class ZetaPage extends StatelessWidget {
           ),
           Expanded(
             child: Center(
-                child: Text(
-              'Zeta',
-              style: ZetaText.zetaDisplayLarge.copyWith(
-                fontFamily: 'IBM Plex Sans',
-                fontWeight: FontWeight.w400,
-                fontSize: 160,
+              child: Text(
+                'Zeta',
+                style: ZetaText.zetaDisplayLarge.copyWith(
+                  fontFamily: 'IBM Plex Sans',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 160,
+                ),
               ),
-            )).stack(200),
-            //TODO: embed some content
+            ).stack(200),
+            // TODO(thelukewalton):   embed some content
           ),
         ],
       ),

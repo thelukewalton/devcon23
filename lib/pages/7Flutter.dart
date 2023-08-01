@@ -27,6 +27,6 @@ class Flutter extends StatelessWidget {
           ],
         ),
       );
-    });
+    },);
   }
 }

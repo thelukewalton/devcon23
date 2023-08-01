@@ -104,7 +104,7 @@ class SemanticsPage extends StatelessWidget {
                               child: SvgPicture.asset(
                                 'lib/assets/ExcludeSemantics.svg',
                                 width: constraints.maxWidth / 3,
-                              )),
+                              ),),
                           const SizedBox(height: 16),
                           const Text('ExcludeSemantics', style: ZetaText.zetaLabelSmall)
                         ],
@@ -117,6 +117,6 @@ class SemanticsPage extends StatelessWidget {
           ],
         ),
       );
-    });
+    },);
   }
 }

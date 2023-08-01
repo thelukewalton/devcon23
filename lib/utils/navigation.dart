@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,97 +37,99 @@ class NavWrapper extends StatefulWidget {
 }
 
 class _NavWrapperState extends State<NavWrapper> {
-  final FocusNode focusNode = FocusNode();
-  int currentColors = 1;
-  double zoom = 1.3;
-  void firstPage() => GoRouter.of(context).pushReplacement('/1');
-  void lastPage() => GoRouter.of(context).pushReplacement('/${routes.length}');
+  final FocusNode _focusNode = FocusNode();
+  // int _currentColors = 1;
+  double _zoom = 1.3;
+  Future<void> firstPage() async => GoRouter.of(context).pushReplacement('/1');
+  Future<void> lastPage() async => GoRouter.of(context).pushReplacement('/${routes.length}');
 
   @override
   Widget build(BuildContext context) {
     final int pageNumber = int.parse(GoRouter.of(context).location.split('/').last);
     final int pagesTotal = routes.length;
-    void nextPage() {
-      if (pageNumber != pagesTotal) GoRouter.of(context).push('/${pageNumber + 1}');
+    Future<void> nextPage() async {
+      if (pageNumber != pagesTotal) {
+        unawaited(GoRouter.of(context).push('/${pageNumber + 1}'));
+      }
     }
 
     void prevPage() {
       if (pageNumber != 1) GoRouter.of(context).pop();
     }
 
-    FocusScope.of(context).requestFocus(focusNode);
+    FocusScope.of(context).requestFocus(_focusNode);
     return KeyboardListener(
-        focusNode: focusNode,
-        onKeyEvent: (value) {
-          if (value is KeyUpEvent) {
-            if (value.physicalKey == PhysicalKeyboardKey.arrowLeft) prevPage();
-            if (value.physicalKey == PhysicalKeyboardKey.arrowRight) nextPage();
-            // if (value.physicalKey == PhysicalKeyboardKey.arrowUp) firstPage();
-            // if (value.physicalKey == PhysicalKeyboardKey.arrowDown) lastPage();
-            // if (value.physicalKey == PhysicalKeyboardKey.keyQ) {
-            //   setState(() => currentColors = iterateColors(context, currentColors));
-            // }
-          }
-        },
-        child: DefaultTextStyle(
-          style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).textDefault),
-          child: MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: zoom),
-            // child: GestureDetector( TODO: work this out with demos
-            //   onTap: nextPage,
-            //   onSecondaryTap: prevPage,
-            child: Stack(
-              children: [
-                Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(Dimensions.m),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          ZetaText.labelSmall(
-                            pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
-                            textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
-                            fontSize: 8,
+      focusNode: _focusNode,
+      onKeyEvent: (value) async {
+        if (value is KeyUpEvent) {
+          if (value.physicalKey == PhysicalKeyboardKey.arrowLeft) prevPage();
+          if (value.physicalKey == PhysicalKeyboardKey.arrowRight) unawaited(nextPage());
+          // if (value.physicalKey == PhysicalKeyboardKey.arrowUp) firstPage();
+          // if (value.physicalKey == PhysicalKeyboardKey.arrowDown) lastPage();
+          // if (value.physicalKey == PhysicalKeyboardKey.keyQ) {
+          //   setState(() => currentColors = iterateColors(context, currentColors));
+          // }
+        }
+      },
+      child: DefaultTextStyle(
+        style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).textDefault),
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: _zoom),
+          // child: GestureDetector(TODO (thelukewalton): work this out with demos
+          //   onTap: nextPage,
+          //   onSecondaryTap: prevPage,
+          child: Stack(
+            children: [
+              Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(Dimensions.m),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ZetaText.labelSmall(
+                          pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
+                          textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
+                          fontSize: 8,
+                        ),
+                        IconTheme(
+                          data: IconThemeData(color: ZetaColors.of(context).textSubtle.withOpacity(0.8)),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                onPressed: () => setState(() => _zoom = _zoom - 0.1),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.add_circle_outline),
+                                onPressed: () => setState(() => _zoom = _zoom + 0.1),
+                              ),
+                              const SizedBox(width: Dimensions.xxl),
+                              ZetaText.labelSmall(
+                                '$pageNumber/$pagesTotal',
+                                fontSize: 8,
+                                //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
+                                textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
+                              ),
+                            ],
                           ),
-                          IconTheme(
-                            data: IconThemeData(color: ZetaColors.of(context).textSubtle.withOpacity(0.8)),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.remove_circle_outline),
-                                  onPressed: () => setState(() => zoom = zoom - 0.1),
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.add_circle_outline),
-                                  onPressed: () => setState(() => zoom = zoom + 0.1),
-                                ),
-                                const SizedBox(width: Dimensions.xxl),
-                                ZetaText.labelSmall(
-                                  '$pageNumber/$pagesTotal',
-                                  fontSize: 8,
-                                  //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
-                                  textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
-            // ),
+              ),
+            ],
           ),
-        ));
+          // ),
+        ),
+      ),
+    );
   }
 }
 
@@ -155,24 +159,26 @@ final routes = [
 final GoRouter router = GoRouter(
   initialLocation: '/1',
   routes: routes
-      .mapIndexed((index, page) => GoRoute(
-            path: '/${index + 1}',
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              child: NavWrapper(child: page),
-              transitionDuration: const Duration(milliseconds: 200),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return SlideTransition(
-                  position: animation.drive(
-                    Tween<Offset>(
-                      begin: Offset.zero,
-                      // begin: const Offset(0.5, 0),
-                      end: Offset.zero,
-                    ).chain(CurveTween(curve: Curves.easeIn)),
-                  ),
-                  child: child,
-                );
-              },
-            ),
-          ))
+      .mapIndexed(
+        (index, page) => GoRoute(
+          path: '/${index + 1}',
+          pageBuilder: (context, state) => CustomTransitionPage<void>(
+            child: NavWrapper(child: page),
+            transitionDuration: const Duration(milliseconds: 200),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return SlideTransition(
+                position: animation.drive(
+                  Tween<Offset>(
+                    begin: Offset.zero,
+                    // begin: const Offset(0.5, 0),
+                    end: Offset.zero,
+                  ).chain(CurveTween(curve: Curves.easeIn)),
+                ),
+                child: child,
+              );
+            },
+          ),
+        ),
+      )
       .toList(),
 );

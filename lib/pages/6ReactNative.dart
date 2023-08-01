@@ -11,25 +11,28 @@ class ReactNative extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Content(
-        title: 'React Native',
-        subtitle: 'Meta',
-        content: const BulletPointList(content: [
-          BulletPoint(
-            point: 'JavaScript / TypeScript',
-            // subpoints: ['Dynamically / strongly typed'],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Content(
+          title: 'React Native',
+          subtitle: 'Meta',
+          content: const BulletPointList(
+            content: [
+              BulletPoint(
+                point: 'JavaScript / TypeScript',
+                // subpoints: ['Dynamically / strongly typed'],
+              ),
+              BulletPoint(point: 'Native components'),
+              BulletPoint(point: 'npm / React Native components'),
+              BulletPoint(point: 'Popularity'),
+            ],
           ),
-          BulletPoint(point: 'Native components'),
-          BulletPoint(point: 'npm / React Native components'),
-          BulletPoint(point: 'Popularity'),
-        ]),
-        leftImage: Padding(
-          padding: EdgeInsets.all(constraints.maxWidth * 0.1),
-          child: SvgPicture.asset('lib/assets/react.svg'),
-        ),
-      );
-    });
+          leftImage: Padding(
+            padding: EdgeInsets.all(constraints.maxWidth * 0.1),
+            child: SvgPicture.asset('lib/assets/react.svg'),
+          ),
+        );
+      },
+    );
   }
 }
-//TODO: style slide

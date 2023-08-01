@@ -29,7 +29,6 @@ ZetaColors red = const ZetaColors(
   warm: ZetaColorBase.red,
   blue: ZetaColorBase.red,
   green: ZetaColorBase.red,
-  red: ZetaColorBase.red,
   orange: ZetaColorBase.red,
   purple: ZetaColorBase.red,
   yellow: ZetaColorBase.red,

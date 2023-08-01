@@ -50,6 +50,6 @@ class ZSBSolution extends StatelessWidget {
           ],
         ),
       );
-    });
+    },);
   }
 }
