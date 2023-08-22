@@ -56,7 +56,7 @@ class _ContentState extends State<Content> {
                   top: 0,
                   bottom: 0,
                   child: Container(
-                    color: widget.inverse ? colors.white : colors.black,
+                    color: widget.inverse ? Colors.white : Colors.black,
                     width: constraints.maxWidth / 3,
                     child: widget.leftImage,
                   ),

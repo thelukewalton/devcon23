@@ -28,6 +28,7 @@ import '../pages/6ReactNativeFlutter.dart';
 
 import '../pages/8ZSBWinner.dart';
 import '../pages/9HelloFlutter.dart';
+import 'colors.dart';
 
 const String scaleKey = 'scale';
 
@@ -98,6 +99,22 @@ class _NavWrapperState extends State<NavWrapper> {
                               onPressed: () => setState(() => state.scaleMultiplier = state.scaleMultiplier + 0.1),
                             ),
                           ],
+                        ),
+                        DropdownButton(
+                          hint: Text('Colors'),
+                          items: colorsObj
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e.colors,
+                                  child: Text(e.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            if (val != null) {
+                              ZetaColors.setColors(context, val);
+                            }
+                          },
                         )
                       ],
                     ),

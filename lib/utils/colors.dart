@@ -9,12 +9,12 @@ class ColorObj {
 }
 
 int iterateColors(BuildContext context, int index) {
-  ZetaColors.setColors(context, colors[index].colors);
+  ZetaColors.setColors(context, colorsObj[index].colors);
 
-  return index == colors.length - 1 ? 0 : index + 1;
+  return index == colorsObj.length - 1 ? 0 : index + 1;
 }
 
-List<ColorObj> colors = [
+List<ColorObj> colorsObj = [
   ColorObj('Default', ZetaColors()),
   ColorObj('AAA', ZetaColors(isAAA: true)),
   ColorObj('DarkMode', ZetaColors(isDarkMode: true)),
@@ -23,8 +23,6 @@ List<ColorObj> colors = [
 ];
 
 ZetaColors red = ZetaColors(
-  primary: ZetaColorBase.red,
-  secondary: ZetaColorBase.red,
   cool: ZetaColorBase.red,
   warm: ZetaColorBase.red,
   blue: ZetaColorBase.red,
@@ -34,22 +32,18 @@ ZetaColors red = ZetaColors(
   yellow: ZetaColorBase.red,
   teal: ZetaColorBase.red,
   pink: ZetaColorBase.red,
-  onPrimary: ZetaColorBase.red,
-  onSecondary: ZetaColorBase.red,
-  onNegative: ZetaColorBase.red,
-  background: ZetaColorBase.red,
-  onBackground: ZetaColorBase.red,
-  surface: ZetaColorBase.red,
-  onSurface: ZetaColorBase.red,
+  surface: ZetaColorBase.greyCool,
+  background: ZetaColorBase.greyCool,
   black: ZetaColorBase.red,
   white: ZetaColorBase.red,
+  primary: ZetaColorBase.greyCool,
 );
 
-ZetaColors neon = ZetaColors(
-  isDarkMode: true,
-  surface: const Color(0xffff0099),
-  onSurface: Colors.black,
-  background: const Color(0xFFf3f315),
-  primary: ZetaColorBase.pink,
-  white: const Color(0xff83f52c),
-);
+ZetaColors neon = ZetaColors.fromColors(
+    isDarkMode: true,
+    surface: const Color(0xffff0099),
+    onSurface: Colors.black,
+    background: const Color(0xFFf3f315),
+    primary: const Color(0xFFf3f315),
+    white: const Color(0xff83f52c),
+    black: const Color(0xFFf3f315));
