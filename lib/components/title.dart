@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
@@ -43,10 +44,10 @@ class _TitlePageState extends State<TitlePage> {
               Positioned(
                 top: 64,
                 right: 64,
-                child: SvgPicture.asset(
-                  'lib/assets/zebra-logo.svg',
+                child: SvgPicture(
+                  const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
                   semanticsLabel: 'Zebra Logo',
-                  height: constraints.maxHeight * 0.06,
+                  height: constraints.maxHeight * 0.08,
                   colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
                   alignment: Alignment.centerRight,
                 ),
@@ -71,17 +72,18 @@ class _TitlePageState extends State<TitlePage> {
                     SizedBox(
                       height: constraints.maxHeight * 0.08,
                       width: double.infinity,
-                      child: SvgPicture.asset(
-                        'lib/assets/zebra-logo.svg',
+                      child: SvgPicture(
+                        const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
                         semanticsLabel: 'Zebra Logo',
                         colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
                         alignment: Alignment.centerLeft,
                       ),
                     )
                   else
-                    SvgPicture.asset(
-                      'lib/assets/logoBlack.svg',
+                    SvgPicture(
+                      const AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                       semanticsLabel: 'DevCon Logo',
+                      height: constraints.maxHeight * 0.15,
                       alignment: Alignment.centerRight,
                     ),
                   SizedBox(
@@ -90,26 +92,30 @@ class _TitlePageState extends State<TitlePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ZetaText.displaySmall(
+                        ZetaText.displayLarge(
                           widget.title,
                           textColor: ZetaColors.of(context).surface,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: isDevCon ? FontWeight.w400 : FontWeight.bold,
                         ),
-                        ZetaText.displaySmall(
+                        ZetaText.displayLarge(
                           widget.subtitle,
                           textColor: ZetaColors.of(context).primary,
                           resetHeight: true,
                         ),
-                        ZetaText.bodyMedium(
+                        ZetaText.bodySmall(
                           widget.name,
                           textColor: ZetaColors.of(context).surface,
                           fontWeight: FontWeight.bold,
                         ),
-                        ZetaText.bodyMedium(widget.job, textColor: colors.primary),
+                        ZetaText.bodyXSmall(
+                          widget.job,
+                          textColor: colors.primary,
+                          resetHeight: true,
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: constraints.maxHeight * 0.1),
+                  SizedBox(height: constraints.maxHeight * 0.15),
                 ],
               ).square(Dimensions.l),
             ),

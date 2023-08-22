@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
@@ -35,8 +36,8 @@ class _DividerPageState extends State<DividerPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SvgPicture.asset(
-                              'lib/assets/logoBlack.svg',
+                            const SvgPicture(
+                              AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                               semanticsLabel: 'DevCon Logo',
                               alignment: Alignment.centerRight,
                             ),
@@ -59,7 +60,7 @@ class _DividerPageState extends State<DividerPage> {
                         ),
                       ),
                     ),
-                    Image.asset('lib/assets/divider.png')
+                    Image.asset('lib/assets/divider.png'),
                   ],
                 ),
               )

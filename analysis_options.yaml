@@ -1,4 +1,4 @@
-include: all_lint_rules.yaml
+include: package:all_lint_rules_community/all.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
@@ -40,3 +40,5 @@ linter:
     public_member_api_docs: false
     sort_constructors_first: false
     unnecessary_final: false
+    unreachable_from_main: false
+    file_names: false

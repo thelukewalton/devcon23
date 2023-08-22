@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import '../components/bullets.dart';
 
@@ -11,7 +10,6 @@ class OurProcess extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Content(
       title: 'Cross platform history',
-      subtitle: 'Our experience',
       content: BulletPointList(
         content: [
           BulletPoint(point: 'Sencha / ExtJs'),

@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import '../components/bullets.dart';
 
@@ -24,7 +22,7 @@ class FuturePage extends StatelessWidget {
             ],
           ),
           BulletPoint(point: ''),
-          BulletPoint(point: 'Transition our apps to Flutter')
+          BulletPoint(point: 'Transition apps to Flutter'),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
+import '../main.dart';
+
 class BulletPointList extends StatelessWidget {
   final List<dynamic> _content;
   const BulletPointList({super.key, required List<dynamic> content}) : _content = content;
@@ -25,32 +27,38 @@ class BulletPointList extends StatelessWidget {
   List<Widget> _renderPoint(BulletPoint e, BuildContext context) {
     return [
       Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (e.point.isNotEmpty) const _Bullet(),
-          Container(
-            decoration: e.isCode
-                ? BoxDecoration(
-                    color: ZetaColors.of(context).onSurface,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  )
-                : null,
-            margin: e.isCode ? const EdgeInsets.only(top: 4) : null,
-            padding: e.isCode ? const EdgeInsets.symmetric(horizontal: 4) : null,
-            child: Text(
-              e.point,
-              style: ZetaText.zetaBodyLarge.copyWith(
-                color: e.isCode ? ZetaColors.of(context).surface : null,
-                fontFamily: e.isCode ? 'IBMPlexMono' : null,
-                height: e.isCode ? 1.4 : 2,
+          if (e.point.isNotEmpty) _Bullet(isCode: e.isCode),
+          Flexible(
+            child: Container(
+              decoration: e.isCode
+                  ? BoxDecoration(
+                      color: ZetaColors.of(context).onSurface,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    )
+                  : null,
+              margin: e.isCode
+                  ? const EdgeInsets.only(top: 4)
+                  : EdgeInsets.only(left: 8 * (MyAppState().of(context)?.scaleMultiplier ?? 1)),
+              padding: e.isCode ? const EdgeInsets.symmetric(horizontal: 4) : null,
+              child: Text(
+                e.point,
+                style: ZetaText.zetaBodyLarge.copyWith(
+                  color: e.isCode ? ZetaColors.of(context).surface : null,
+                  fontFamily: e.isCode ? 'IBMPlexMono' : null,
+                  height: e.isCode ? 1.4 : 2,
+                ),
               ),
             ),
           ),
         ],
       ),
-      ...e.subPoints
-          .map((String e) => Row(children: [const _Bullet(isSubPoint: true), Text(e, style: ZetaText.zetaBodyMedium)]))
+      ...e.subPoints.map(
+        (String e) => Row(
+          children: [const _Bullet(isSubPoint: true, isCode: false), Text(e, style: ZetaText.zetaBodyMedium)],
+        ),
+      ),
     ];
   }
 }
@@ -64,20 +72,22 @@ class BulletPoint {
 }
 
 class _Bullet extends StatelessWidget {
-  final bool _isSubPoint;
+  final bool isSubPoint;
+  final bool isCode;
 
-  const _Bullet({bool isSubPoint = false}) : _isSubPoint = isSubPoint;
+  const _Bullet({this.isSubPoint = false, required this.isCode});
 
   @override
   Widget build(BuildContext context) {
-    if (_isSubPoint) {
+    if (isSubPoint) {
       return const Text('        ― ');
     }
-    return Container(
-      decoration: BoxDecoration(shape: BoxShape.circle, color: ZetaColors.of(context).primary),
-      margin: const EdgeInsets.only(right: 16, top: 16),
-      width: 6,
-      height: 6,
+    return Text(
+      '•',
+      style: ZetaText.zetaBodyLarge.copyWith(
+        color: ZetaColors.of(context).primary,
+        height: isCode ? 1.4 : 2,
+      ),
     );
   }
 }

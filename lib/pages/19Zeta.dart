@@ -1,46 +1,50 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/bullets.dart';
 import '../components/content.dart';
+import '../components/zeta_demo.dart';
 
 class ZetaPage extends StatelessWidget {
   const ZetaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Content(
+    return const Content(
       title: 'Zeta',
       subtitle: 'pub.dev/packages/zeta_flutter',
       content: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BulletPointList(
                   content: [
                     BulletPoint(point: 'Cross-platform, future design system'),
-                    BulletPoint(point: 'Formal, standardized set of components'),
-                    BulletPoint(point: 'Work in progress'),
+                    BulletPoint(
+                      point: 'Formal, standardized set of components',
+                      subPoints: [
+                        'Flutter, React, Web Components',
+                      ],
+                    ),
+                    BulletPoint(
+                      point: 'alpha-1.0.0',
+                      subPoints: [
+                        'Color',
+                        'Text',
+                        'Grid',
+                        'Spacing',
+                      ],
+                    ),
                   ],
                 ),
               ],
             ),
           ),
           Expanded(
-            child: Center(
-              child: Text(
-                'Zeta',
-                style: ZetaText.zetaDisplayLarge.copyWith(
-                  fontFamily: 'IBM Plex Sans',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 160,
-                ),
-              ),
-            ).stack(200),
-            // TODO(thelukewalton):   embed some content
+            child: SingleChildScrollView(
+              child: ZetaDemo(),
+            ),
           ),
         ],
       ),

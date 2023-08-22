@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.19.6 <4.0.0"
 
 dependencies:
+  all_lint_rules_community: ^0.0.37
   basic:
     path: ./basic
   collection: ^1.17.0
@@ -19,15 +20,15 @@ dependencies:
   material:
     path: ./material
   material_symbols_icons: ^4.2668.0
+  shared_preferences: ^2.2.0
+  vector_graphics: ^1.1.7
   zds_flutter:
-    path: ../../zds/zds-flutter
+    path: ../../zds/zds_flutter
   zeta_flutter:
     path: ../../Zeta/zeta_flutter
 
 dependency_overrides:
   intl: ^0.18.1
-  zds_flutter:
-    path: ../../zds/zds-flutter
   zeta_flutter:
     # git:
     #   url: https://github.com/zebratechnologies/zeta-flutter

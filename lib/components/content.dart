@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
@@ -13,7 +14,10 @@ class Content extends StatefulWidget {
   final Widget? otherContent;
   final bool backgroundOnTop;
   final Widget? leftImage;
+  final Widget? rightImage;
   final bool inverse;
+  final int leadingFlex;
+  final int trailingFlex;
 
   const Content({
     super.key,
@@ -25,6 +29,9 @@ class Content extends StatefulWidget {
     this.otherContent,
     this.leftImage,
     this.inverse = false,
+    this.leadingFlex = 1,
+    this.trailingFlex = 1,
+    this.rightImage,
   });
 
   @override
@@ -54,6 +61,17 @@ class _ContentState extends State<Content> {
                     child: widget.leftImage,
                   ),
                 ),
+              if (widget.rightImage != null)
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: Container(
+                    color: widget.inverse ? colors.white : colors.black,
+                    width: constraints.maxWidth / 2,
+                    child: widget.rightImage,
+                  ),
+                ),
               if (widget.leftImage != null)
                 CustomPaint(
                   size: Size(constraints.maxWidth, constraints.maxHeight),
@@ -61,14 +79,15 @@ class _ContentState extends State<Content> {
                 ),
               Positioned(
                 top: Dimensions.m,
-                right: Dimensions.m,
-                child: SvgPicture.asset(
+                right: Dimensions.xl,
+                height: constraints.maxHeight * 0.1,
+                child: SvgPicture(
                   isDevCon
                       ? colors.isDarkMode || widget.inverse
-                          ? 'lib/assets/logoBlack.svg'
-                          : 'lib/assets/logoWhite.svg'
-                      : 'lib/assets/zebra-logo-stacked.svg',
-                  height: constraints.maxHeight * 0.1,
+                          ? const AssetBytesLoader('lib/assets/logoBlack.svg.vec')
+                          : const AssetBytesLoader('lib/assets/logoWhite.svg.vec')
+                      : const AssetBytesLoader('lib/assets/zebra-logo-stacked.svg.vec'),
+                  height: constraints.maxHeight * 0.12,
                 ),
               ),
               if (!widget.backgroundOnTop && !isDevCon)
@@ -81,38 +100,61 @@ class _ContentState extends State<Content> {
                   ),
                 ),
               Positioned(
-                top: Dimensions.l,
-                right: Dimensions.l,
+                right: Dimensions.xl,
                 bottom: Dimensions.m,
-                left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.l,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                top: 0,
+                left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.xl,
+                child: Row(
                   children: [
-                    ZetaText.headingMedium(
-                      widget.title,
-                      textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: Dimensions.l),
+                          ZetaText.headingSmall(
+                            widget.title,
+                            textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                          ),
+                          if (widget.subtitleWidget == null)
+                            ZetaText.bodyLarge(
+                              widget.subtitle,
+                              textColor: colors.primary,
+                            ),
+                          if (widget.subtitleWidget != null) widget.subtitleWidget!,
+                          DefaultTextStyle(
+                            style: TextStyle(
+                              color: widget.inverse ? colors.textInverse : colors.textDefault,
+                            ),
+                            child: Expanded(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    flex: widget.leadingFlex,
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: Dimensions.m),
+                                        Expanded(child: widget.content),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    if (widget.subtitleWidget == null)
-                      ZetaText.bodyLarge(
-                        widget.subtitle,
-                        textColor: colors.primary,
-                      ),
-                    if (widget.subtitleWidget != null) widget.subtitleWidget!,
-                    const SizedBox(height: Dimensions.m),
-                    DefaultTextStyle(
-                      style: TextStyle(
-                        color: widget.inverse ? colors.textInverse : colors.textDefault,
-                      ),
-                      child: Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    if (widget.otherContent != null)
+                      Expanded(
+                        flex: widget.trailingFlex,
+                        child: Column(
                           children: [
-                            Expanded(child: widget.content),
-                            if (widget.otherContent != null) Expanded(child: widget.otherContent!),
+                            SizedBox(height: constraints.maxHeight * 0.1),
+                            Expanded(child: widget.otherContent!),
                           ],
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),

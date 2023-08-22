@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
@@ -55,12 +56,12 @@ class _EndPageState extends State<EndPage> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      SvgPicture.asset(
-                                        'lib/assets/logoBlack.svg',
+                                      SvgPicture(
+                                        const AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                                         width: constraints.maxWidth * 0.2,
                                       ),
-                                      SvgPicture.asset(
-                                        'lib/assets/zebra-logo.svg',
+                                      SvgPicture(
+                                        const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
                                         colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
                                         width: constraints.maxWidth * 0.1,
                                       ),
@@ -88,8 +89,8 @@ class _EndPageState extends State<EndPage> {
                                   SizedBox(
                                     width: constraints.maxWidth * 0.2,
                                     height: constraints.maxHeight * 0.1,
-                                    child: SvgPicture.asset(
-                                      'lib/assets/zebra-logo.svg',
+                                    child: SvgPicture(
+                                      const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
                                       alignment: Alignment.centerLeft,
                                       colorFilter: ColorFilter.mode(colors.surfacePrimary, BlendMode.srcIn),
                                     ),
@@ -97,9 +98,10 @@ class _EndPageState extends State<EndPage> {
                                 const SizedBox(height: Dimensions.l),
                                 SizedBox(
                                   width: constraints.maxWidth * 0.5,
-                                  child: ZetaText.labelSmall(
+                                  child: ZetaText(
                                     'ZEBRA and the stylized Zebra head are trademarks of Zebra Technologies Corp., registered in many jurisdictions worldwide. All other trademarks are the property of their respective owners. \n©2023 Zebra Technologies Corp. and/or its affiliates. All rights reserved.',
                                     textColor: colors.textInverse,
+                                    fontSize: 6,
                                   ),
                                 ),
                                 const SizedBox(height: Dimensions.l),
@@ -118,7 +120,7 @@ class _EndPageState extends State<EndPage> {
                             size: Size(constraints.maxWidth * 0.1, constraints.maxHeight),
                           ),
                         ),
-                      )
+                      ),
                   ],
                 ),
               ),

@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 import '../components/bullets.dart';
@@ -29,7 +28,7 @@ class ZDS extends StatelessWidget {
               ],
             ),
           ),
-          Flexible(flex: 2, child: ZDSDemo())
+          Flexible(flex: 2, child: ZDSDemo()),
         ],
       ),
     );
