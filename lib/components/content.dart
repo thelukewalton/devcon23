@@ -46,130 +46,138 @@ class _ContentState extends State<Content> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        return ColoredBox(
-          color: widget.inverse ? colors.black : colors.surfacePrimary,
-          child: Stack(
-            children: [
-              if (widget.leftImage != null)
-                Positioned(
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: Container(
-                    color: widget.inverse ? Colors.white : Colors.black,
-                    width: constraints.maxWidth / 3,
-                    child: widget.leftImage,
-                  ),
-                ),
-              if (widget.rightImage != null)
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: Container(
-                    color: widget.inverse ? colors.white : colors.black,
-                    width: constraints.maxWidth / 2,
-                    child: widget.rightImage,
-                  ),
-                ),
-              if (widget.leftImage != null)
-                CustomPaint(
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  painter: LeftPainter(context, widget.inverse),
-                ),
-              Positioned(
-                top: Dimensions.m,
-                right: Dimensions.xl,
-                height: constraints.maxHeight * 0.1,
-                child: SvgPicture(
-                  isDevCon
-                      ? colors.isDarkMode || widget.inverse
-                          ? const AssetBytesLoader('lib/assets/logoBlack.svg.vec')
-                          : const AssetBytesLoader('lib/assets/logoWhite.svg.vec')
-                      : const AssetBytesLoader('lib/assets/zebra-logo-stacked.svg.vec'),
-                  height: constraints.maxHeight * 0.12,
-                ),
-              ),
-              if (!widget.backgroundOnTop && !isDevCon)
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: CustomPaint(
-                    size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
-                    painter: BluePaint(context),
-                  ),
-                ),
-              Positioned(
-                right: Dimensions.xl,
-                bottom: Dimensions.m,
-                top: 0,
-                left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.xl,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: Dimensions.l),
-                          ZetaText.headingSmall(
-                            widget.title,
-                            textColor: widget.inverse ? colors.textInverse : colors.textDefault,
-                          ),
-                          if (widget.subtitleWidget == null)
-                            ZetaText.bodyLarge(
-                              widget.subtitle,
-                              textColor: colors.primary,
-                            ),
-                          if (widget.subtitleWidget != null) widget.subtitleWidget!,
-                          DefaultTextStyle(
-                            style: TextStyle(
-                              color: widget.inverse ? colors.textInverse : colors.textDefault,
-                            ),
-                            child: Expanded(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    flex: widget.leadingFlex,
-                                    child: Column(
-                                      children: [
-                                        const SizedBox(height: Dimensions.m),
-                                        Expanded(child: widget.content),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+        return DefaultTextStyle(
+          style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).onBackground),
+          child: ColoredBox(
+            color: widget.inverse ? colors.black : colors.surface,
+            child: Stack(
+              children: [
+                if (widget.leftImage != null)
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    child: Container(
+                      color: widget.inverse ? Colors.white : Colors.black,
+                      width: constraints.maxWidth / 3,
+                      foregroundDecoration: BoxDecoration(color: colors.warm.shade20.withOpacity(0.5)),
+                      child: widget.leftImage,
                     ),
-                    if (widget.otherContent != null)
-                      Expanded(
-                        flex: widget.trailingFlex,
-                        child: Column(
-                          children: [
-                            SizedBox(height: constraints.maxHeight * 0.1),
-                            Expanded(child: widget.otherContent!),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              if (!isDevCon)
+                  ),
+                if (widget.rightImage != null)
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    child: Container(
+                      color: widget.inverse ? colors.white : colors.black,
+                      width: constraints.maxWidth / 2,
+                      child: widget.rightImage,
+                    ),
+                  ),
+                if (widget.leftImage != null)
+                  CustomPaint(
+                    size: Size(constraints.maxWidth, constraints.maxHeight),
+                    painter: LeftPainter(context, widget.inverse),
+                  ),
                 Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: IgnorePointer(
+                  top: Dimensions.m,
+                  right: Dimensions.xl,
+                  height: constraints.maxHeight * 0.1,
+                  child: SvgPicture(
+                    isDevCon
+                        ? colors.isDarkMode || widget.inverse
+                            ? const AssetBytesLoader('lib/assets/logoBlack.svg.vec')
+                            : const AssetBytesLoader('lib/assets/logoWhite.svg.vec')
+                        : const AssetBytesLoader('lib/assets/zebra-logo-stacked.svg.vec'),
+                    height: constraints.maxHeight * 0.12,
+                    colorFilter: ColorFilter.mode(
+                      ZetaColors.of(context).isDarkMode ? ZetaColors.of(context).warm.shade30 : Colors.transparent,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+                if (!widget.backgroundOnTop && !isDevCon)
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
                     child: CustomPaint(
                       size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
                       painter: BluePaint(context),
                     ),
                   ),
+                Positioned(
+                  right: Dimensions.xl,
+                  bottom: Dimensions.m,
+                  top: 0,
+                  left: widget.leftImage != null ? (constraints.maxWidth / 3) + Dimensions.l : Dimensions.xl,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: Dimensions.l),
+                            ZetaText.headingSmall(
+                              widget.title,
+                              textColor: widget.inverse ? colors.textInverse : colors.textDefault,
+                            ),
+                            if (widget.subtitleWidget == null)
+                              ZetaText.bodyLarge(
+                                widget.subtitle,
+                                textColor: colors.primary,
+                              ),
+                            if (widget.subtitleWidget != null) widget.subtitleWidget!,
+                            DefaultTextStyle(
+                              style: TextStyle(
+                                color: widget.inverse ? colors.textInverse : colors.textDefault,
+                              ),
+                              child: Expanded(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      flex: widget.leadingFlex,
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(height: Dimensions.m),
+                                          Expanded(child: widget.content),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (widget.otherContent != null)
+                        Expanded(
+                          flex: widget.trailingFlex,
+                          child: Column(
+                            children: [
+                              SizedBox(height: constraints.maxHeight * 0.1),
+                              Expanded(child: widget.otherContent!),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-            ],
+                if (!isDevCon)
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: IgnorePointer(
+                      child: CustomPaint(
+                        size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
+                        painter: BluePaint(context),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         );
       },

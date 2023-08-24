@@ -19,10 +19,10 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constriants) {
-        return const Content(
+        return Content(
           title: 'Core UI',
           subtitle: 'Material and Cupertino',
-          content: BulletPointList(
+          content: const BulletPointList(
             content: [
               BulletPoint(point: 'Foundation'),
               BulletPoint(point: 'UI Components', subPoints: ['Adaptive constructors']),
@@ -30,17 +30,22 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
           ),
           otherContent: Column(
             children: [
-              SizedBox(height: Dimensions.m),
+              const SizedBox(height: Dimensions.m),
               Expanded(
                 child: Row(
                   children: [
-                    CaptionedWidget(caption: 'Material (Android)', child: ExampleMaterial()),
-                    CaptionedWidget(caption: 'Cupertino (iOS)', child: ExampleCupertino()),
-                    SizedBox(width: Dimensions.l),
+                    CaptionedWidget(
+                      caption: 'Material (Android)',
+                      child: ExampleMaterial(
+                        colors: ZetaColors.of(context),
+                      ),
+                    ),
+                    const CaptionedWidget(caption: 'Cupertino (iOS)', child: ExampleCupertino()),
+                    const SizedBox(width: Dimensions.l),
                   ],
                 ),
               ),
-              SizedBox(height: Dimensions.l),
+              const SizedBox(height: Dimensions.l),
             ],
           ),
         );

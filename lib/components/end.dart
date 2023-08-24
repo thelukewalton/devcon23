@@ -31,7 +31,11 @@ class _EndPageState extends State<EndPage> {
                 bottom: 0,
                 right: 0,
                 left: constraints.maxWidth * 0.5,
-                child: Image.asset('lib/assets/end.png'),
+                child: Image.asset(
+                  'lib/assets/end.png',
+                  color: Colors.black.withOpacity(ZetaColors.of(context).isDarkMode ? 0.4 : 0),
+                  colorBlendMode: BlendMode.luminosity,
+                ),
               ),
               Positioned(
                 top: 0,
@@ -59,10 +63,18 @@ class _EndPageState extends State<EndPage> {
                                       SvgPicture(
                                         const AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                                         width: constraints.maxWidth * 0.2,
+                                        colorFilter: ZetaColors.of(context).isDarkMode
+                                            ? ColorFilter.mode(ZetaColors.of(context).warm.shade30, BlendMode.srcIn)
+                                            : null,
                                       ),
                                       SvgPicture(
                                         const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
-                                        colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
+                                        colorFilter: ColorFilter.mode(
+                                          ZetaColors.of(context).isDarkMode
+                                              ? ZetaColors.of(context).warm.shade30
+                                              : ZetaColors.of(context).white,
+                                          BlendMode.srcIn,
+                                        ),
                                         width: constraints.maxWidth * 0.1,
                                       ),
                                     ],

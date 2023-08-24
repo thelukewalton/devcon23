@@ -101,7 +101,7 @@ class _NavWrapperState extends State<NavWrapper> {
                           ],
                         ),
                         DropdownButton(
-                          hint: Text('Colors'),
+                          hint: const Text('Colors'),
                           items: colorsObj
                               .map(
                                 (e) => DropdownMenuItem(

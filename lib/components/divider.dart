@@ -36,22 +36,26 @@ class _DividerPageState extends State<DividerPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            const SvgPicture(
-                              AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
+                            SvgPicture(
+                              const AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                               semanticsLabel: 'DevCon Logo',
                               alignment: Alignment.centerRight,
+                              colorFilter: ColorFilter.mode(
+                                colors.isDarkMode ? colors.warm.shade30 : Colors.transparent,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ZetaText.titleLarge(
                                   widget.title,
-                                  textColor: colors.surface,
+                                  textColor: colors.isDarkMode ? colors.cool.shade20 : colors.textDarkMode,
                                   fontSize: 32,
                                 ),
                                 ZetaText.titleLarge(
                                   widget.subtitle,
-                                  textColor: colors.primary,
+                                  textColor: colors.isDarkMode ? colors.primary.shade30 : colors.primary,
                                   fontSize: 30,
                                 ),
                               ],
@@ -60,7 +64,11 @@ class _DividerPageState extends State<DividerPage> {
                         ),
                       ),
                     ),
-                    Image.asset('lib/assets/divider.png'),
+                    Image.asset(
+                      'lib/assets/divider.png',
+                      color: Colors.black.withOpacity(colors.isDarkMode ? 0.4 : 0),
+                      colorBlendMode: BlendMode.luminosity,
+                    ),
                   ],
                 ),
               )
@@ -110,6 +118,8 @@ class BluePaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final ZetaColors colors = ZetaColors.of(context);
+
     final Path bottomPath = Path()
       ..moveTo(0, 0)
       ..lineTo(size.width / 2, 0)
@@ -120,7 +130,7 @@ class BluePaint extends CustomPainter {
     canvas.drawPath(
       bottomPath,
       Paint()
-        ..color = ZetaColors.of(context).black
+        ..color = colors.black
         ..style = PaintingStyle.fill,
     );
     final Path topPath = Path()
@@ -132,7 +142,7 @@ class BluePaint extends CustomPainter {
     canvas.drawPath(
       topPath,
       Paint()
-        ..color = ZetaColors.of(context).onPrimary
+        ..color = colors.onPrimary
         ..style = PaintingStyle.fill,
     );
 

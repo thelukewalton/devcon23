@@ -7,7 +7,9 @@ void main() {
 }
 
 class ExampleMaterial extends StatefulWidget {
-  const ExampleMaterial({super.key});
+  final ZetaColors? colors;
+
+  const ExampleMaterial({super.key, this.colors});
 
   @override
   State<ExampleMaterial> createState() => _ExampleMaterialState();
@@ -30,7 +32,7 @@ class _ExampleMaterialState extends State<ExampleMaterial> {
         home: DefaultTabController(
           length: 2,
           child: Container(
-            color: Colors.white,
+            color: widget.colors?.surface,
             padding: const EdgeInsets.all(20),
             child: Container(
               padding: const EdgeInsets.all(2),

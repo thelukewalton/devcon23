@@ -8,7 +8,8 @@ void main() {
 }
 
 class ExampleCupertino extends StatefulWidget {
-  const ExampleCupertino({super.key});
+  final ZetaColors? colors;
+  const ExampleCupertino({super.key, this.colors});
 
   @override
   State<ExampleCupertino> createState() => _ExampleCupertinoState();
@@ -25,7 +26,7 @@ class _ExampleCupertinoState extends State<ExampleCupertino> {
         debugShowCheckedModeBanner: false,
         theme: const CupertinoThemeData(brightness: Brightness.light),
         home: Container(
-          color: Colors.white,
+          color: widget.colors?.surface,
           padding: const EdgeInsets.all(20),
           child: Container(
             padding: const EdgeInsets.all(2),

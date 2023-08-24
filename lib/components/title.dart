@@ -48,7 +48,12 @@ class _TitlePageState extends State<TitlePage> {
                   const AssetBytesLoader('lib/assets/zebra-logo.svg.vec'),
                   semanticsLabel: 'Zebra Logo',
                   height: constraints.maxHeight * 0.08,
-                  colorFilter: ColorFilter.mode(ZetaColors.of(context).white, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                    ZetaColors.of(context).isDarkMode
+                        ? ZetaColors.of(context).warm.shade30
+                        : ZetaColors.of(context).white,
+                    BlendMode.srcIn,
+                  ),
                   alignment: Alignment.centerRight,
                 ),
               ),
@@ -57,7 +62,11 @@ class _TitlePageState extends State<TitlePage> {
                 right: 0,
                 bottom: 0,
                 left: constraints.maxWidth * 0.25,
-                child: Image.asset('lib/assets/intro.png'),
+                child: Image.asset(
+                  'lib/assets/intro.png',
+                  colorBlendMode: BlendMode.luminosity,
+                  color: Colors.black.withOpacity(ZetaColors.of(context).isDarkMode ? 0.4 : 0),
+                ),
               ),
             Positioned(
               top: 36,
@@ -85,6 +94,9 @@ class _TitlePageState extends State<TitlePage> {
                       semanticsLabel: 'DevCon Logo',
                       height: constraints.maxHeight * 0.15,
                       alignment: Alignment.centerRight,
+                      colorFilter: ZetaColors.of(context).isDarkMode
+                          ? ColorFilter.mode(ZetaColors.of(context).warm.shade30, BlendMode.srcIn)
+                          : null,
                     ),
                   SizedBox(
                     width: constraints.maxWidth * 0.55,
@@ -94,7 +106,9 @@ class _TitlePageState extends State<TitlePage> {
                       children: [
                         ZetaText.displayLarge(
                           widget.title,
-                          textColor: ZetaColors.of(context).surface,
+                          textColor: ZetaColors.of(context).isDarkMode
+                              ? ZetaColors.of(context).cool.shade20
+                              : ZetaColors.of(context).textDarkMode,
                           fontWeight: isDevCon ? FontWeight.w400 : FontWeight.bold,
                         ),
                         ZetaText.displayLarge(
@@ -104,7 +118,9 @@ class _TitlePageState extends State<TitlePage> {
                         ),
                         ZetaText.bodySmall(
                           widget.name,
-                          textColor: ZetaColors.of(context).surface,
+                          textColor: ZetaColors.of(context).isDarkMode
+                              ? ZetaColors.of(context).cool.shade20
+                              : ZetaColors.of(context).textDarkMode,
                           fontWeight: FontWeight.bold,
                         ),
                         ZetaText.bodyXSmall(
