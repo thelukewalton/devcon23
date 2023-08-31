@@ -13,6 +13,7 @@ class ZSBProblem extends StatelessWidget {
       backgroundOnTop: true,
       inverse: true,
       content: const BulletPointList(
+        isDark: true,
         content: [
           BulletPoint(point: 'Great UX'),
           BulletPoint(point: 'Native features'),

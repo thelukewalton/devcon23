@@ -1,8 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zds_flutter/zds_flutter.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
+import 'utils/colors.dart';
 import 'utils/navigation.dart';
 
 void main() => runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   final bool isDevCon = true;
   GlobalKey key = GlobalKey();
-  ZetaThemeData _theme = const ZetaThemeData();
+  late ZetaThemeData _theme;
   ZetaThemeData get theme => _theme;
   set theme(ZetaThemeData value) {
     setState(() {
@@ -26,7 +28,6 @@ class MyAppState extends State<MyApp> {
     });
   }
 
-  String selectedFont = 'Arial';
   late double scaleMultiplier;
   bool ready = false;
 
@@ -38,7 +39,14 @@ class MyAppState extends State<MyApp> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
+
       scaleMultiplier = prefs.getDouble(scaleKey) ?? 1;
+
+      _theme = ZetaThemeData(
+        fontFamily: prefs.getString(fontKey),
+        zetaColors: colorsObj.firstWhereOrNull((element) => element.name == prefs.getString(colorKey))?.colors,
+      );
+
       setState(() => ready = true);
     });
   }
@@ -53,6 +61,7 @@ class MyAppState extends State<MyApp> {
       zetaTheme: theme,
       home: const Home(),
       key: key,
+      colors: theme.zetaColors,
     );
   }
 }

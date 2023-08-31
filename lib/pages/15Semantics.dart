@@ -21,6 +21,7 @@ class SemanticsPage extends StatelessWidget {
           content: Column(
             children: [
               const BulletPointList(
+                isDark: true,
                 content: [
                   BulletPoint(
                     point: 'Elimintating vision barriers',
@@ -49,7 +50,10 @@ class SemanticsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const Text('Built in Semantics', style: ZetaText.zetaLabelSmall),
+                            ZetaText.labelSmall(
+                              'Built in Semantics',
+                              textColor: colors.surface,
+                            ),
                           ],
                         ),
                         Column(
@@ -66,7 +70,10 @@ class SemanticsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const Text('MergeSemantics', style: ZetaText.zetaLabelSmall),
+                            ZetaText.labelSmall(
+                              'MergeSemantics',
+                              textColor: colors.surface,
+                            ),
                           ],
                         ),
                       ],
@@ -88,7 +95,10 @@ class SemanticsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const Text('Semantics Widget', style: ZetaText.zetaLabelSmall),
+                            ZetaText.labelSmall(
+                              'Semantics Widget',
+                              textColor: colors.surface,
+                            ),
                             const SizedBox(height: 16),
                           ],
                         ),
@@ -107,7 +117,10 @@ class SemanticsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const Text('ExcludeSemantics', style: ZetaText.zetaLabelSmall),
+                            ZetaText.labelSmall(
+                              'ExcludeSemantics',
+                              textColor: colors.surface,
+                            ),
                           ],
                         ),
                       ],

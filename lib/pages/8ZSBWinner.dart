@@ -20,13 +20,14 @@ class ZSBSolution extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: constraints.maxHeight * 0.1),
-              const Text('Learning opportunities:', style: ZetaText.zetaBodyLarge),
+              ZetaText.bodyMedium('Learning opportunities:', textColor: ZetaColors.of(context).surface),
               SizedBox(height: constraints.maxHeight * 0.05),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
                     child: BulletPointList(
+                      isDark: true,
                       content: [
                         BulletPoint(point: 'Accessability'),
                         BulletPoint(point: 'Responsiveness'),

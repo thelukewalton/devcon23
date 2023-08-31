@@ -28,21 +28,21 @@ class InnovationDesign extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: Dimensions.xxl),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Customer Design Research'),
-                Text('Physical Product Design'),
+                ZetaText.bodyXSmall('Customer Design Research'),
+                ZetaText.bodyXSmall('Physical Product Design'),
               ],
             ),
             const SizedBox(height: 4),
             Expanded(child: Image.asset('lib/assets/id.png')),
             const SizedBox(height: 4),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Human Factors Engineering'),
-                Text('User Experience Design'),
+                ZetaText.bodyXSmall('Human Factors Engineering'),
+                ZetaText.bodyXSmall('User Experience Design'),
               ],
             ),
             const SizedBox(height: 40),

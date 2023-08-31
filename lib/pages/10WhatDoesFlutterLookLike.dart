@@ -18,7 +18,7 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
             Expanded(
               child: Content(
                 title: 'What does Flutter look like?',
-                subtitle: 'main.dart',
+                subtitle: 'Declarative UI',
                 content: Row(
                   children: [
                     Flexible(
@@ -26,7 +26,16 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
                         child: SizedBox(
                           height: constraints.maxHeight * 0.75,
                           width: constraints.maxHeight * 0.75 / 1.8,
-                          child: const ClipRect(child: Example()),
+                          child: Container(
+                            color: ZetaColors.of(context).black,
+                            padding: const EdgeInsets.all(1.0),
+                            child: ColoredBox(
+                              color: ZetaColors.of(context).background,
+                              child: const ClipRect(
+                                child: Example(),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),

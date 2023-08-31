@@ -7,15 +7,12 @@ class Example extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsApp(
-      color: const Color(0xFF007ABA),
-      builder: (BuildContext context, Widget? child) => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          const Text('Hello Flutter!'),
-          Image.asset('lib/dash.png', height: 200),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        const Text('Hello Flutter!'),
+        Image.asset('packages/basic/lib/dash.png', height: 200),
+      ],
     );
   }
 }

@@ -5,7 +5,8 @@ import '../main.dart';
 
 class BulletPointList extends StatelessWidget {
   final List<dynamic> _content;
-  const BulletPointList({super.key, required List<dynamic> content}) : _content = content;
+  final bool isDark;
+  const BulletPointList({super.key, required List<dynamic> content, this.isDark = false}) : _content = content;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +43,10 @@ class BulletPointList extends StatelessWidget {
                   ? const EdgeInsets.only(top: 4)
                   : EdgeInsets.only(left: 8 * (MyAppState().of(context)?.scaleMultiplier ?? 1)),
               padding: e.isCode ? const EdgeInsets.symmetric(horizontal: 4) : null,
-              child: Text(
+              child: ZetaText(
                 e.point,
-                style: ZetaText.zetaBodyLarge.copyWith(
-                  color: e.isCode ? ZetaColors.of(context).surface : null,
+                textColor: (e.isCode || isDark) ? ZetaColors.of(context).surface : null,
+                style: ZetaText.zetaBodySmall.copyWith(
                   fontFamily: e.isCode ? 'IBMPlexMono' : null,
                   height: e.isCode ? 1.4 : 2,
                 ),
@@ -56,7 +57,13 @@ class BulletPointList extends StatelessWidget {
       ),
       ...e.subPoints.map(
         (String e) => Row(
-          children: [const _Bullet(isSubPoint: true, isCode: false), Text(e, style: ZetaText.zetaBodyMedium)],
+          children: [
+            const _Bullet(isSubPoint: true, isCode: false),
+            ZetaText.bodyXSmall(
+              e,
+              textColor: isDark ? ZetaColors.of(context).surface : null,
+            )
+          ],
         ),
       ),
     ];
@@ -80,13 +87,16 @@ class _Bullet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isSubPoint) {
-      return const Text('        ― ');
+      return const Text(
+        '        ― ',
+        style: TextStyle(height: 0.8),
+      );
     }
     return Text(
       '•',
-      style: ZetaText.zetaBodyLarge.copyWith(
+      style: ZetaText.zetaBodySmall.copyWith(
         color: ZetaColors.of(context).primary,
-        height: isCode ? 1.4 : 2,
+        height: isCode ? 1.4 : 3.1,
       ),
     );
   }

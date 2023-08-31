@@ -29,7 +29,7 @@ class HelloFlutter extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('lib/assets/dash.png', width: constraints.maxWidth * 0.15),
-                const ZetaText.labelSmall('Dash').paddingOnly(left: 20),
+                ZetaText.labelSmall('Dash').paddingOnly(left: 20),
                 const SizedBox(height: 100),
               ],
             ),

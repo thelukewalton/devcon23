@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zds_flutter/zds_flutter.dart';
 import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../main.dart';
@@ -31,6 +32,8 @@ import '../pages/9HelloFlutter.dart';
 import 'colors.dart';
 
 const String scaleKey = 'scale';
+const String fontKey = 'font';
+const String colorKey = 'color';
 
 class NavWrapper extends StatefulWidget {
   final Widget child;
@@ -42,6 +45,13 @@ class NavWrapper extends StatefulWidget {
 }
 
 class _NavWrapperState extends State<NavWrapper> {
+  Future<void> savePref(String key, String? name) async {
+    if (name != null && name.isNotEmpty) {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(key, name);
+    }
+  }
+
   final FocusNode _focusNode = FocusNode();
   bool showingDialog = false;
   final Map<String, String> fonts = {
@@ -56,7 +66,7 @@ class _NavWrapperState extends State<NavWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final int pageNumber = int.parse(GoRouter.of(context).location.split('/').last);
+    final int pageNumber = int.parse(GoRouterState.of(context).uri.toString().split('/').last);
     final int pagesTotal = routes.length;
     final MyAppState state = MyAppState().of(context)!;
 
@@ -71,6 +81,7 @@ class _NavWrapperState extends State<NavWrapper> {
     }
 
     FocusScope.of(context).requestFocus(_focusNode);
+
     return KeyboardListener(
       focusNode: _focusNode,
       onKeyEvent: (value) async {
@@ -83,62 +94,65 @@ class _NavWrapperState extends State<NavWrapper> {
               context: context,
               builder: (context) {
                 return Dialog(
-                  child: Padding(
+                  child: Container(
+                    width: 400,
                     padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const ZetaText.titleLarge('Developer options'),
-                        const SizedBox(height: 40),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text('Scale'),
-                            const SizedBox(width: 40),
-                            IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              onPressed: () => setState(() => state.scaleMultiplier = state.scaleMultiplier - 0.1),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.add_circle_outline),
-                              onPressed: () => setState(() => state.scaleMultiplier = state.scaleMultiplier + 0.1),
-                            ),
-                          ],
+                        ZetaText.titleLarge('Developer options', textColor: ZetaColors.of(context).textSubtle),
+                        IconTheme(
+                          data: IconThemeData(color: ZetaColors.of(context).onSurface),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ZetaText.headingSmall('Scale'),
+                              const SizedBox(width: 40),
+                              IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                onPressed: () => setState(() => state.scaleMultiplier = state.scaleMultiplier - 0.1),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.add_circle_outline),
+                                onPressed: () => setState(() => state.scaleMultiplier = state.scaleMultiplier + 0.1),
+                              ),
+                            ],
+                          ),
                         ),
-                        DropdownButton(
-                          hint: const Text('Colors'),
-                          items: colorsObj
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e.colors,
-                                  child: Text(e.name),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (val) {
+                        ZdsDropdownList(
+                          value: ZetaColors.of(context),
+                          label: 'Colors',
+                          options: colorsObj.map((e) => ZdsDropdownListItem(value: e.colors, name: e.name)).toList(),
+                          onChange: (val) {
                             if (val != null && val is ZetaColors) {
-                              ZetaColors.setColors(context, val);
+                              savePref(colorKey, colorsObj.firstWhereOrNull((element) => element.colors == val)?.name)
+                                  .then(
+                                (value) {
+                                  ZetaColors.setColors(context, val);
+                                },
+                              );
                             }
                           },
                         ),
-                        DropdownButton(
-                          hint: const Text('Font'),
-                          items: fonts.keys
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e,
-                                  child: Text(e),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (val) {
+                        ZdsDropdownList(
+                          label: 'Font',
+                          value: Theme.of(context).fontFamily,
+                          options: fonts.entries.map((e) => ZdsDropdownListItem(value: e.value, name: e.key)).toList(),
+                          onChange: (val) {
                             if (val != null && val is String) {
-                              MyAppState().of(context)?.theme = ZetaThemeData(fontFamily: fonts[val]);
+                              savePref(fontKey, val).then(
+                                (value) {
+                                  MyAppState().of(context)?.theme = ZetaThemeData(
+                                    fontFamily: val,
+                                    zetaColors: ZetaColors.of(context),
+                                  );
+                                },
+                              );
                             }
                           },
                         ),
-                      ],
+                      ].divide(const SizedBox(height: 20)).toList(),
                     ),
                   ),
                 );
@@ -148,63 +162,54 @@ class _NavWrapperState extends State<NavWrapper> {
             await prefs.setDouble(scaleKey, state.scaleMultiplier);
             showingDialog = false;
           }
-          // if (value.physicalKey == PhysicalKeyboardKey.arrowUp) firstPage();
-          // if (value.physicalKey == PhysicalKeyboardKey.arrowDown) lastPage();
-          // if (value.physicalKey == PhysicalKeyboardKey.keyQ) {
-          //   setState(() => currentColors = iterateColors(context, currentColors));
-          // }
         }
       },
-      // child: DefaultTextStyle(
-      // style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).textDefault),
-      child: MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: state.scaleMultiplier),
-        // child: GestureDetector(TODO (thelukewalton): work this out with demos
-        //   onTap: nextPage,
-        //   onSecondaryTap: prevPage,
-        child: Stack(
-          children: [
-            Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Material(
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.all(Dimensions.m),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ZetaText.labelSmall(
-                        pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
-                        textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
-                        fontSize: 8,
-                      ),
-                      IconTheme(
-                        data: IconThemeData(color: ZetaColors.of(context).textSubtle.withOpacity(0.8)),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: Dimensions.xxl),
-                            ZetaText.labelSmall(
-                              '$pageNumber/$pagesTotal',
-                              fontSize: 8,
-                              //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
-                              textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
-                            ),
-                          ],
+      child: DefaultTextStyle(
+        style: ZetaText.zetaBodyMedium.copyWith(color: ZetaColors.of(context).textDefault),
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: state.scaleMultiplier),
+          child: Stack(
+            children: [
+              Positioned(top: 0, bottom: 0, left: 0, right: 0, child: widget.child),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(Dimensions.m),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ZetaText.labelSmall(
+                          pageNumber == 1 || pageNumber == pagesTotal ? '' : 'ZEBRA TECHNOLOGIES',
+                          textColor: ZetaColors.of(context).textSubtle.withOpacity(0.5),
+                          fontSize: 8,
                         ),
-                      ),
-                    ],
+                        IconTheme(
+                          data: IconThemeData(color: ZetaColors.of(context).textSubtle.withOpacity(0.8)),
+                          child: Row(
+                            children: [
+                              const SizedBox(width: Dimensions.xxl),
+                              ZetaText.labelSmall(
+                                '$pageNumber/$pagesTotal',
+                                fontSize: 8,
+                                //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
+                                textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-        // ),
       ),
-      // ),
     );
   }
 }

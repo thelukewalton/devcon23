@@ -33,6 +33,7 @@ class ReactNative extends StatelessWidget {
                         ).inlineEnd(constraints.maxWidth * 0.1),
                         const SizedBox(height: Dimensions.l),
                         const BulletPointList(
+                          isDark: true,
                           content: [
                             BulletPoint(
                               point: 'JavaScript / TypeScript',
@@ -55,6 +56,7 @@ class ReactNative extends StatelessWidget {
                         ).inlineEnd(constraints.maxWidth * 0.1),
                         const SizedBox(height: Dimensions.l),
                         const BulletPointList(
+                          isDark: true,
                           content: [
                             BulletPoint(
                               point: 'Dart',

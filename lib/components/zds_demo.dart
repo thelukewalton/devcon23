@@ -98,7 +98,7 @@ class ZDSDemo extends StatelessWidget {
                           leading: const Text('Hight'),
                           trailing: ZdsIndex(
                             color: ZetaColors.of(context).orange,
-                            child: const ZetaText.bodyXSmall('1'),
+                            child: ZetaText.bodyXSmall('1'),
                           ),
                         ),
                         ZdsListTile(

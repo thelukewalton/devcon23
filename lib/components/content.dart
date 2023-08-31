@@ -60,7 +60,8 @@ class _ContentState extends State<Content> {
                     child: Container(
                       color: widget.inverse ? Colors.white : Colors.black,
                       width: constraints.maxWidth / 3,
-                      foregroundDecoration: BoxDecoration(color: colors.warm.shade20.withOpacity(0.5)),
+                      foregroundDecoration:
+                          BoxDecoration(color: colors.warm.shade20.withOpacity(colors.isDarkMode ? 0.5 : 0)),
                       child: widget.leftImage,
                     ),
                   ),
@@ -129,9 +130,9 @@ class _ContentState extends State<Content> {
                               ),
                             if (widget.subtitleWidget != null) widget.subtitleWidget!,
                             DefaultTextStyle(
-                              style: TextStyle(
-                                color: widget.inverse ? colors.textInverse : colors.textDefault,
-                              ),
+                              style: DefaultTextStyle.of(context)
+                                  .style
+                                  .copyWith(color: widget.inverse ? colors.textInverse : colors.textDefault),
                               child: Expanded(
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
