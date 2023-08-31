@@ -10,11 +10,24 @@
       "type": "dart"
     },
     {
-      "name": "presentation (profile mode)",
+      "name": "matieral",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "cwd": "material"
     },
+    {
+      "name": "cupertino",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "cupertino"
+    },
+    {
+      "name": "basic",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "basic"
+    },
+
     {
       "name": "presentation (release mode)",
       "request": "launch",

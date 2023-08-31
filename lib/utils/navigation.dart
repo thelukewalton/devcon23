@@ -44,6 +44,12 @@ class NavWrapper extends StatefulWidget {
 class _NavWrapperState extends State<NavWrapper> {
   final FocusNode _focusNode = FocusNode();
   bool showingDialog = false;
+  final Map<String, String> fonts = {
+    'Arial': 'arial',
+    'Comic Sans': 'comic',
+    'IBM Plex Sans': 'packages/zeta_flutter/IBMPlexSans',
+    'IBM Plex Mono': 'IBMPlexMono'
+  };
 
   Future<void> firstPage() async => GoRouter.of(context).pushReplacement('/1');
   Future<void> lastPage() async => GoRouter.of(context).pushReplacement('/${routes.length}');
@@ -111,11 +117,27 @@ class _NavWrapperState extends State<NavWrapper> {
                               )
                               .toList(),
                           onChanged: (val) {
-                            if (val != null) {
+                            if (val != null && val is ZetaColors) {
                               ZetaColors.setColors(context, val);
                             }
                           },
-                        )
+                        ),
+                        DropdownButton(
+                          hint: const Text('Font'),
+                          items: fonts.keys
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            if (val != null && val is String) {
+                              MyAppState().of(context)?.theme = ZetaThemeData(fontFamily: fonts[val]);
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

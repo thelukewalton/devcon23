@@ -16,10 +16,19 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   final bool isDevCon = true;
+  GlobalKey key = GlobalKey();
+  ZetaThemeData _theme = const ZetaThemeData();
+  ZetaThemeData get theme => _theme;
+  set theme(ZetaThemeData value) {
+    setState(() {
+      _theme = value;
+      key = GlobalKey();
+    });
+  }
+
   String selectedFont = 'Arial';
   late double scaleMultiplier;
   bool ready = false;
-  // final List<String> fontFamilies = ['Arial', 'IBMPlexSans', 'comic'];
 
   MyAppState? of(BuildContext context) => context.findAncestorStateOfType<MyAppState>();
 
@@ -34,7 +43,6 @@ class MyAppState extends State<MyApp> {
     });
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     if (!ready) return const Center(child: CircularProgressIndicator.adaptive());
@@ -42,8 +50,9 @@ class MyAppState extends State<MyApp> {
     return ZdsApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      zetaTheme: ZetaThemeData(fontFamily: selectedFont),
+      zetaTheme: theme,
       home: const Home(),
+      key: key,
     );
   }
 }
@@ -57,6 +66,7 @@ class Home extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       routerConfig: router,
+      theme: Theme.of(context),
     );
   }
 }

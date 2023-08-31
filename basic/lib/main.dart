@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(const Example());
 
@@ -7,16 +7,14 @@ class Example extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Example'),
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
-        ),
-        body: const Center(child: Text('Hello Flutter!')),
+    return WidgetsApp(
+      color: const Color(0xFF007ABA),
+      builder: (BuildContext context, Widget? child) => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text('Hello Flutter!'),
+          Image.asset('lib/dash.png', height: 200),
+        ],
       ),
     );
   }
