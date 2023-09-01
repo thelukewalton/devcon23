@@ -36,16 +36,17 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
                   children: [
                     CaptionedWidget(
                       caption: 'Material (Android)',
-                      child: ExampleMaterial(
-                        colors: ZetaColors.of(context),
-                      ),
+                      child: ExampleMaterial(colors: ZetaColors.of(context)),
                     ),
-                    const CaptionedWidget(caption: 'Cupertino (iOS)', child: ExampleCupertino()),
-                    const SizedBox(width: Dimensions.l),
+                    CaptionedWidget(
+                      caption: 'Cupertino (iOS)',
+                      child: ExampleCupertino(colors: ZetaColors.of(context)),
+                    ),
+                    const SizedBox(width: Dimensions.m),
                   ],
                 ),
               ),
-              const SizedBox(height: Dimensions.l),
+              const SizedBox(height: Dimensions.s),
             ],
           ),
         );

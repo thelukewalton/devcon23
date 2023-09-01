@@ -12,7 +12,6 @@ class Content extends StatefulWidget {
   final Widget? subtitleWidget;
   final Widget content;
   final Widget? otherContent;
-  final bool backgroundOnTop;
   final Widget? leftImage;
   final Widget? rightImage;
   final bool inverse;
@@ -25,7 +24,6 @@ class Content extends StatefulWidget {
     required this.content,
     this.subtitle,
     this.subtitleWidget,
-    this.backgroundOnTop = false,
     this.otherContent,
     this.leftImage,
     this.inverse = false,
@@ -92,21 +90,14 @@ class _ContentState extends State<Content> {
                             : const AssetBytesLoader('lib/assets/logoWhite.svg.vec')
                         : const AssetBytesLoader('lib/assets/zebra-logo-stacked.svg.vec'),
                     height: constraints.maxHeight * 0.12,
-                    colorFilter: ColorFilter.mode(
-                      ZetaColors.of(context).isDarkMode ? ZetaColors.of(context).warm.shade30 : Colors.transparent,
-                      BlendMode.srcIn,
-                    ),
+                    colorFilter: ZetaColors.of(context).isDarkMode
+                        ? ColorFilter.mode(
+                            ZetaColors.of(context).warm.shade30,
+                            BlendMode.srcIn,
+                          )
+                        : null,
                   ),
                 ),
-                if (!widget.backgroundOnTop && !isDevCon)
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: CustomPaint(
-                      size: Size(constraints.maxWidth * 1.5, constraints.maxHeight * 0.5),
-                      painter: BluePaint(context),
-                    ),
-                  ),
                 Positioned(
                   right: Dimensions.xl,
                   bottom: Dimensions.m,

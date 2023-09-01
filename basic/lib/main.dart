@@ -11,7 +11,7 @@ class Example extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         const Text('Hello Flutter!'),
-        Image.asset('packages/basic/lib/dash.png', height: 200),
+        Image.asset('packages/basic/assets/dash.png', height: 200),
       ],
     );
   }

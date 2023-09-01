@@ -28,7 +28,7 @@ class ZDS extends StatelessWidget {
               ],
             ),
           ),
-          Flexible(flex: 2, child: ZDSDemo()),
+          Flexible(flex: 4, child: ZDSDemo()),
         ],
       ),
     );

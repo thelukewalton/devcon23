@@ -8,23 +8,26 @@ class FuturePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Content(
-      title: 'Future',
-      content: BulletPointList(
-        content: [
-          BulletPoint(
-            point: 'Flutter',
-            subPoints: [
-              'Technical debt',
-              'Performance',
-              'Quality',
-              'Security',
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Content(
+          title: 'Conclusion',
+          content: const BulletPointList(
+            content: [
+              BulletPoint(
+                point: 'Flutter make great cross-platform apps',
+                subPoints: ['Android, iOS, Web, MacOS, Windows, Linux'],
+              ),
+              BulletPoint(point: 'Good performance'),
+              BulletPoint(point: 'Great user and developer experience'),
+              BulletPoint(point: 'Continuous improvements'),
+              BulletPoint(point: 'Almost total native feature parity'),
+              BulletPoint(point: 'Widgets'),
             ],
           ),
-          BulletPoint(point: ''),
-          BulletPoint(point: 'Transition apps to Flutter'),
-        ],
-      ),
+          otherContent: FlutterLogo(style: FlutterLogoStyle.horizontal, size: constraints.maxWidth / 3),
+        );
+      },
     );
   }
 }

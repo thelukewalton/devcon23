@@ -1,6 +1,5 @@
 {
-  "dart.flutterSdkPath": "/Users/lukewalton/fvm/versions/3.10.6",
-  "dart.flutterSdkPaths": ["/Users/lukewalton/fvm/versions"],
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
   // Remove .fvm files from search
   "search.exclude": {
     "**/.fvm": true
@@ -8,6 +7,5 @@
   // Remove from file watching
   "files.watcherExclude": {
     "**/.fvm": true
-  },
-  "cSpell.words": ["TMWFM"]
+  }
 }

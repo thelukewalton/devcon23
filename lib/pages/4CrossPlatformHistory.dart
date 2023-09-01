@@ -1,26 +1,54 @@
 import 'package:flutter/material.dart';
-import '../components/bullets.dart';
+import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/content.dart';
 
-class OurProcess extends StatelessWidget {
-  const OurProcess({super.key});
+class CrossPlatformHistory extends StatelessWidget {
+  const CrossPlatformHistory({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Content(
-      title: 'Cross platform history',
-      content: BulletPointList(
-        content: [
-          BulletPoint(point: 'Sencha / ExtJs'),
-          BulletPoint(point: 'Rhodes'),
-          BulletPoint(point: 'PhoneGap / Cordova'),
-          BulletPoint(point: 'Electron'),
-          BulletPoint(point: 'Enterprise Browser'),
-          BulletPoint(point: 'Xamarin'),
-          BulletPoint(point: 'PWA'),
-        ],
-      ),
+    final ZetaColors colors = ZetaColors.of(context);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Content(
+          title: 'Cross platform history',
+          content: Column(
+            children: [
+              ColoredBox(
+                color: colors.black,
+                child: Row(
+                  children: [
+                    Expanded(child: ZetaText('WebView with APIs', textColor: colors.white).inlineStart(Dimensions.l)),
+                    const SizedBox(width: 1),
+                    Expanded(child: ZetaText('Compile to native', textColor: colors.white).inlineStart(Dimensions.l)),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(constraints.maxWidth * 0.02),
+                        child: Image.asset('lib/assets/webviews.png'),
+                      ),
+                    ),
+                    Container(color: colors.cool.shade90, width: 1),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(constraints.maxWidth * 0.02),
+                        child: Image.asset('lib/assets/nativeish.png'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: constraints.maxHeight * 0.08),
+            ],
+          ),
+        );
+      },
     );
   }
 }

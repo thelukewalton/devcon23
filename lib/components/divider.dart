@@ -40,10 +40,12 @@ class _DividerPageState extends State<DividerPage> {
                               const AssetBytesLoader('lib/assets/logoBlack.svg.vec'),
                               semanticsLabel: 'DevCon Logo',
                               alignment: Alignment.centerRight,
-                              colorFilter: ColorFilter.mode(
-                                colors.isDarkMode ? colors.warm.shade30 : Colors.transparent,
-                                BlendMode.srcIn,
-                              ),
+                              colorFilter: colors.isDarkMode
+                                  ? ColorFilter.mode(
+                                      colors.warm.shade30,
+                                      BlendMode.srcIn,
+                                    )
+                                  : null,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

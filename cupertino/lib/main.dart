@@ -27,7 +27,7 @@ class _ExampleCupertinoState extends State<ExampleCupertino> {
         theme: const CupertinoThemeData(brightness: Brightness.light),
         home: Container(
           color: widget.colors?.surface,
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(8),
           child: Container(
             padding: const EdgeInsets.all(2),
             decoration: const BoxDecoration(

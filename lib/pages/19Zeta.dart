@@ -20,21 +20,15 @@ class ZetaPage extends StatelessWidget {
               children: [
                 BulletPointList(
                   content: [
-                    BulletPoint(point: 'Cross-platform, future design system'),
                     BulletPoint(
-                      point: 'Formal, standardized set of components',
+                      point: 'Cross-platform, curated design system',
                       subPoints: [
-                        'Flutter, React, Web Components',
+                        'Flutter, Web Components',
                       ],
                     ),
                     BulletPoint(
-                      point: 'alpha-1.0.0',
-                      subPoints: [
-                        'Color',
-                        'Text',
-                        'Grid',
-                        'Spacing',
-                      ],
+                      point: 'Early alpha release',
+                      subPoints: ['Color', 'Text', 'Grid', 'Spacing'],
                     ),
                   ],
                 ),

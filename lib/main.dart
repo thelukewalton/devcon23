@@ -7,6 +7,9 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 import 'utils/colors.dart';
 import 'utils/navigation.dart';
 
+// TODO(luke): Colors
+// TODO(luke): FONTS
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
@@ -58,10 +61,11 @@ class MyAppState extends State<MyApp> {
     return ZdsApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      zetaTheme: theme,
+      // zetaTheme: theme,
+      // TODO(luke): add this back?
       home: const Home(),
       key: key,
-      colors: theme.zetaColors,
+      // colors: theme.zetaColors,
     );
   }
 }

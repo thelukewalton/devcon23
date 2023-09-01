@@ -6,8 +6,8 @@ import '../components/bullets.dart';
 
 import '../components/content.dart';
 
-class ReactNative extends StatelessWidget {
-  const ReactNative({super.key});
+class ReactNativeOrFlutter extends StatelessWidget {
+  const ReactNativeOrFlutter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,11 @@ class ReactNative extends StatelessWidget {
           inverse: true,
           content: Column(
             children: [
-              SizedBox(height: constraints.maxHeight * 0.05),
-
+              SizedBox(height: constraints.maxHeight * 0.02),
               Row(
                 children: [
                   SizedBox(width: constraints.maxWidth * 0.1),
                   Expanded(
-                    // flex: 2,
                     child: Column(
                       children: [
                         SvgPicture(
@@ -35,12 +33,8 @@ class ReactNative extends StatelessWidget {
                         const BulletPointList(
                           isDark: true,
                           content: [
-                            BulletPoint(
-                              point: 'JavaScript / TypeScript',
-                              subPoints: ['Dynamically / strongly typed'],
-                            ),
-                            BulletPoint(point: 'Native components'),
-                            BulletPoint(point: 'npm / React Native Directory'),
+                            BulletPoint(point: 'JavaScript', subPoints: ['Dynamically typed']),
+                            BulletPoint(point: 'Native components', subPoints: ['npm / React Native Directory']),
                             BulletPoint(point: 'Popularity'),
                           ],
                         ),
@@ -58,28 +52,21 @@ class ReactNative extends StatelessWidget {
                         const BulletPointList(
                           isDark: true,
                           content: [
-                            BulletPoint(
-                              point: 'Dart',
-                              subPoints: ['Statically typed'],
-                            ),
-                            BulletPoint(point: 'Rich core libraries'),
-                            BulletPoint(point: 'pub.dev'),
+                            BulletPoint(point: 'Dart', subPoints: ['Statically typed']),
+                            BulletPoint(point: 'Rich core libraries', subPoints: ['pub.dev']),
                             BulletPoint(point: 'Growing community'),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: constraints.maxWidth * 0.1)
+                  SizedBox(width: constraints.maxWidth * 0.1),
                 ],
               ),
-              // Text('developer experience')
+              SizedBox(height: constraints.maxHeight * 0.04),
+              ZetaText('Developer experience...', textColor: Theme.of(context).colorScheme.primary),
             ],
           ),
-          // leftImage: Padding(
-          //   padding: EdgeInsets.all(constraints.maxWidth * 0.1),
-          //   child: const SvgPicture(AssetBytesLoader('lib/assets/react.svg.vec')),
-          // ),
         );
       },
     );

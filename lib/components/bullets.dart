@@ -62,7 +62,7 @@ class BulletPointList extends StatelessWidget {
             ZetaText.bodyXSmall(
               e,
               textColor: isDark ? ZetaColors.of(context).surface : null,
-            )
+            ),
           ],
         ),
       ),
@@ -94,10 +94,7 @@ class _Bullet extends StatelessWidget {
     }
     return Text(
       '•',
-      style: ZetaText.zetaBodySmall.copyWith(
-        color: ZetaColors.of(context).primary,
-        height: isCode ? 1.4 : 3.1,
-      ),
+      style: ZetaText.zetaBodyLarge.copyWith(color: ZetaColors.of(context).primary, height: isCode ? 1.4 : 2.2),
     );
   }
 }

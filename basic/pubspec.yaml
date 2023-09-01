@@ -16,4 +16,4 @@ dev_dependencies:
 
 flutter:
   assets:
-    - lib/dash.png
+    - assets/dash.png

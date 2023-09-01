@@ -15,7 +15,7 @@ dependencies:
     path: ./cupertino
   flutter:
     sdk: flutter
-  flutter_deck: ^0.3.0
+  flutter_highlight: ^0.7.0
   flutter_svg: ^2.0.5
   go_router: ^10.0.0
   material:
@@ -24,7 +24,7 @@ dependencies:
   shared_preferences: ^2.2.0
   vector_graphics: ^1.1.7
   zds_flutter:
-    path: ../../zds/zds_flutter
+    path: ../../Reflexis/ztmf-ui-component
   zeta_flutter:
     path: ../../Zeta/zeta_flutter
 

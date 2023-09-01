@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../components/title.dart';
 
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
+class IntroPage extends StatelessWidget {
+  const IntroPage({super.key});
 
   @override
   Widget build(BuildContext context) {

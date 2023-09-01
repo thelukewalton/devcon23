@@ -57,77 +57,14 @@ class ZDSDemo extends StatelessWidget {
     return ZdsApp(
       debugShowCheckedModeBanner: false,
       title: '',
+      zetaColors: colors,
       home: Builder(
         builder: (context) {
-          Future<void> showMyBottomSheet() async {
-            await showZdsBottomSheet<void>(
-              enforceSheet: true,
-              context: context,
-              builder: (_) => ZdsBottomSheet(
-                header: ZdsSheetHeader(
-                  headerText: 'Bottom Sheet',
-                  leading: Icon(
-                    Icons.close,
-                    color: colors.textDefault,
-                  ),
-                ),
-                bottom: ZdsBottomBar(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ZdsButton.filled(
-                        child: const Text('Submit'),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                ),
-                child: SizedBox(
-                  height: 200,
-                  child: SingleChildScrollView(
-                    child: ZdsListGroup(
-                      items: [
-                        ZdsListTile(
-                          leading: const Text('Urgent'),
-                          trailing: ZdsIndex(
-                            color: ZetaColors.of(context).red,
-                            child: const Text('U'),
-                          ),
-                        ),
-                        ZdsListTile(
-                          leading: const Text('Hight'),
-                          trailing: ZdsIndex(
-                            color: ZetaColors.of(context).orange,
-                            child: ZetaText.bodyXSmall('1'),
-                          ),
-                        ),
-                        ZdsListTile(
-                          leading: const Text('Medium'),
-                          trailing: ZdsIndex(
-                            color: Theme.of(context).colorScheme.primaryContainer,
-                            child: const Text('2'),
-                          ),
-                        ),
-                        ZdsListTile(
-                          leading: const Text('Low'),
-                          trailing: ZdsIndex(
-                            color: ZetaColors.of(context).green,
-                            child: const Text('3'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          }
-
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Expanded(
               child: ColoredBox(
-                color: ZetaColors.of(context).white,
+                color: ZetaColors.of(context).black,
                 child: SingleChildScrollView(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,13 +76,30 @@ class ZDSDemo extends StatelessWidget {
                             child: ZdsAppBar(
                               actions: [Icon(Icons.more_vert)],
                               title: Text('Appbar'),
+                              leading: Icon(Icons.menu),
+                            ),
+                          ),
+                          const _Wrapper(
+                            child: ZdsAppBar(
+                              actions: [Icon(Icons.more_vert)],
+                              title: Text('Appbar'),
+                              leading: Icon(Icons.menu),
+                              color: ZdsTabBarColor.basic,
+                            ),
+                          ),
+                          const _Wrapper(
+                            child: ZdsAppBar(
+                              actions: [Icon(Icons.more_vert)],
+                              title: Text('Appbar'),
+                              leading: Icon(Icons.menu),
+                              color: ZdsTabBarColor.surface,
                             ),
                           ),
                           DefaultTabController(
                             length: 3,
                             child: _Wrapper(
                               child: ZdsAppBar(
-                                color: ZdsTabBarColor.primary,
+                                leading: const Icon(Icons.menu),
                                 actions: [
                                   ZdsPopupMenu(
                                     builder: (p0, p1) =>
@@ -163,8 +117,7 @@ class ZDSDemo extends StatelessWidget {
                                 title: const Text('Appbar'),
                                 subtitle: const Text('Subtitle'),
                                 bottom: const ZdsTabBar(
-                                  color: ZdsTabBarColor.primary,
-                                  items: [
+                                  tabs: [
                                     ZdsTab(
                                       icon: Icon(ZdsIcons.details),
                                       label: 'Details',
@@ -197,18 +150,18 @@ class ZDSDemo extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 ZdsButton.filled(
-                                  onTap: showMyBottomSheet,
-                                  color: colors.green,
+                                  onTap: () {},
+                                  customColor: colors.green,
                                   child: const Text('Button'),
                                 ),
                                 ZdsButton.outlined(
-                                  onTap: showMyBottomSheet,
-                                  color: colors.green,
+                                  onTap: () {},
+                                  customColor: colors.green,
                                   child: const Text('Button'),
                                 ),
                                 ZdsButton.text(
-                                  onTap: showMyBottomSheet,
-                                  color: colors.green,
+                                  onTap: () {},
+                                  customColor: colors.green,
                                   child: const Text('Button'),
                                 ),
                               ],
@@ -220,34 +173,38 @@ class ZDSDemo extends StatelessWidget {
                               children: [
                                 ZdsButton.filled(
                                   onTap: () {},
-                                  color: colors.red,
+                                  customColor: colors.red,
                                   child: const Text('Button'),
                                 ),
                                 ZdsButton.outlined(
                                   onTap: () {},
-                                  color: colors.red,
+                                  customColor: colors.red,
                                   child: const Text('Button'),
                                 ),
                                 ZdsButton.text(
                                   onTap: () {},
-                                  color: colors.red,
+                                  customColor: colors.red,
                                   child: const Text('Button'),
                                 ),
                               ],
                             ),
                           ),
-                          const _Wrapper(
+                          _Wrapper(
                             child: ZdsExpansionTile(
-                              title: Text('Business dependents'),
-                              child: Text('Lorem'),
+                              title: const Text('Business dependents'),
+                              child: Text(
+                                'Lorem',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
                             ),
                           ),
-                          const _Wrapper(
+                          _Wrapper(
                             child: ZdsExpansionTile(
                               initiallyExpanded: true,
-                              title: Text('Business descendents'),
+                              title: const Text('Business descendants'),
                               child: Text(
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ),
                           ),
@@ -264,12 +221,12 @@ class ZDSDemo extends StatelessWidget {
                                     'Task Survey 2',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyLarge!
+                                        .titleMedium!
                                         .copyWith(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
-                              fieldsEndTextStyle: Theme.of(context).textTheme.bodyLarge,
+                              fieldsEndTextStyle: Theme.of(context).textTheme.bodyMedium,
                               fields: const [
                                 TileField(
                                   start: Text('Execution level'),
@@ -300,7 +257,7 @@ class ZDSDemo extends StatelessWidget {
                             child: Column(
                               children: [
                                 ColoredBox(
-                                  color: Colors.white,
+                                  color: colors.surface,
                                   child: const ZdsProfile(
                                     avatar: ZdsNetworkAvatar(
                                       initials: 'ZDS',
@@ -471,26 +428,26 @@ class ZDSDemo extends StatelessWidget {
                             child: Column(
                               children: [
                                 ZdsInformationBar(
-                                  color: colors.green,
+                                  zetaColorSwatch: colors.green,
                                   icon: ZdsIcons.check,
                                   label: 'Approved',
                                 ),
                                 const SizedBox(height: 10),
                                 ZdsInformationBar(
-                                  color: colors.blue,
+                                  zetaColorSwatch: colors.blue,
                                   icon: ZdsIcons.hourglass,
                                   label: 'Pending',
                                 ),
                                 const SizedBox(height: 10),
                                 ZdsInformationBar(
-                                  color: colors.red,
+                                  zetaColorSwatch: colors.red,
                                   icon: ZdsIcons.close,
                                   label: 'Declined',
                                 ),
                                 const SizedBox(height: 10),
                                 ZdsInformationBar(
                                   label: 'Neutral text',
-                                  color: colors.warm,
+                                  zetaColorSwatch: colors.warm,
                                 ),
                               ],
                             ),
@@ -550,8 +507,10 @@ class ZDSDemo extends StatelessWidget {
                                 child: TextField(
                                   decoration: ZdsInputDecoration(
                                     labelText: 'Edit Walk Name',
-                                    counter: const Text('Character left: 255'),
-                                    colors: ZetaColors.of(context),
+                                    counter: Text(
+                                      'Character left: 255',
+                                      style: Theme.of(context).textTheme.bodyXSmall,
+                                    ),
                                   ),
                                 ),
                               ),
