@@ -63,7 +63,7 @@ class ReactNativeOrFlutter extends StatelessWidget {
                   SizedBox(width: constraints.maxWidth * 0.1),
                 ],
               ),
-              SizedBox(height: constraints.maxHeight * 0.04),
+              SizedBox(height: constraints.maxHeight * 0.06),
               ZetaText('Developer experience...', textColor: Theme.of(context).colorScheme.primary),
             ],
           ),

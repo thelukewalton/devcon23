@@ -10,8 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  zeta_flutter:
-    path: ../../../Zeta/zeta_flutter
+  zeta_flutter: ^0.0.1+12
 
 dev_dependencies:
   flutter_lints: ^2.0.0

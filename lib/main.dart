@@ -7,9 +7,6 @@ import 'package:zeta_flutter/zeta_flutter.dart';
 import 'utils/colors.dart';
 import 'utils/navigation.dart';
 
-// TODO(luke): Colors
-// TODO(luke): FONTS
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
@@ -27,6 +24,12 @@ class MyAppState extends State<MyApp> {
   set theme(ZetaThemeData value) {
     setState(() {
       _theme = value;
+      key = GlobalKey();
+    });
+  }
+
+  void doTheThing() {
+    setState(() {
       key = GlobalKey();
     });
   }
@@ -61,11 +64,9 @@ class MyAppState extends State<MyApp> {
     return ZdsApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      // zetaTheme: theme,
-      // TODO(luke): add this back?
       home: const Home(),
       key: key,
-      // colors: theme.zetaColors,
+      zetaColors: theme.zetaColors,
     );
   }
 }
@@ -79,7 +80,9 @@ class Home extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: Theme.of(context),
+      theme: ZetaTheme.builder(initialTheme: MyAppState().of(context)!.theme).copyWith(
+        colorScheme: ZetaColors.of(context).toColorScheme,
+      ),
     );
   }
 }

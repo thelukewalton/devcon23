@@ -20,7 +20,7 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
     return LayoutBuilder(
       builder: (context, constriants) {
         return Content(
-          title: 'Core UI',
+          title: 'Core components',
           subtitle: 'Material and Cupertino',
           content: const BulletPointList(
             content: [
@@ -30,7 +30,7 @@ class _MaterialCupertinoExampleState extends State<MaterialCupertinoExample> {
           ),
           otherContent: Column(
             children: [
-              const SizedBox(height: Dimensions.m),
+              const SizedBox(height: Dimensions.l),
               Expanded(
                 child: Row(
                   children: [

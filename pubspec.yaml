@@ -23,18 +23,11 @@ dependencies:
   material_symbols_icons: ^4.2668.0
   shared_preferences: ^2.2.0
   vector_graphics: ^1.1.7
-  zds_flutter:
-    path: ../../Reflexis/ztmf-ui-component
-  zeta_flutter:
-    path: ../../Zeta/zeta_flutter
+  zds_flutter: ^0.2.2
+  zeta_flutter: ^0.0.1+12
 
 dependency_overrides:
   intl: ^0.18.1
-  zeta_flutter:
-    # git:
-    #   url: https://github.com/zebratechnologies/zeta-flutter
-    #   ref: feature/color
-    path: ../../Zeta/zeta_flutter
 
 dev_dependencies:
   intl: ^0.18.1

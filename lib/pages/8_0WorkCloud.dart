@@ -10,7 +10,7 @@ class WorkCloud extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Content(
-      title: 'Zebra WorkCloud Mobile',
+      title: 'Zebra Workcloud',
       subtitle: '~70k lines to ~35k lines',
       content: Row(
         mainAxisSize: MainAxisSize.min,
@@ -25,6 +25,7 @@ class WorkCloud extends StatelessWidget {
           Flexible(
             flex: 3,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(children: [CaptionedWidget(caption: 'QChat', child: Image.asset('lib/assets/QChat.png'))]),
                 const SizedBox(width: 80),

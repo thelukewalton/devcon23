@@ -93,7 +93,7 @@ class _NavWrapperState extends State<NavWrapper> {
                 if (value.physicalKey == PhysicalKeyboardKey.f10) {
                   Scaffold.of(context).openDrawer();
                 }
-                if (value.physicalKey == PhysicalKeyboardKey.f12 && !showingDialog) {
+                if (value.physicalKey == PhysicalKeyboardKey.f9 && !showingDialog) {
                   showingDialog = true;
                   await showDialog<void>(
                     context: context,
@@ -134,15 +134,16 @@ class _NavWrapperState extends State<NavWrapper> {
                                     colorsObj.map((e) => ZdsDropdownListItem(value: e.colors, name: e.name)).toList(),
                                 onChange: (val) {
                                   if (val != null && val is ZetaColors) {
-                                    // TODO(thelukewalton): colors are nmot being set until page changes
                                     savePref(
                                       colorKey,
                                       colorsObj.firstWhereOrNull((element) => element.colors == val)?.name,
-                                    ).then(
-                                      (value) {
-                                        ZetaColors.setColors(context, val);
-                                      },
-                                    );
+                                    ).then((value) async {
+                                      ZetaColors.setColors(context, val);
+                                      MyAppState().of(context)?.theme = ZetaThemeData(
+                                        fontFamily: MyAppState().of(context)?.theme.fontFamily,
+                                        zetaColors: ZetaColors.of(context),
+                                      );
+                                    });
                                   }
                                 },
                               ),

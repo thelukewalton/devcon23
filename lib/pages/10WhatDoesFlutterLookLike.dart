@@ -41,15 +41,17 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
                     ),
                     Flexible(
                       flex: 3,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          color: ZetaColors.of(context).onSurface,
-                        ),
-                        margin: const EdgeInsets.symmetric(horizontal: Dimensions.xxxl, vertical: Dimensions.m),
-                        // child: const SvgPicture(AssetBytesLoader('lib/assets/code.svg.vec')),
-                        child: HighlightView(
-                          '''
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(8)),
+                              color: ZetaColors.of(context).onSurface,
+                            ),
+                            margin: const EdgeInsets.symmetric(horizontal: Dimensions.xl, vertical: Dimensions.m),
+                            child: HighlightView(
+                              '''
  1 import 'package:flutter/widgets.dart';
  2  
  3 void main() => runApp(const Example());
@@ -68,15 +70,17 @@ class WhatDoesFlutterLookLike extends StatelessWidget {
 16    );
 17   }
 18  }
-                        ''',
-                          textStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontFamily: 'IBMPlexMono',
-                                color: ZetaColorBase.greyCool.shade30,
-                              ),
-                          language: 'dart',
-                          theme: atomOneDarkReasonableTheme,
-                          padding: const EdgeInsets.all(16),
-                        ),
+                            ''',
+                              textStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                    fontFamily: 'IBMPlexMono',
+                                    color: ZetaColorBase.greyCool.shade30,
+                                  ),
+                              language: 'dart',
+                              theme: atomOneDarkReasonableTheme,
+                              padding: const EdgeInsets.all(16),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
