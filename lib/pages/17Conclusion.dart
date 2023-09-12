@@ -12,20 +12,22 @@ class FuturePage extends StatelessWidget {
       builder: (context, constraints) {
         return Content(
           title: 'Conclusion',
+          inverse: true,
           content: const BulletPointList(
+            isDark: true,
             content: [
               BulletPoint(
-                point: 'Flutter make great cross-platform apps',
+                point: 'Flutter make great apps',
                 subPoints: ['Android, iOS, Web, MacOS, Windows, Linux'],
               ),
               BulletPoint(point: 'Good performance'),
               BulletPoint(point: 'Great user and developer experience'),
               BulletPoint(point: 'Continuous improvements'),
               BulletPoint(point: 'Almost total native feature parity'),
-              BulletPoint(point: 'Widgets'),
             ],
           ),
-          otherContent: FlutterLogo(style: FlutterLogoStyle.horizontal, size: constraints.maxWidth / 3),
+          otherContent: Image.asset('lib/assets/dark_dash.png'),
+          // FlutterLogo(style: FlutterLogoStyle.horizontal, size: constraints.maxWidth / 3),
         );
       },
     );

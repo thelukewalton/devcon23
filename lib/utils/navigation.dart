@@ -69,7 +69,7 @@ class _NavWrapperState extends State<NavWrapper> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ...routes.entries.map(
+              ...routesSanitized.entries.map(
                 (item) => ListTile(
                   title: Text(item.key),
                   onTap: () {
@@ -88,12 +88,15 @@ class _NavWrapperState extends State<NavWrapper> {
             focusNode: _focusNode,
             onKeyEvent: (value) async {
               if (value is KeyUpEvent) {
-                if (value.physicalKey == PhysicalKeyboardKey.arrowLeft) prevPage();
-                if (value.physicalKey == PhysicalKeyboardKey.arrowRight) unawaited(nextPage());
-                if (value.physicalKey == PhysicalKeyboardKey.f10) {
+                if (value.physicalKey == PhysicalKeyboardKey.arrowLeft ||
+                    value.physicalKey == PhysicalKeyboardKey.pageUp) prevPage();
+                if (value.physicalKey == PhysicalKeyboardKey.arrowRight ||
+                    value.physicalKey == PhysicalKeyboardKey.pageDown) unawaited(nextPage());
+                if (value.physicalKey == PhysicalKeyboardKey.f10 || value.physicalKey == PhysicalKeyboardKey.digit0) {
                   Scaffold.of(context).openDrawer();
                 }
-                if (value.physicalKey == PhysicalKeyboardKey.f9 && !showingDialog) {
+                if ((value.physicalKey == PhysicalKeyboardKey.f9 || value.physicalKey == PhysicalKeyboardKey.digit9) &&
+                    !showingDialog) {
                   showingDialog = true;
                   await showDialog<void>(
                     context: context,
@@ -175,6 +178,23 @@ class _NavWrapperState extends State<NavWrapper> {
                   await prefs.setDouble(scaleKey, state.scaleMultiplier);
                   showingDialog = false;
                 }
+                if (value.physicalKey == PhysicalKeyboardKey.keyD && mounted) {
+                  final curr = colorsObj.firstWhereOrNull((element) => element.colors == ZetaColors.of(context))?.name;
+
+                  if (curr == 'DarkMode') {
+                    ZetaColors.setColors(context, colorsObj[0].colors);
+                    MyAppState().of(context)?.theme = ZetaThemeData(
+                      fontFamily: MyAppState().of(context)?.theme.fontFamily,
+                      zetaColors: ZetaColors.of(context),
+                    );
+                  } else {
+                    ZetaColors.setColors(context, colorsObj[2].colors);
+                    MyAppState().of(context)?.theme = ZetaThemeData(
+                      fontFamily: MyAppState().of(context)?.theme.fontFamily,
+                      zetaColors: ZetaColors.of(context),
+                    );
+                  }
+                }
               }
             },
             child: DefaultTextStyle(
@@ -221,7 +241,6 @@ class _NavWrapperState extends State<NavWrapper> {
                                     ZetaText.labelSmall(
                                       '$pageNumber/$pagesTotal',
                                       fontSize: 8,
-                                      //, ${colors[currentColors == 0 ? colors.length - 1 : currentColors - 1].name}',
                                       textColor: ZetaColors.of(context).textSubtle.withOpacity(0.8),
                                     ),
                                   ],

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
 import '../components/big_icon.dart';
 import '../components/content.dart';
 
-class Accessibility extends StatelessWidget {
-  const Accessibility({super.key});
+class Accessibility2 extends StatelessWidget {
+  const Accessibility2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +17,8 @@ class Accessibility extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              BigIcon(icon: Symbols.hearing_disabled, text: 'Hearing', isOn: false),
-              BigIcon(icon: Symbols.accessible, text: 'Physical', isOn: false),
+              BigIcon(icon: Symbols.hearing_disabled, text: 'Hearing'),
+              BigIcon(icon: Symbols.accessible, text: 'Physical'),
               BigIcon(icon: Symbols.visibility_off, text: 'Visual', isOn: false),
               BigIcon(icon: Symbols.psychology, text: 'Cognitive', isOn: false),
             ],

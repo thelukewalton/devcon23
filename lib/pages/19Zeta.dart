@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zeta_flutter/zeta_flutter.dart';
 
 import '../components/bullets.dart';
 import '../components/content.dart';
@@ -9,10 +13,18 @@ class ZetaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Content(
+    return Content(
       title: 'Zeta',
-      subtitle: 'pub.dev/packages/zeta_flutter',
-      content: Row(
+      subtitleWidget: InkWell(
+        onTap: () {
+          unawaited(launchUrl(Uri.https('pub.dev', '/packages/zeta_flutter')));
+        },
+        child: ZetaText.bodyLarge(
+          'pub.dev/packages/zds_flutter',
+          textColor: ZetaColors.of(context).primary,
+        ),
+      ),
+      content: const Row(
         children: [
           Expanded(
             child: Column(
@@ -26,9 +38,9 @@ class ZetaPage extends StatelessWidget {
                         'Flutter, Web Components',
                       ],
                     ),
+                    BulletPoint(point: ''),
                     BulletPoint(
                       point: 'Early alpha release',
-                      subPoints: ['Color', 'Text', 'Grid', 'Spacing'],
                     ),
                   ],
                 ),

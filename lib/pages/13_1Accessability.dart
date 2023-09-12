@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:presentation/components/big_icon.dart';
-import 'package:zeta_flutter/zeta_flutter.dart';
-
+import '../components/big_icon.dart';
 import '../components/content.dart';
-
-//TODO(luke): Continue checking slides after this, and finish the transitions.
 
 class Accessibility1 extends StatelessWidget {
   const Accessibility1({super.key});
@@ -22,7 +18,7 @@ class Accessibility1 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               BigIcon(icon: Symbols.hearing_disabled, text: 'Hearing'),
-              BigIcon(icon: Symbols.accessible, text: 'Physical'),
+              BigIcon(icon: Symbols.accessible, text: 'Physical', isOn: false),
               BigIcon(icon: Symbols.visibility_off, text: 'Visual', isOn: false),
               BigIcon(icon: Symbols.psychology, text: 'Cognitive', isOn: false),
             ],

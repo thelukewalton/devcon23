@@ -12,7 +12,14 @@ class AAA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Content(
       title: 'Accessibility',
-      subtitle: 'Achieving AAA',
+      subtitleWidget: Row(
+        children: [
+          ZetaText.bodyLarge('Achieving ', textColor: const Color(0xFF106BFF)),
+          ZetaText.bodyLarge('AA ', textColor: const Color(0xFF99C7FF)),
+          ZetaText.bodyLarge('and AAA', textColor: const Color(0xFF146EFF)),
+        ],
+      ),
+      // subtitle: 'Achieving AA and AAA',
       content: const BulletPointList(
         content: [
           BulletPoint(point: 'Responsiveness', subPoints: ['Screen size', 'Font scale']),

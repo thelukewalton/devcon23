@@ -15,7 +15,10 @@ class BigIcon extends StatelessWidget {
       children: [
         Icon(icon, color: isOn ? colors.textDefault : colors.surface, size: 128, weight: 300),
         const SizedBox(height: 16),
-        if (isOn) ZetaText.bodyMedium(text),
+        ZetaText.bodyMedium(
+          text,
+          textColor: isOn ? colors.textDefault : colors.surface,
+        ),
       ],
     );
   }

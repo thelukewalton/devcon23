@@ -21,24 +21,22 @@ class ZetaDemo extends StatelessWidget {
     };
 
     return Zeta(
+      colors: colors,
       builder: (BuildContext context, ThemeData data, ZetaColors colors) {
-        return ColoredBox(
-          color: ZetaColors.of(context).white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ZetaText.headingLarge('Zeta Heading Large'),
-              ZetaText.headingMedium('Zeta Heading Medium'),
-              ZetaText.headingSmall('Zeta Heading Small'),
-              ZetaText.titleLarge('Zeta Title Large'),
-              ZetaText.titleMedium('Zeta Title Medium'),
-              ZetaText.titleSmall('Zeta Title Small'),
-              ZetaText.bodyLarge('Zeta Body Large'),
-              ZetaText.bodyMedium('Zeta Body Medium'),
-              ZetaText.bodySmall('Zeta Body Small'),
-              MyRow(children: swatches, title: 'Primary colors'),
-            ],
-          ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ZetaText.headingLarge('Zeta Heading Large'),
+            ZetaText.headingMedium('Zeta Heading Medium'),
+            ZetaText.headingSmall('Zeta Heading Small'),
+            ZetaText.titleLarge('Zeta Title Large'),
+            ZetaText.titleMedium('Zeta Title Medium'),
+            ZetaText.titleSmall('Zeta Title Small'),
+            ZetaText.bodyLarge('Zeta Body Large'),
+            ZetaText.bodyMedium('Zeta Body Medium'),
+            ZetaText.bodySmall('Zeta Body Small'),
+            MyRow(children: swatches, title: 'Primary colors'),
+          ],
         );
       },
     );

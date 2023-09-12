@@ -28,12 +28,6 @@ class MyAppState extends State<MyApp> {
     });
   }
 
-  void doTheThing() {
-    setState(() {
-      key = GlobalKey();
-    });
-  }
-
   late double scaleMultiplier;
   bool ready = false;
 
