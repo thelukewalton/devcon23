@@ -2,7 +2,11 @@
 
 Presented at Zebra DevCon on September 15th, 2023 in Madrid.
 
-[Slides](TODO:)
+- [Slides](<Common UX across Android, iOS and Web with Flutter.pdf>)
+
+- [Slides coded in Flutter](https://thelukewalton.github.io/devcon23)
+  - Change slides with arrow keys
+  - Change UI settings with F9
 
 ---
 
