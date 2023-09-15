@@ -20,7 +20,7 @@ class ZetaPage extends StatelessWidget {
           unawaited(launchUrl(Uri.https('pub.dev', '/packages/zeta_flutter')));
         },
         child: ZetaText.bodyLarge(
-          'pub.dev/packages/zds_flutter',
+          'pub.dev/packages/zeta_flutter',
           textColor: ZetaColors.of(context).primary,
         ),
       ),

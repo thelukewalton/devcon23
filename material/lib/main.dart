@@ -87,10 +87,9 @@ class _ExampleMaterialState extends State<ExampleMaterial> {
                         Expanded(
                           child: CustomScrollView(
                             slivers: [
-                              // ignore: prefer_const_constructors
-                              SliverAppBar.large(
-                                title: const Text('Large App Bar'),
-                                actions: const [_Dropdown()],
+                              const SliverAppBar.large(
+                                title: Text('Large App Bar'),
+                                actions: [_Dropdown()],
                               ),
                               SliverFillRemaining(
                                 child: SingleChildScrollView(

@@ -27,9 +27,18 @@ class WorkCloud extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(children: [CaptionedWidget(caption: 'QChat', child: Image.asset('lib/assets/QChat.png'))]),
+                Column(
+                  children: [CaptionedWidget(caption: 'Workcloud Chat', child: Image.asset('lib/assets/QChat.png'))],
+                ),
                 const SizedBox(width: 80),
-                Column(children: [CaptionedWidget(caption: 'ESS', child: Image.asset('lib/assets/Ess.png'))]),
+                Column(
+                  children: [
+                    CaptionedWidget(
+                      caption: 'Workcloud Scheduling Employee Self-Service',
+                      child: Image.asset('lib/assets/Ess.png'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
